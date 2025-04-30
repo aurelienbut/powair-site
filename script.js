@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(data), // Convertir l'objet JS en chaîne JSON
                 });
 
-                // Attendre la réponse JSON de la fonction
+                // Attendre la réponse JSON de la fonctionnnnn
                 const result = await response.json();
 
                 if (response.ok) {
