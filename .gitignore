@@ -3,7 +3,7 @@
 Thumbs.db
 
 # Dépendances (si ajoutées plus tard)
-node_modules
+node_modules/
 
 # Fichiers d'environnement locaux (non applicable ici, mais bonne pratique)
 .env

@@ -291,6 +291,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Gestion Soumission Formulaire Partenaire ---
+    const partnerForm = document.getElementById('partner-form');
+    const partnerSubmitButton = document.getElementById('partner-submit-button');
+    const partnerFormMessage = document.getElementById('partner-form-message');
+
+    // Vérifier si les éléments existent avant d'ajouter l'écouteur
+    if (partnerForm && partnerSubmitButton && partnerFormMessage) {
+        partnerForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Désactiver le bouton et afficher un message de chargement/réinitialiser
+            partnerSubmitButton.disabled = true;
+            partnerSubmitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            partnerFormMessage.textContent = ''; // Effacer ancien message
+            partnerFormMessage.style.color = 'inherit';
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(partnerForm);
+            const data = Object.fromEntries(formData.entries()); // Convertit FormData en objet JS simple
+
+            try {
+                // Envoyer les données à notre fonction serverless Vercel
+                const response = await fetch('/api/submit-partner-form', { // L'URL de notre fonction
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Indiquer qu'on envoie du JSON
+                    },
+                    body: JSON.stringify(data), // Convertir l'objet JS en chaîne JSON
+                });
+
+                // Attendre la réponse JSON de la fonction
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Succès (statut 2xx)
+                    partnerFormMessage.textContent = result.message || "Merci ! Votre demande a bien été envoyée.";
+                    partnerFormMessage.style.color = 'var(--accent-color)'; // Utiliser une couleur du thème
+                    partnerForm.reset(); // Vider le formulaire
+                    console.log("Formulaire envoyé avec succès:", result);
+                } else {
+                    // Erreur gérée par le backend (statut 4xx ou 5xx)
+                    partnerFormMessage.textContent = result.error || `Erreur ${response.status}: Veuillez réessayer.`;
+                    partnerFormMessage.style.color = '#E53E3E'; // Rouge pour l'erreur
+                    console.error("Erreur retournée par l'API:", result);
+                }
+
+            } catch (error) {
+                // Erreur réseau (fetch échoué) ou erreur de parsing JSON
+                console.error("Erreur lors de l'envoi du fetch:", error);
+                partnerFormMessage.textContent = "Une erreur réseau est survenue. Vérifiez votre connexion et réessayez.";
+                partnerFormMessage.style.color = '#E53E3E'; // Rouge pour l'erreur
+            } finally {
+                // Réactiver le bouton dans tous les cas (succès ou erreur)
+                partnerSubmitButton.disabled = false;
+                partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Devenir Partenaire';
+            }
+        });
+    } else {
+        console.warn("Éléments du formulaire partenaire non trouvés. La soumission ne sera pas active.");
+    }
+    // --- Fin Gestion Soumission Formulaire Partenaire ---
+
+// Assurez-vous que ce code est bien AVANT le }); final du bloc DOMContentLoaded
+// }); // <-- Fin de l'écouteur DOMContentLoaded (NE PAS COPIER CETTE LIGNE, juste pour indication)
+
 
 }); // Fin de DOMContentLoaded
 

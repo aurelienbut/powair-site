@@ -424,34 +424,43 @@
                  </div>
             </div>
             <div class="partner-contact-form">
-                 <div class="form-header">
-                   <h3>Prêt à nous rejoindre ?</h3>
-                   <p>Laissez-nous vos coordonnées et un conseiller vous contactera sous 24h.</p>
-                 </div>
-                 <div class="form-content">
-                   <div class="form-fields">
-                     <div class="form-field"><input type="text" placeholder="Nom de l'établissement" required></div>
-                     <div class="form-field"><input type="email" placeholder="Email professionnel" required></div>
-                     <div class="form-field"><input type="tel" placeholder="Téléphone" required></div>
-                     <div class="form-field">
-                       <select required>
-                         <option value="" disabled selected>Type d'établissement</option>
-                         <option value="cafe">Café / Restaurant</option>
-                         <option value="hotel">Hôtel</option>
-                         <option value="retail">Commerce</option>
-                         <option value="other">Autre</option>
-                       </select>
-                     </div>
-                   </div>
-                   <button type="submit" class="btn btn-primary partner-submit">
-                     <i class="fas fa-paper-plane"></i>
-                     Devenir Partenaire
-                   </button>
-                 </div>
-                 <div class="form-alternative">
-                   <span>Ou appelez-nous directement au </span>
-                   <a href="tel:+33123456789" class="phone-link">01 23 45 67 89</a>
-                 </div>
+              <form id="partner-form">
+                <div class="form-header">
+                  <h3>Prêt à nous rejoindre ?</h3>
+                  <p>Laissez-nous vos coordonnées et un conseiller vous contactera sous 24h.</p>
+                </div>
+                <div class="form-content">
+                  <div class="form-fields">
+                    <div class="form-field">
+                      <input type="text" placeholder="Nom de l'établissement" name="establishmentName" required>
+                    </div>
+                    <div class="form-field">
+                      <input type="email" placeholder="Email professionnel" name="email" required>
+                    </div>
+                    <div class="form-field">
+                      <input type="tel" placeholder="Téléphone" name="phone" required>
+                    </div>
+                    <div class="form-field">
+                      <select name="establishmentType" required>
+                        <option value="" disabled selected>Type d'établissement</option>
+                        <option value="cafe">Café / Restaurant</option>
+                        <option value="hotel">Hôtel</option>
+                        <option value="retail">Commerce</option>
+                        <option value="other">Autre</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary partner-submit" id="partner-submit-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Devenir Partenaire
+                  </button>
+                  <div id="partner-form-message" style="margin-top: 1rem; text-align: center; min-height: 1.5em; color: inherit;"></div>
+                </div>
+                <div class="form-alternative">
+                  <span>Ou appelez-nous directement au </span>
+                  <a href="tel:+33123456789" class="phone-link">01 23 45 67 89</a>
+                </div>
+              </form>
             </div>
             <div class="partner-brands">
                  <h4>Ils font déjà partie de l'aventure</h4>
