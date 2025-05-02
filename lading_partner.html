@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pow'air Partenaires - Rejoignez le réseau de recharge mobile #1 en France</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Styles spécifiques à la page partenaires -->
+  <style>
+    /* Ajustements spécifiques pour la landing page commerçants */
+    
+    /* Ajout d'une règle spécifique pour la version mobile */
+    @media (max-width: 768px) {
+      .hero {
+        margin-top: 70px !important;
+        padding-top: 30px !important;
+      }
+    }
+    .metric-card {
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-color);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-color);
+    }
+    
+    .metric-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    .metric-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-color);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-color);
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      background-image: var(--gradient-primary);
+      background-color: var(--gradient-start-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+    
+    .feature-description {
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+      flex-grow: 1;
+    }
+    
+    .hero-merchant {
+      position: relative;
+      background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      padding: 3rem 2rem;
+      margin-top: 1rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+    }
+    
+    .dark-mode .hero-merchant {
+      background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .testimonial-card {
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-color);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-color);
+    }
+    
+    .testimonial-quote {
+      font-style: italic;
+      color: var(--text-color);
+      position: relative;
+      padding: 0 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-quote::before,
+    .testimonial-quote::after {
+      content: '"';
+      font-size: 2rem;
+      font-family: 'Georgia', serif;
+      line-height: 0;
+      color: var(--accent-color);
+      opacity: 0.5;
+      position: absolute;
+    }
+    
+    .testimonial-quote::before {
+      left: 0;
+      top: 0.5rem;
+    }
+    
+    .testimonial-quote::after {
+      right: 0;
+      bottom: -0.3rem;
+    }
+    
+    .testimonial-author-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-avatar {
+      width: 3rem;
+      height: 3rem;
+      background-image: var(--gradient-primary);
+      background-color: var(--gradient-start-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      color: var(--main-white);
+      font-size: 1.2rem;
+    }
+    
+    .testimonial-author h5 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--text-color);
+    }
+    
+    .testimonial-author span {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    
+    .faq-container {
+      margin-top: 3rem;
+    }
+    
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-color);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-color);
+    }
+    
+    .faq-question {
+      padding: 1.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .faq-question i {
+      color: var(--accent-color);
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.6;
+      display: none;
+    }
+    
+    .faq-answer.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 3rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1.2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .comparison-table th {
+      background-color: var(--accent-color);
+      color: var(--main-white);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    
+    .comparison-table tbody tr {
+      background-color: var(--bg-color);
+      transition: all 0.3s ease;
+    }
+    
+    .comparison-table tbody tr:hover {
+      background-color: var(--bg-alt);
+    }
+    
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    
+    .comparison-table .check {
+      color: #22c55e;
+      font-size: 1.2rem;
+    }
+    
+    .comparison-table .times {
+      color: #ef4444;
+      font-size: 1.2rem;
+    }
+    
+    .step-merchant {
+      padding: 1.5rem;
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-merchant:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-color);
+    }
+    
+    .step-number-merchant {
+      min-width: 3rem;
+      height: 3rem;
+      background-image: var(--gradient-primary);
+      background-color: var(--gradient-start-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--main-white);
+      font-weight: 700;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .step-content-merchant h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--text-color);
+    }
+    
+    .step-content-merchant p {
+      margin-bottom: 0;
+      color: var(--text-light);
+    }
+    
+    /* Réduction de l'espace pour la section hero en version desktop */
+    @media (min-width: 992px) {
+      .hero {
+        padding-top: 10px !important; 
+        padding-bottom: 10px !important;
+      }
+      
+      .hero-merchant {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-merchant {
+        padding: 3rem 1.5rem;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+      
+      .step-merchant {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      
+      .step-content-merchant {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg">
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+  </div>
+
+  <div class="mode-switch">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+            <li><a href="#avantages">Vos avantages</a></li>
+            <li><a href="#fonctionnement">Fonctionnement</a></li>
+            <li><a href="#temoignages">Témoignages</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-handshake"></i>
+            Devenir Partenaire
+          </a>
+          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <ul>
+        <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+        <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
+        <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
+        <li style="--i:4"><a href="#temoignages">Témoignages</a></li>
+        <li style="--i:5"><a href="#faq">FAQ</a></li>
+        <li style="--i:6"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Section hero modifiée avec padding et margin augmentés -->
+  <section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
+    <div class="container">
+      <div class="hero-merchant" style="text-align: center; padding: 2.5rem 2rem;">
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="hero-badge" style="display: inline-flex; margin-bottom: 2rem;">
+            <i class="fas fa-bolt"></i>
+            Solution partenaire #1 pour les commerçants
+          </div>
+          
+          <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Boostez votre <span style="color: #4C86F9;">business</span> avec Pow'air</h1>
+          
+          <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+            Rejoignez le réseau de recharge mobile leader en France. Attirez de nouveaux clients, générez des revenus supplémentaires et offrez un service innovant sans investissement.
+          </p>
+          
+          <div class="hero-cta" style="justify-content: center; margin-top: 2.5rem;">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fas fa-handshake"></i>
+              Devenir Partenaire
+            </a>
+            <a href="#avantages" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i>
+              Découvrir les avantages
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pourquoi-partenaire" style="padding-top: 40px;">
+    <div class="section-bg">
+      <div class="section-bg-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-question-circle"></i> Pourquoi rejoindre Pow'air
+          </div>
+          <h2>Un partenariat gagnant-gagnant</h2>
+          <p class="subtitle">Devenez une partie intégrante de l'avenir de la recharge mobile et bénéficiez d'avantages exclusifs.</p>
+        </div>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="feature-title">Attirez de nouveaux clients</h3>
+            <p class="feature-description">Notre application mobile dirige des milliers d'utilisateurs vers les commerces partenaires. Les utilisateurs à la recherche d'une batterie découvrent votre établissement et sont plus susceptibles de revenir.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-euro-sign"></i>
+            </div>
+            <h3 class="feature-title">Générez des revenus additionnels</h3>
+            <p class="feature-description">Gagnez une commission sur chaque location et retour de batterie dans votre établissement. Un revenu passif sans effort qui s'ajoute à votre chiffre d'affaires principal.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <h3 class="feature-title">Visibilité accrue</h3>
+            <p class="feature-description">Votre établissement est mis en avant sur notre application et dans nos campagnes marketing, vous offrant une visibilité auprès de milliers d'utilisateurs potentiels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits" id="avantages">
+    <div class="benefits-bg">
+      <div class="benefits-bg-shape"></div>
+      <div class="benefits-bg-shape"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-gift"></i> Vos avantages exclusifs
+          </div>
+          <h2>Tout est conçu pour votre réussite</h2>
+          <p class="subtitle">Notre programme partenaire offre bien plus qu'une simple borne de recharge.</p>
+        </div>
+        
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Avantages</th>
+              <th>Partenaires Pow'air</th>
+              <th>Solutions concurrentes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Installation et matériel gratuits</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
+            </tr>
+            <tr>
+              <td>Aucun coût de maintenance</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
+            </tr>
+            <tr>
+              <td>Commissions sur chaque transaction</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Support technique dédié 7j/7</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
+            </tr>
+            <tr>
+              <td>Visibilité sur l'application</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-check check"></i></td>
+            </tr>
+            <tr>
+              <td>Campagnes marketing ciblées</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="fonctionnement" style="padding-bottom: 40px;">
+    <div class="section-bg">
+      <div class="section-bg-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-cogs"></i> Comment ça fonctionne
+          </div>
+          <h2>Un processus simple et rapide</h2>
+          <p class="subtitle">Devenir partenaire Pow'air est aussi simple que d'utiliser notre service.</p>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="step-merchant">
+            <div class="step-number-merchant">1</div>
+            <div class="step-content-merchant">
+              <h4>Contactez-nous</h4>
+              <p>Remplissez le formulaire de contact ou appelez-nous directement. Un conseiller dédié prendra en charge votre demande sous 24h.</p>
+            </div>
+          </div>
+          
+          <div class="step-merchant">
+            <div class="step-number-merchant">2</div>
+            <div class="step-content-merchant">
+              <h4>Installation gratuite</h4>
+              <p>Notre équipe installe la borne Pow'air dans votre établissement sans frais et forme votre personnel en moins d'une heure.</p>
+            </div>
+          </div>
+          
+          <div class="step-merchant">
+            <div class="step-number-merchant">3</div>
+            <div class="step-content-merchant">
+              <h4>Activation et lancement</h4>
+              <p>Votre point de recharge est immédiatement visible sur l'application et commence à attirer de nouveaux clients dès le premier jour.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="temoignages" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-comment-dots"></i> Témoignages
+          </div>
+          <h2>Ce que disent nos partenaires</h2>
+          <p class="subtitle">Découvrez l'expérience des commerçants qui nous font déjà confiance.</p>
+        </div>
+        
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              "Depuis que nous avons installé la borne Pow'air, nous avons constaté une augmentation de 15% de notre clientèle. Les clients viennent pour une batterie et restent pour un café ou un repas. Un vrai plus pour notre établissement !"
+            </div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">
+                <i class="fas fa-coffee"></i>
+              </div>
+              <div class="testimonial-author">
+                <h5>Marie Dupont</h5>
+                <span>Café des Arts, Paris</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              "Le service client Pow'air est exceptionnel. L'installation a été rapide et professionnelle, et le support technique répond toujours présent. Nous générons maintenant des revenus complémentaires tout en offrant un service utile à nos clients."
+            </div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="testimonial-author">
+                <h5>Thomas Martin</h5>
+                <span>Librairie Page & Plume, Lyon</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              "Nos clients adorent pouvoir recharger leurs appareils pendant qu'ils font leurs courses. C'est un vrai plus qui nous différencie de nos concurrents. Et le fait de générer des revenus supplémentaires sans investissement initial est un modèle parfait pour les commerçants."
+            </div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">
+                <i class="fas fa-shopping-basket"></i>
+              </div>
+              <div class="testimonial-author">
+                <h5>Sophie Legrand</h5>
+                <span>Épicerie Bio, Bordeaux</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-bg">
+      <div class="section-bg-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-question-circle"></i> FAQ
+          </div>
+          <h2>Vos questions, nos réponses</h2>
+          <p class="subtitle">Tout ce que vous devez savoir sur le partenariat avec Pow'air.</p>
+        </div>
+        
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              Combien coûte l'installation d'une borne Pow'air ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              L'installation est entièrement gratuite pour nos partenaires. Nous prenons en charge tous les coûts liés au matériel, à l'installation et à la maintenance des bornes Pow'air.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Comment fonctionne le système de commissions ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Vous recevez une commission sur chaque location initiée dans votre établissement ainsi que sur chaque retour de batterie. Les commissions sont calculées en pourcentage du montant de la transaction et sont versées mensuellement sur votre compte bancaire.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Quelle est la taille d'une borne Pow'air ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Nos bornes sont compactes et s'adaptent à tous les types d'établissements. La taille standard est de 50cm x 30cm x 20cm, mais nous proposons différents modèles selon l'espace disponible dans votre commerce.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Y a-t-il des conditions particulières pour devenir partenaire ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Les principaux critères sont : être un commerce établi depuis au moins 6 mois, avoir un emplacement accessible au public pendant vos heures d'ouverture, et disposer d'une connexion internet (Wi-Fi ou filaire) pour la borne.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Comment se passe la maintenance des bornes ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              La maintenance est entièrement prise en charge par Pow'air. En cas de problème technique, notre équipe intervient sous 24 à 48 heures. Les mises à jour du système se font automatiquement à distance. Votre seule responsabilité est de nous signaler rapidement tout dysfonctionnement que vous pourriez constater.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Quelle est la durée d'engagement ?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Le contrat de partenariat standard est de 12 mois, renouvelable automatiquement. Vous pouvez toutefois résilier avec un préavis de 2 mois sans aucuns frais. Nous préférons conserver des partenaires satisfaits plutôt que contraints !
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="pricing">
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-handshake"></i> Rejoignez-nous
+          </div>
+          <h2>Prêt à booster votre commerce ?</h2>
+          <p class="subtitle">Remplissez le formulaire ci-dessous et rejoignez notre réseau de partenaires.</p>
+        </div>
+        
+        <div class="partner-contact-form active">
+          <form id="partner-form">
+            <div class="form-header">
+              <h3>Demande de partenariat</h3>
+              <p>Laissez-nous vos coordonnées et un conseiller vous contactera sous 24h.</p>
+            </div>
+            <div class="form-content">
+              <div class="form-fields">
+                <div class="form-field">
+                  <input type="text" placeholder="Nom de l'établissement" name="establishmentName" required>
+                </div>
+                <div class="form-field">
+                  <input type="email" placeholder="Email professionnel" name="email" required>
+                </div>
+                <div class="form-field">
+                  <input type="tel" placeholder="Téléphone" name="phone" required>
+                </div>
+                <div class="form-field">
+                  <select name="establishmentType" required>
+                    <option value="" disabled selected>Type d'établissement</option>
+                    <option value="Café / Restaurant">Café / Restaurant</option>
+                    <option value="Hôtel">Hôtel</option>
+                    <option value="Commerce de détail">Commerce de détail</option>
+                    <option value="Supermarché">Supermarché</option>
+                    <option value="Librairie / Presse">Librairie / Presse</option>
+                    <option value="Salon de beauté / Coiffeur">Salon de beauté / Coiffeur</option>
+                    <option value="Autre">Autre</option>
+                  </select>
+                </div>
+                </div>
+              <button type="submit" class="btn btn-primary partner-submit" id="partner-submit-button">
+                <i class="fas fa-paper-plane"></i>
+                Envoyer ma demande
+              </button>
+              <div id="partner-form-message" style="margin-top: 1rem; text-align: center; min-height: 1.5em; color: inherit;"></div>
+            </div>
+            <div class="form-alternative">
+              <span>Vous préférez nous parler directement ? Appelez-nous au </span>
+              <a href="tel:+33123456789" class="phone-link">01 23 45 67 89</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-bg"></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo-area">
+            <a href="index.html" class="footer-logo">
+              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
+            </a>
+            <p class="footer-description">
+              Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+            <li><a href="#avantages">Vos avantages</a></li>
+            <li><a href="#fonctionnement">Fonctionnement</a></li>
+            <li><a href="#temoignages">Témoignages</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Ressources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Kit marketing partenaires</a></li>
+            <li><a href="#">Guide d'installation</a></li>
+            <li><a href="#">Études de cas</a></li>
+            <li><a href="#">Support technique</a></li>
+            <li><a href="#">Blog partenaires</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Contactez-nous</h4>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <span class="contact-text"><a href="mailto:partenaires@powair.example.com">partenaires@powair.example.com</a></span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2024 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+        </p>
+        <div class="footer-links-bottom">
+          <a href="#">Conditions</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">Plan du site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  
+  <!-- Script spécifique à la page partenaires -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animation des compteurs de statistiques
+      const startCounters = () => {
+        const counters = document.querySelectorAll('.metric-number');
+        counters.forEach(counter => {
+          if (counter.dataset.animated) return;
+          counter.dataset.animated = true;
+          
+          const target = parseInt(counter.getAttribute('data-count'), 10);
+          const duration = 2000;
+          let startTimestamp = null;
+          
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            counter.textContent = Math.floor(progress * target).toLocaleString();
+            
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              counter.textContent = target.toLocaleString();
+            }
+          };
+          
+          window.requestAnimationFrame(step);
+        });
+      };
+      
+      // Gestion des FAQ
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const isActive = question.classList.contains('active');
+          
+          // Ferme toutes les réponses
+          document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+          document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+          
+          // Ouvre la réponse cliquée si elle n'était pas déjà ouverte
+          if (!isActive) {
+            question.classList.add('active');
+            answer.classList.add('active');
+          }
+        });
+      });
+      
+      // Observer pour déclencher les animations au scroll
+      if ("IntersectionObserver" in window) {
+        // Pour les compteurs
+        const metricsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              startCounters();
+              metricsObserver.disconnect(); // Ne déclenche les compteurs qu'une fois
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        const metricsSection = document.querySelector('.metrics-grid');
+        if (metricsSection) {
+          metricsObserver.observe(metricsSection);
+        }
+      } else {
+        // Fallback pour les navigateurs sans IntersectionObserver
+        startCounters();
+      }
+      
+      // Gestion du formulaire partenaire (repris du script principal)
+      const partnerForm = document.getElementById('partner-form');
+      const partnerSubmitButton = document.getElementById('partner-submit-button');
+      const partnerFormMessage = document.getElementById('partner-form-message');
+
+      if (partnerForm && partnerSubmitButton && partnerFormMessage) {
+        partnerForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          
+          partnerSubmitButton.disabled = true;
+          partnerSubmitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+          partnerFormMessage.textContent = '';
+          partnerFormMessage.style.color = 'inherit';
+          
+          const formData = new FormData(partnerForm);
+          const data = Object.fromEntries(formData.entries());
+          
+          try {
+            // Simulation d'envoi - à remplacer par l'appel API réel
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Simulation de succès
+            partnerFormMessage.textContent = "Merci ! Votre demande a bien été envoyée. Un conseiller vous contactera dans les 24h.";
+            partnerFormMessage.style.color = 'var(--accent-color)';
+            partnerForm.reset();
+            
+          } catch (error) {
+            console.error("Erreur lors de l'envoi:", error);
+            partnerFormMessage.textContent = "Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.";
+            partnerFormMessage.style.color = '#E53E3E';
+          } finally {
+            partnerSubmitButton.disabled = false;
+            partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

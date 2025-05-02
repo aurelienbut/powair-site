@@ -141,7 +141,7 @@ nav ul li a:hover::after { width: 100%; }
 @keyframes floatBG { from { transform: translate(0, 0) scale(1); } to { transform: translate(30px, -40px) scale(1.15); } }
 
 /* Hero Section */
-.hero { min-height: 100vh; display: flex; align-items: center; padding-top: 120px; padding-bottom: 100px; position: relative; overflow: visible; }
+.hero { min-height: 75vh; display: flex; align-items: center; padding-top: 120px; padding-bottom: 100px; position: relative; overflow: visible; }
 .hero-content { display: grid; grid-template-columns: 1fr minmax(auto, 600px); align-items: center; gap: 4rem; }
 .hero-text { grid-column: 1 / 2; grid-row: 1 / 2; max-width: 600px; position: relative; z-index: 2; opacity: 0; transform: translateY(50px); transition: opacity 1s ease, transform 1s ease; }
 .hero-text.active { opacity: 1; transform: translateY(0); }
@@ -524,6 +524,55 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
  box-shadow: var(--shadow-lg);
 }
 
+/* Styles pour le nouveau conteneur hero */
+.hero-container {
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+/* Ajustement pour le mode sombre */
+.dark-mode .hero-container {
+  background: none !important; /* Supprime tout fond existant */
+  background-image: none !important; /* Force la suppression du dégradé */
+  background-color: var(--dark-bg-base) !important; /* Applique uniquement la couleur noire */
+}
+
+/* Adaptation des éléments internes */
+.hero-container .hero-content {
+  margin: 0;
+}
+
+.hero-container .hero-text {
+  padding-left: 1rem;
+}
+
+/* Ajustement du scroll-down */
+.hero-container .scroll-down {
+  bottom: -4rem;
+}
+
+/* Media queries */
+@media (max-width: 992px) {
+  .hero-container {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .hero-container .hero-text {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 2rem 1rem;
+  }
+}
+
 @media (max-width: 576px) {
    h1 { font-size: 2rem; }
    h2 { font-size: 1.8rem; }
@@ -567,3 +616,4 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
    transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg) scale(0.8);
  }
 }
+
