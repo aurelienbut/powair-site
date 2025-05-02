@@ -473,8 +473,7 @@
             Solution partenaire #1 pour les commerçants
           </div>
 
-          <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Boostez votre <span style="color: #4C86F9;">business</span> avec Pow'air</h1>
-
+          <h1 style="margin-bottom: 1.5rem;">Boostez votre <span style="color: #4C86F9;">business</span> avec Pow'air</h1>
           <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; max-width: 650px; margin-left: auto; margin-right: auto;">
             Rejoignez le réseau de recharge mobile leader en France. Attirez de nouveaux clients, générez des revenus supplémentaires et offrez un service innovant sans investissement.
           </p>
@@ -557,36 +556,36 @@
             <tr>
               <th>Avantages</th>
               <th>Partenaires Pow'air</th>
-              </tr>
+            </tr>
           </thead>
           <tbody>
             <tr>
               <td>Installation et matériel gratuits</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
             <tr>
               <td>Aucun coût de maintenance</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
             <tr>
               <td>Commissions sur chaque transaction</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
             <tr>
               <td>Support technique dédié 7j/7</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
             <tr>
               <td>Visibilité sur l'application</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
             <tr>
               <td>Campagnes marketing ciblées</td>
               <td><i class="fas fa-check check"></i></td>
-              </tr>
+            </tr>
           </tbody>
         </table>
-        </div>
+      </div>
     </div>
   </section>
 
@@ -921,6 +920,8 @@
               if (q !== question) {
                   q.classList.remove('active');
                   q.querySelector('i').style.transform = 'rotate(0deg)'; // Réinitialise l'icône des autres
+                  q.setAttribute('aria-expanded', 'false'); // Met à jour ARIA pour les autres
+                  q.removeAttribute('aria-controls');
               }
           });
           document.querySelectorAll('.faq-answer').forEach(a => {
@@ -953,6 +954,13 @@
         if(answer && !answer.id) { // Donne un ID unique si la réponse n'en a pas
             answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
         }
+         // Assurez-vous que la réponse a l'ID référencé si elle existe
+         if (answer && answer.id && !question.getAttribute('aria-controls')){
+            // Ne rien faire si déjà lié ou si la réponse n'a pas d'ID
+         } else if (answer && !answer.id) {
+             // Géré ci-dessus
+         }
+
 
       });
 
