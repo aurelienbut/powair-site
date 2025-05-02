@@ -1,7 +1,5 @@
 // script.js
 
-// Le code lié à Google Maps (loadGoogleMapsScript, initMap, etc.) a été supprimé.
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Gestion du Header "scrolled" ---
@@ -78,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 modeIcon.classList.add('fa-moon');
                 modeSwitch.setAttribute('aria-label', 'Passer au mode sombre');
             }
-            // Le bloc de mise à jour de la carte a été supprimé ici
+            // Note: Le style de la carte Leaflet/OSM n'est pas automatiquement mis à jour ici.
+            // Des solutions CSS (filtres) ou des fournisseurs de tuiles spécifiques sont nécessaires pour un thème sombre de carte.
         }
 
         if (!currentMode && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -99,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Gestion des Animations au Scroll (Intersection Observer) ---
     const animatedElements = document.querySelectorAll(
-        // NOTE: .map-container a été retiré de cette liste car la section est supprimée
         '.section-title-container, .step, .benefit-card, .pricing-card, .download-container, .hero-text, .hero-image, .hero-buttons, .scroll-down, .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands, .partner-card'
+        // Note : le conteneur de la carte .map-container n'est plus animé ici par défaut
     );
     let countersStarted = false;
 
@@ -209,8 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
            // Check visibility again inside interval, in case it got hidden
            const parentSlider = slides.length > 0 ? slides[0].closest('.testimonial-slider') : null;
            if (parentSlider && parentSlider.offsetParent !== null) { // Check if slider is visible
-                const nextSlide = (currentSlide + 1) % slides.length;
-                goToSlide(nextSlide);
+               const nextSlide = (currentSlide + 1) % slides.length;
+               goToSlide(nextSlide);
            }
        }, 5000); // Change slide every 5 seconds
     }
@@ -227,6 +226,72 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (slides.length === 1) {
         goToSlide(0); // Show the single slide
     }
+
+    // --- Initialisation de la Carte Leaflet ---
+    const mapElement = document.getElementById('map');
+
+    if (mapElement) { // Vérifie si l'élément de la carte existe sur la page actuelle
+        try {
+            // Coordonnées pour centrer la carte (France) et niveau de zoom initial
+            const mapCenter = [46.603354, 1.888334]; // Centre approximatif de la France métropolitaine
+            const initialZoom = 6;
+
+            // Initialiser la carte Leaflet
+            const powairMap = L.map('map').setView(mapCenter, initialZoom);
+
+            // Ajouter le fond de carte OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18, // Zoom maximum autorisé
+                minZoom: 5   // Zoom minimum (évite de trop dézoomer)
+            }).addTo(powairMap);
+
+            console.log("Carte Leaflet initialisée.");
+
+            // --- Ajout d'un marqueur exemple pour un commerçant ---
+
+            // 1. Coordonnées du commerçant (exemple : Paris)
+            const commercantCoords = [48.8566, 2.3522];
+
+            // 2. Contenu HTML pour la popup (vous pouvez le personnaliser)
+            const popupContent = `
+                <b>Café des Arts (Partenaire)</b><br>
+                12 Rue de Rivoli<br>
+                75001 Paris<br>
+                Batteries disponibles !
+            `; // Utilisez des sauts de ligne <br> ou une structure HTML plus complexe
+
+            // 3. Créer le marqueur et lui attacher la popup
+            const commercantMarker = L.marker(commercantCoords)
+                                      .addTo(powairMap) // Ajoute le marqueur à la carte
+                                      .bindPopup(popupContent); // Lie la popup au marqueur
+
+            // Optionnel : Ouvrir la popup par défaut au chargement
+            // commercantMarker.openPopup();
+
+            // --- Pour afficher TOUS vos commerçants ---
+            // Idéalement, vous auriez une liste (array) de vos commerçants avec leurs coordonnées
+            // Exemple : const listeCommercants = [
+            //   { nom: "Café des Arts", lat: 48.8566, lon: 2.3522, adresse: "...", statut: "Disponible" },
+            //   { nom: "Librairie Page & Plume", lat: 45.7640, lon: 4.8357, adresse: "...", statut: "Bientôt disponible" },
+            //   // ... autres commerçants
+            // ];
+            //
+            // Puis vous feriez une boucle sur cette liste :
+            // listeCommercants.forEach(commercant => {
+            //    const marker = L.marker([commercant.lat, commercant.lon]).addTo(powairMap);
+            //    const popupHtml = `<b>${commercant.nom}</b><br>${commercant.adresse}<br>Statut: ${commercant.statut}`;
+            //    marker.bindPopup(popupHtml);
+            // });
+            // --- Fin exemple pour plusieurs commerçants ---
+
+        } catch (error) {
+            console.error("Erreur lors de l'initialisation de la carte Leaflet:", error);
+            mapElement.innerHTML = "<p style='color: red; text-align: center; padding-top: 50px;'>Impossible de charger la carte. Veuillez réessayer plus tard.</p>";
+        }
+    }
+    // --- Fin Initialisation Carte Leaflet ---
+
 
     // --- Gestion Soumission Formulaire Partenaire ---
     const partnerForm = document.getElementById('partner-form');
@@ -291,9 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 partnerSubmitButton.disabled = false;
                 // Ajuster le texte du bouton selon le formulaire (présent sur les deux pages)
                 if (partnerSubmitButton.textContent.includes('ma demande')) {
-                   partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
+                    partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
                 } else {
-                   partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Devenir Partenaire';
+                    partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Devenir Partenaire';
                 }
 
             }
@@ -304,7 +369,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fin Gestion Soumission Formulaire Partenaire ---
 
 }); // Fin de DOMContentLoaded
-
-// Les fonctions liées à Google Maps (getLightMapStyles, getDarkMapStyles, etc.) ont été supprimées.
 
 // --- Fin du Script Principal ---

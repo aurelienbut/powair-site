@@ -233,7 +233,7 @@ nav ul li a:hover::after { width: 100%; }
 .map-container.active { opacity: 1; transform: translateY(0); }
 .map-wrapper { width: 100%; height: 500px; background-color: var(--border-color); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; }
 .dark-mode .map-wrapper { background-color: var(--dark-bg-alt); }
-#map { width: 100%; height: 100%; }
+#map { width: 100%; height: 100%; z-index: 0; }
 #map p { color: var(--text-light); margin-top: 50px; text-align: center; }
 
 /* Tarifs */

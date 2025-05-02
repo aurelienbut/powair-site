@@ -9,9 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-
-
-</head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+  </head>
 <body>
   <div class="gradient-bg">
     <div class="gradient-orb"></div>
@@ -59,10 +60,8 @@
     </div>
   </header>
 
-  <!-- Section hero modifiée avec le cadre similaire à la page partenaire -->
-<section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
+  <section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
   <div class="container">
-    <!-- Nouveau conteneur avec style similaire au hero-merchant -->
     <div class="hero-container" style="position: relative; background: linear-gradient(135deg, var(--bg-alt), #E0F2FE); border-radius: var(--radius-xl); overflow: hidden; padding: 3rem 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
       <div class="hero-content">
         <div class="hero-text">
@@ -77,9 +76,9 @@
         </div>
         <div class="hero-image">
           <div class="hero-phone-container">
-             <div class="hero-phone no-frame">
-               <img src="https://i.imgur.com/s5HERPN.png" alt="Mockup Pow'air" class="hero-phone-screen" loading="lazy">
-             </div>
+              <div class="hero-phone no-frame">
+                <img src="https://i.imgur.com/s5HERPN.png" alt="Mockup Pow'air" class="hero-phone-screen" loading="lazy">
+              </div>
           </div>
         </div>
         <div class="hero-buttons">
@@ -135,7 +134,7 @@
           </div>
           <div class="step">
             <div class="step-number">3</div>
-             <div class="step-illustration">
+              <div class="step-illustration">
                 <img src="https://i.imgur.com/1zPlHgH.png" alt="Illustration Étape 3: Retourner la batterie Pow'air dans une borne">
             </div>
             <h3 class="step-title">Retournez</h3>
@@ -148,27 +147,25 @@
 
   <section class="network" id="network">
      <div class="section-bg">
-      <div class="section-bg-pattern"></div>
-    </div>
-    <div class="container">
-      <div class="section-inner">
-        <div class="section-title-container">
-          <div class="section-tag">
-            <i class="fas fa-network-wired"></i> Notre Réseau
-          </div>
-          <h2>Des milliers de points près de chez vous</h2>
-          <p class="subtitle">Localisez la borne Pow'air la plus proche en un clin d'œil grâce à notre carte interactive.</p>
-        </div>
-        <div class="map-container">
-          <div class="map-wrapper">
-            <div id="map">
-                 <p>Chargement de la carte...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+       <div class="section-bg-pattern"></div>
+     </div>
+     <div class="container">
+       <div class="section-inner">
+         <div class="section-title-container">
+           <div class="section-tag">
+             <i class="fas fa-network-wired"></i> Notre Réseau
+           </div>
+           <h2>Des milliers de points près de chez vous</h2>
+           <p class="subtitle">Localisez la borne Pow'air la plus proche en un clin d'œil grâce à notre carte interactive.</p>
+         </div>
+         <div class="map-container">
+           <div class="map-wrapper">
+             <div id="map"></div>
+             </div>
+         </div>
+       </div>
+     </div>
+   </section>
 
   <section class="benefits" id="benefits">
     <div class="benefits-bg">
@@ -246,7 +243,7 @@
               <div class="pricing-price">4.99€</div>
               <span class="pricing-period">par jour</span>
             </div>
-             <p class="pricing-description">Idéal pour une journée chargée ou un événement.</p>
+              <p class="pricing-description">Idéal pour une journée chargée ou un événement.</p>
             <ul class="pricing-features">
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Utilisation illimitée pendant 24h</span></li>
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Retour flexible</span></li>
@@ -263,13 +260,13 @@
               <div class="pricing-price">19.99€</div>
               <span class="pricing-period">par mois</span>
             </div>
-               <p class="pricing-description">La tranquillité d'esprit, rechargez sans compter.</p>
+                <p class="pricing-description">La tranquillité d'esprit, rechargez sans compter.</p>
             <ul class="pricing-features">
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Recharges illimitées</span></li>
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Facturation mensuelle unique</span></li>
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Sans engagement</span></li>
               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Support prioritaire</span></li>
-               <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Accès à tout le réseau</span></li>
+                <li class="pricing-feature"><i class="fas fa-check"></i><span class="pricing-feature-text">Accès à tout le réseau</span></li>
             </ul>
             <div class="pricing-action">
               <a href="#download" class="btn btn-secondary">S'abonner</a>
@@ -352,76 +349,76 @@
               </div>
             </div>
             <div class="partners-testimonials">
-                 <h3 class="partners-subtitle" style="text-align: center;">Ils nous font confiance</h3>
-                 <div class="testimonial-slider">
-                     <div class="testimonial-slide active">
+                <h3 class="partners-subtitle" style="text-align: center;">Ils nous font confiance</h3>
+                <div class="testimonial-slider">
+                    <div class="testimonial-slide active">
+                      <div class="testimonial-content">
+                        <p>"Depuis que nous sommes partenaires Pow'air, nous avons constaté une augmentation de 15% de notre clientèle, avec des clients plus fidèles qui reviennent régulièrement."</p>
+                        <div class="testimonial-author">
+                          <div class="testimonial-avatar"><i class="fas fa-store"></i></div>
+                          <div class="testimonial-info">
+                            <h5>Café des Arts</h5>
+                            <span>Partenaire depuis 2022</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="testimonial-slide">
                         <div class="testimonial-content">
-                           <p>"Depuis que nous sommes partenaires Pow'air, nous avons constaté une augmentation de 15% de notre clientèle, avec des clients plus fidèles qui reviennent régulièrement."</p>
-                           <div class="testimonial-author">
-                             <div class="testimonial-avatar"><i class="fas fa-store"></i></div>
-                             <div class="testimonial-info">
-                               <h5>Café des Arts</h5>
-                               <span>Partenaire depuis 2022</span>
-                             </div>
-                           </div>
-                         </div>
-                     </div>
-                     <div class="testimonial-slide">
-                          <div class="testimonial-content">
-                               <p>"Le service client Pow'air est exceptionnel. L'installation a été rapide et nous générons maintenant des revenus complémentaires tout en offrant un service utile."</p>
-                               <div class="testimonial-author">
-                                 <div class="testimonial-avatar"><i class="fas fa-shopping-bag"></i></div>
-                                 <div class="testimonial-info">
-                                   <h5>Librairie Page & Plume</h5>
-                                   <span>Partenaire depuis 2023</span>
-                                 </div>
-                               </div>
-                             </div>
-                     </div>
-                      <div class="testimonial-slide">
-                            <div class="testimonial-content">
-                                <p>"Nos clients adorent pouvoir recharger leurs appareils pendant qu'ils font leurs courses. C'est un vrai plus qui nous différencie de nos concurrents."</p>
-                                <div class="testimonial-author">
-                                  <div class="testimonial-avatar"><i class="fas fa-utensils"></i></div>
-                                  <div class="testimonial-info">
-                                    <h5>Restaurant Le Gourmet</h5>
-                                    <span>Partenaire depuis 2021</span>
-                                  </div>
-                                </div>
-                              </div>
-                      </div>
-                     <div class="testimonial-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
-                      </div>
-                 </div>
+                          <p>"Le service client Pow'air est exceptionnel. L'installation a été rapide et nous générons maintenant des revenus complémentaires tout en offrant un service utile."</p>
+                          <div class="testimonial-author">
+                            <div class="testimonial-avatar"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="testimonial-info">
+                              <h5>Librairie Page & Plume</h5>
+                              <span>Partenaire depuis 2023</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                          <p>"Nos clients adorent pouvoir recharger leurs appareils pendant qu'ils font leurs courses. C'est un vrai plus qui nous différencie de nos concurrents."</p>
+                          <div class="testimonial-author">
+                            <div class="testimonial-avatar"><i class="fas fa-utensils"></i></div>
+                            <div class="testimonial-info">
+                              <h5>Restaurant Le Gourmet</h5>
+                              <span>Partenaire depuis 2021</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  <div class="testimonial-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                  </div>
+                </div>
             </div>
             <div class="partner-process">
-                 <h3 class="partners-subtitle" style="text-align: center;">Comment ça marche ?</h3>
-                 <div class="process-steps">
-                      <div class="process-step">
-                        <div class="process-step-number">1</div>
-                        <div class="process-step-content">
-                          <h4>Contactez-nous</h4>
-                          <p>Remplissez le formulaire ou appelez-nous pour discuter de votre intérêt</p>
-                        </div>
+                <h3 class="partners-subtitle" style="text-align: center;">Comment ça marche ?</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                      <div class="process-step-number">1</div>
+                      <div class="process-step-content">
+                        <h4>Contactez-nous</h4>
+                        <p>Remplissez le formulaire ou appelez-nous pour discuter de votre intérêt</p>
                       </div>
-                     <div class="process-step">
-                        <div class="process-step-number">2</div>
-                        <div class="process-step-content">
-                          <h4>Installation gratuite</h4>
-                          <p>Nous installons le matériel sans frais dans votre établissement</p>
-                        </div>
+                    </div>
+                    <div class="process-step">
+                      <div class="process-step-number">2</div>
+                      <div class="process-step-content">
+                        <h4>Installation gratuite</h4>
+                        <p>Nous installons le matériel sans frais dans votre établissement</p>
                       </div>
-                     <div class="process-step">
-                        <div class="process-step-number">3</div>
-                        <div class="process-step-content">
-                          <h4>Profitez des avantages</h4>
-                          <p>Commencez à générer du trafic et des revenus additionnels</p>
-                        </div>
+                    </div>
+                    <div class="process-step">
+                      <div class="process-step-number">3</div>
+                      <div class="process-step-content">
+                        <h4>Profitez des avantages</h4>
+                        <p>Commencez à générer du trafic et des revenus additionnels</p>
                       </div>
-                 </div>
+                    </div>
+                </div>
             </div>
             <div class="partner-contact-form">
               <form id="partner-form">
@@ -463,14 +460,14 @@
               </form>
             </div>
             <div class="partner-brands">
-                 <h4>Ils font déjà partie de l'aventure</h4>
-                 <div class="partner-logos">
-                   <div class="partner-logo"><i class="fas fa-coffee"></i> Café Express</div>
-                   <div class="partner-logo"><i class="fas fa-hotel"></i> Hôtels Élégance</div>
-                   <div class="partner-logo"><i class="fas fa-shopping-cart"></i> SuperMarché</div>
-                   <div class="partner-logo"><i class="fas fa-book"></i> Médiathèques</div>
-                   <div class="partner-logo"><i class="fas fa-utensils"></i> RestoPrime</div>
-                 </div>
+                <h4>Ils font déjà partie de l'aventure</h4>
+                <div class="partner-logos">
+                  <div class="partner-logo"><i class="fas fa-coffee"></i> Café Express</div>
+                  <div class="partner-logo"><i class="fas fa-hotel"></i> Hôtels Élégance</div>
+                  <div class="partner-logo"><i class="fas fa-shopping-cart"></i> SuperMarché</div>
+                  <div class="partner-logo"><i class="fas fa-book"></i> Médiathèques</div>
+                  <div class="partner-logo"><i class="fas fa-utensils"></i> RestoPrime</div>
+                </div>
             </div>
         </div>
       </div>
@@ -544,16 +541,16 @@
             <li><a href="#network">Notre réseau</a></li>
             <li><a href="#benefits">Avantages</a></li>
             <li><a href="#pricing">Tarifs</a></li>
-             <li><a href="#partners">Devenir partenaire</a></li>
+              <li><a href="#partners">Devenir partenaire</a></li>
           </ul>
         </div>
-         <div>
+          <div>
           <h4 class="footer-title">Légal</h4>
           <ul class="footer-links">
             <li><a href="#">Conditions générales</a></li>
             <li><a href="#">Politique de confidentialité</a></li>
             <li><a href="#">Mentions légales</a></li>
-             <li><a href="#">Gestion des cookies</a></li>
+              <li><a href="#">Gestion des cookies</a></li>
           </ul>
         </div>
         <div>
@@ -567,7 +564,7 @@
               <div class="contact-icon"><i class="fas fa-envelope"></i></div>
               <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
             </div>
-             <div class="contact-item">
+              <div class="contact-item">
               <div class="contact-icon"><i class="fas fa-phone"></i></div>
               <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
             </div>
@@ -588,6 +585,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
   <script src="script.js"></script>
 
 </body>
