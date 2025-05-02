@@ -247,6 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }).addTo(powairMap);
 
             powairMap.invalidateSize();
+
+            // Empêcher la perte de focus sur mobile lors de l'interaction avec la carte
+if (powairMap) {
+    powairMap.on('click', function(e) {
+      // Empêcher la perte de focus uniquement si l'écran est petit (mobile)
+      if (window.innerWidth <= 768 && document.activeElement === citySearchInput) {
+        e.originalEvent.preventDefault();
+        e.originalEvent.stopPropagation();
+        setTimeout(() => {
+          citySearchInput.focus();
+        }, 10);
+      }
+    });
+  }
+  
+  
             
            // --- Gestion de l'autocomplétion et géolocalisation ---
 const citySearchInput = document.getElementById('city-search');

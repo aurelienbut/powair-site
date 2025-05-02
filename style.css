@@ -314,10 +314,12 @@ nav ul li a:hover::after { width: 100%; }
   padding: 0.875rem 1.5rem;
   border: none;
   outline: none;
-  font-size: 1rem;
+  font-size: 16px; /* Taille minimale pour empêcher le zoom sur iOS */
   background-color: transparent;
   color: var(--text-color);
   border-radius: var(--radius-full) 0 0 var(--radius-full);
+  touch-action: manipulation; /* Empêche certains comportements tactiles indésirables */
+  -webkit-appearance: none; /* Désactive l'apparence par défaut sur iOS */
 }
 
 .map-search-input::placeholder {
@@ -658,6 +660,25 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   .partner-logos { gap: 1.5rem; }
   .partner-logo { padding: 0.8rem 1.5rem; }
   .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { max-width: 95%; margin-top: 2.5rem; margin-bottom: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .suggestion-item {
+    padding: 0.8rem 1rem; /* Plus d'espace pour les doigts */
+    min-height: 44px; /* Taille minimale recommandée pour les cibles tactiles */
+  }
+  
+  /* Augmenter légèrement la zone cliquable */
+  .map-search-button, 
+  .map-location-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Agrandir la zone de suggestions sur petit écran */
+  .search-suggestions.active {
+    max-height: 250px; /* Réduire légèrement la hauteur maximale */
+  }
 }
 
 @media (max-width: 768px) {
