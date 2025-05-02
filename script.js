@@ -1,6 +1,44 @@
 // script.js
 
-// --- Début du Script Principal ---
+// AJOUTER CE BLOC AU TOUT DEBUT DE script.js
+
+// --- Injection dynamique du script Google Maps ---
+function loadGoogleMapsScript() {
+    const apiKey = process.env.NEXT_PUBLIC_Maps_API_KEY;
+
+    // Mettez ici votre clé de test locale SI vous voulez tester SANS Vercel
+    // const apiKey = process.env.NEXT_PUBLIC_Maps_API_KEY || 'VOTRE_CLE_DE_TEST_LOCALE';
+
+    if (!apiKey || apiKey === 'undefined' || apiKey === 'YOUR_API_KEY') { // Ajout vérification placeholder
+        console.error("Clé API Google Maps manquante ou invalide. Vérifiez la variable d'environnement NEXT_PUBLIC_Maps_API_KEY dans Vercel.");
+        const mapElement = document.getElementById("map");
+        if (mapElement) {
+            mapElement.innerHTML = '<p style="text-align: center; padding-top: 50px; color: var(--text-light);">Erreur de configuration : Clé API Google Maps invalide ou manquante.</p>';
+        }
+        return; // Ne pas charger le script
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&libraries=marker`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => {
+        console.error("Erreur lors du chargement du script Google Maps API. Vérifiez la clé et la connexion.");
+         const mapElement = document.getElementById("map");
+         if (mapElement) {
+            mapElement.innerHTML = '<p style="text-align: center; padding-top: 50px; color: var(--text-light);">Impossible de charger le script Google Maps.</p>';
+         }
+    };
+    document.head.appendChild(script);
+    console.log("Tentative de chargement du script Google Maps avec la clé API..."); // Log pour débogage
+}
+
+// Appeler la fonction pour charger le script
+loadGoogleMapsScript();
+// --- Fin de l'injection dynamique ---
+
+// Le reste de votre code vient APRES ce bloc.
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Gestion du Header "scrolled" ---
@@ -229,66 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
         startInterval();
     } else if (slides.length === 1) {
         goToSlide(0); // Show the single slide
-    }
-
-
-     // --- Gestion du Toggle pour la Section Partenaires ---
-    const partnerToggleButton = document.querySelector('.partner-toggle-button');
-    const partnerHiddenContent = document.querySelector('.partner-hidden-content');
-    const hiddenAnimatedElements = partnerHiddenContent ? partnerHiddenContent.querySelectorAll('.partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands, .partner-card') : [];
-
-    if (partnerToggleButton && partnerHiddenContent) {
-        partnerToggleButton.addEventListener('click', () => {
-            const isVisible = partnerHiddenContent.classList.contains('visible');
-
-            // Re-create observer specifically for hidden elements when needed
-            const observerForHidden = ("IntersectionObserver" in window) ? new IntersectionObserver((entries) => {
-                 entries.forEach(entry => {
-                     if (entry.isIntersecting) {
-                         entry.target.classList.add('active');
-                         // Start counters if stats section becomes visible via toggle
-                         if (entry.target.classList.contains('partners-stats') && !countersStarted) {
-                             startCounters();
-                             countersStarted = true; // Mark as started globally
-                         }
-                     }
-                 });
-               }, { threshold: 0.1 }) : null;
-
-            if (isVisible) {
-                partnerHiddenContent.classList.remove('visible');
-                partnerToggleButton.innerHTML = '<i class="fas fa-plus-circle"></i> En savoir plus sur le partenariat';
-                partnerToggleButton.setAttribute('aria-expanded', 'false');
-                // Optional: Disconnect observer for hidden elements if created
-            } else {
-                partnerHiddenContent.classList.add('visible');
-                partnerToggleButton.innerHTML = '<i class="fas fa-minus-circle"></i> Réduire';
-                partnerToggleButton.setAttribute('aria-expanded', 'true');
-
-                 // If stats are inside hidden and not started, attempt to start
-                 if (!countersStarted && partnerHiddenContent.contains(document.querySelector('.partners-stats'))) {
-                     // Use timeout to ensure element is rendered before check
-                     setTimeout(() => { startCounters(); countersStarted = true; }, 50);
-                 }
-
-                 // Observe newly visible elements or activate them directly
-                 if (observerForHidden) {
-                     hiddenAnimatedElements.forEach(el => {
-                         if (!el.classList.contains('active')) { // Observe only if not already active
-                             observerForHidden.observe(el);
-                         }
-                     });
-                 } else {
-                     // Fallback: Activate all hidden elements immediately
-                     hiddenAnimatedElements.forEach(el => el.classList.add('active'));
-                 }
-
-                 // Scroll to the button after revealing content
-                 setTimeout(() => {
-                     partnerToggleButton.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                 }, 50); // Small delay to allow layout shift
-            }
-        });
     }
 
     // --- Gestion Soumission Formulaire Partenaire ---
