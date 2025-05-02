@@ -246,6 +246,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 minZoom: 5   // Zoom minimum (évite de trop dézoomer)
             }).addTo(powairMap);
 
+            powairMap.invalidateSize(); // Ajoutez cette ligne
+        
             console.log("Carte Leaflet initialisée.");
 
             // --- Ajout d'un marqueur exemple pour un commerçant ---
