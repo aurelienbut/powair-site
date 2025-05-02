@@ -281,6 +281,152 @@ nav ul li a:hover::after { width: 100%; }
   text-align: center;
 }
 
+/* Styles pour la recherche sur la carte avec autocomplétion */
+.map-search-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  z-index: 1000;
+  padding: 0 15px;
+}
+
+.map-search-wrapper {
+  display: flex;
+  background-color: var(--bg-color);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  overflow: visible; /* Changé de 'hidden' à 'visible' pour permettre aux suggestions de déborder */
+  transition: all 0.3s ease;
+  position: relative; /* Pour positionner les suggestions */
+}
+
+.map-search-wrapper:focus-within {
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+.map-search-input {
+  flex-grow: 1;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  color: var(--text-color);
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+}
+
+.map-search-input::placeholder {
+  color: var(--text-light);
+}
+
+.map-search-button {
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  padding: 0.875rem 1.25rem;
+  margin: 0;
+}
+
+/* Styles pour les suggestions */
+.search-suggestions {
+  position: absolute;
+  top: auto;
+  bottom: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  max-height: 0;
+  overflow-y: auto;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.search-suggestions.active {
+  max-height: 300px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.suggestion-item {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+  background-color: var(--bg-alt);
+}
+
+.suggestion-item i {
+  color: var(--accent-color);
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.suggestion-item.location-option {
+  font-weight: 600;
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.suggestion-item .suggestion-main {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.suggestion-item .suggestion-secondary {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.1rem;
+}
+
+/* Loader pour le chargement des suggestions */
+.suggestion-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .map-search-container {
+    max-width: calc(100% - 30px);
+    bottom: 15px;
+  }
+  
+  .map-search-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .map-search-button {
+    padding: 0.75rem 1rem;
+  }
+  
+  .suggestion-item {
+    padding: 0.6rem 1rem;
+  }
+}
 /* --- Fin Bloc CSS --- */
 
 /* Tarifs */

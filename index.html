@@ -146,26 +146,35 @@
   </section>
 
   <section class="network" id="network">
-     <div class="section-bg">
-       <div class="section-bg-pattern"></div>
-     </div>
-     <div class="container">
-       <div class="section-inner">
-         <div class="section-title-container">
-           <div class="section-tag">
-             <i class="fas fa-network-wired"></i> Notre Réseau
-           </div>
-           <h2>Des milliers de points près de chez vous</h2>
-           <p class="subtitle">Localisez la borne Pow'air la plus proche en un clin d'œil grâce à notre carte interactive.</p>
-         </div>
-         <div class="map-container">
-           <div class="map-wrapper">
-             <div id="map"></div>
-             </div>
-         </div>
-       </div>
-     </div>
-   </section>
+    <div class="section-bg">
+      <div class="section-bg-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-network-wired"></i> Notre Réseau
+          </div>
+          <h2>Des milliers de points près de chez vous</h2>
+          <p class="subtitle">Localisez la borne Pow'air la plus proche en un clin d'œil grâce à notre carte interactive.</p>
+        </div>
+        <div class="map-container">
+          <div class="map-wrapper">
+            <div class="map-search-container">
+              <div class="map-search-wrapper">
+                <input type="text" id="city-search" placeholder="Rechercher une ville..." class="map-search-input" autocomplete="off">
+                <button id="search-button" class="btn btn-primary map-search-button">
+                  <i class="fas fa-search"></i>
+                </button>
+                <div id="search-suggestions" class="search-suggestions"></div>
+              </div>
+            </div>
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="benefits" id="benefits">
     <div class="benefits-bg">

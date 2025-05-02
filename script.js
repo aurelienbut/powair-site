@@ -246,7 +246,407 @@ document.addEventListener('DOMContentLoaded', () => {
                 minZoom: 5   // Zoom minimum (évite de trop dézoomer)
             }).addTo(powairMap);
 
-            powairMap.invalidateSize(); // Ajoutez cette ligne
+            powairMap.invalidateSize();
+            
+           // --- Gestion de l'autocomplétion et géolocalisation ---
+const citySearchInput = document.getElementById('city-search');
+const searchButton = document.getElementById('search-button');
+const searchSuggestions = document.getElementById('search-suggestions');
+let debounceTimer;
+let currentHighlight = -1;
+
+if (citySearchInput && searchButton && searchSuggestions && powairMap) {
+  // Fonction pour ajouter l'option de géolocalisation
+  const addLocationOption = () => {
+    const locationOption = document.createElement('div');
+    locationOption.className = 'suggestion-item location-option';
+    locationOption.innerHTML = `
+      <i class="fas fa-location-arrow"></i>
+      <span>Ma localisation actuelle</span>
+    `;
+    
+    locationOption.addEventListener('click', () => {
+      // Fermer les suggestions
+      searchSuggestions.classList.remove('active');
+      citySearchInput.value = '';
+      
+      // Vérifier si la géolocalisation est disponible
+      if (navigator.geolocation) {
+        // Animation de chargement dans le champ
+        citySearchInput.value = 'Localisation en cours...';
+        citySearchInput.disabled = true;
+        searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        searchButton.disabled = true;
+        
+        navigator.geolocation.getCurrentPosition(
+          // Succès
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            
+            // Centrer la carte sur la position de l'utilisateur
+            powairMap.setView([latitude, longitude], 15, {
+              animate: true,
+              duration: 1.5
+            });
+            
+            // Ajouter un marqueur pour la position de l'utilisateur
+            // Supprimer l'ancien marqueur utilisateur s'il existe
+            powairMap.eachLayer(layer => {
+              if (layer._icon && layer._icon.classList.contains('user-location-marker')) {
+                powairMap.removeLayer(layer);
+              }
+            });
+            
+            const userMarker = L.marker([latitude, longitude], {
+              icon: L.divIcon({
+                className: 'user-location-marker',
+                html: '<div class="user-location-pulse"></div>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+              })
+            }).addTo(powairMap);
+            
+            // Ajouter un style pour le marqueur utilisateur s'il n'existe pas déjà
+            if (!document.getElementById('user-location-style')) {
+              const style = document.createElement('style');
+              style.id = 'user-location-style';
+              style.textContent = `
+                .user-location-marker {
+                  background-color: var(--accent-color);
+                  border-radius: 50%;
+                  border: 3px solid white;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                }
+                .user-location-pulse {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 50%;
+                  background-color: var(--accent-color);
+                  opacity: 0.4;
+                  animation: user-location-pulse 2s infinite;
+                }
+                @keyframes user-location-pulse {
+                  0% { transform: scale(1); opacity: 0.4; }
+                  70% { transform: scale(3); opacity: 0; }
+                  100% { transform: scale(1); opacity: 0; }
+                }
+              `;
+              document.head.appendChild(style);
+            }
+            
+            citySearchInput.value = '';
+            citySearchInput.disabled = false;
+            searchButton.innerHTML = '<i class="fas fa-search"></i>';
+            searchButton.disabled = false;
+            
+            // Obtenir le nom de la ville par reverse geocoding
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`)
+              .then(response => response.json())
+              .then(data => {
+                const city = data.address.city || data.address.town || data.address.village || '';
+                if (city) {
+                  citySearchInput.value = city;
+                }
+              })
+              .catch(error => console.error("Erreur de reverse geocoding:", error));
+          },
+          // Erreur
+          (error) => {
+            console.error("Erreur de géolocalisation:", error);
+            
+            citySearchInput.value = '';
+            citySearchInput.disabled = false;
+            searchButton.innerHTML = '<i class="fas fa-search"></i>';
+            searchButton.disabled = false;
+            
+            // Message d'erreur
+            let errorMsg = 'Impossible d\'obtenir votre position';
+            switch(error.code) {
+              case error.PERMISSION_DENIED:
+                errorMsg = 'Accès refusé à la géolocalisation';
+                break;
+              case error.POSITION_UNAVAILABLE:
+                errorMsg = 'Position indisponible';
+                break;
+              case error.TIMEOUT:
+                errorMsg = 'Délai de recherche dépassé';
+                break;
+            }
+            
+            // Afficher temporairement le message d'erreur dans le champ
+            citySearchInput.value = errorMsg;
+            setTimeout(() => {
+              citySearchInput.value = '';
+            }, 3000);
+          },
+          // Options
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+          }
+        );
+      } else {
+        // Navigateur ne supporte pas la géolocalisation
+        citySearchInput.value = 'Géolocalisation non supportée';
+        setTimeout(() => {
+          citySearchInput.value = '';
+        }, 3000);
+      }
+    });
+    
+    return locationOption;
+  };
+  
+  // Fonction pour récupérer les suggestions de villes
+  const fetchCitySuggestions = async (query) => {
+    if (!query.trim() || query.length < 2) return [];
+    
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=fr&limit=5`);
+      const data = await response.json();
+      
+      // Transformer les données pour notre affichage
+      return data.map(item => ({
+        name: item.display_name.split(',')[0],
+        fullAddress: item.display_name,
+        lat: item.lat,
+        lon: item.lon
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la recherche de suggestions:", error);
+      return [];
+    }
+  };
+  
+  // Afficher les suggestions
+  const showSuggestions = (suggestions) => {
+    // Vider les suggestions actuelles
+    searchSuggestions.innerHTML = '';
+    
+    // Ajouter l'option de géolocalisation
+    searchSuggestions.appendChild(addLocationOption());
+    
+    // Si c'est juste pour montrer l'option de géolocalisation (focus initial)
+    if (!suggestions) {
+      searchSuggestions.classList.add('active');
+      return;
+    }
+    
+    // Ajouter les suggestions de villes
+    if (suggestions.length === 0) {
+      const noResults = document.createElement('div');
+      noResults.className = 'suggestion-item';
+      noResults.innerHTML = `
+        <i class="fas fa-info-circle"></i>
+        <span>Aucun résultat trouvé</span>
+      `;
+      searchSuggestions.appendChild(noResults);
+    } else {
+      suggestions.forEach((suggestion, index) => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.setAttribute('data-index', index);
+        suggestionItem.innerHTML = `
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <div class="suggestion-main">${suggestion.name}</div>
+            <div class="suggestion-secondary">${suggestion.fullAddress}</div>
+          </div>
+        `;
+        
+        suggestionItem.addEventListener('click', () => {
+          // Fermer les suggestions
+          searchSuggestions.classList.remove('active');
+          
+          // Mettre à jour le champ de recherche
+          citySearchInput.value = suggestion.name;
+          
+          // Centrer la carte sur la ville
+          powairMap.setView([suggestion.lat, suggestion.lon], 13, {
+            animate: true,
+            duration: 1.5
+          });
+        });
+        
+        searchSuggestions.appendChild(suggestionItem);
+      });
+    }
+    
+    // Montrer les suggestions
+    searchSuggestions.classList.add('active');
+    currentHighlight = -1;
+  };
+  
+  // Afficher l'option de géolocalisation dès que l'utilisateur clique sur le champ
+  citySearchInput.addEventListener('focus', () => {
+    // Si le champ est vide, montrer juste l'option de géolocalisation
+    if (!citySearchInput.value.trim()) {
+      showSuggestions(null); // Passer null indique qu'on veut juste l'option de géolocalisation
+    }
+  });
+  
+  // Gérer l'input de recherche avec debounce
+  citySearchInput.addEventListener('input', (e) => {
+    const query = e.target.value;
+    
+    // Nettoyer le timer précédent
+    clearTimeout(debounceTimer);
+    
+    // Si le champ est vide, afficher juste l'option de géolocalisation
+    if (!query.trim()) {
+      showSuggestions(null);
+      return;
+    }
+    
+    // Montrer un loader
+    searchSuggestions.innerHTML = `
+      <div class="suggestion-loader">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span style="margin-left: 10px;">Recherche en cours...</span>
+      </div>
+    `;
+    searchSuggestions.classList.add('active');
+    
+    // Debounce pour éviter trop de requêtes
+    debounceTimer = setTimeout(async () => {
+      if (query.trim().length < 2) {
+        showSuggestions(null);
+        return;
+      }
+      
+      const suggestions = await fetchCitySuggestions(query);
+      showSuggestions(suggestions);
+    }, 300);
+  });
+  
+  // Fermer les suggestions si on clique ailleurs
+  document.addEventListener('click', (e) => {
+    if (!citySearchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+      searchSuggestions.classList.remove('active');
+    }
+  });
+  
+  // Navigation au clavier dans les suggestions
+  citySearchInput.addEventListener('keydown', (e) => {
+    const items = searchSuggestions.querySelectorAll('.suggestion-item');
+    
+    if (items.length === 0) return;
+    
+    // Flèche du bas
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!searchSuggestions.classList.contains('active')) {
+        searchSuggestions.classList.add('active');
+        currentHighlight = -1;
+      }
+      
+      currentHighlight = (currentHighlight + 1) % items.length;
+      updateHighlight(items);
+    }
+    
+    // Flèche du haut
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!searchSuggestions.classList.contains('active')) {
+        searchSuggestions.classList.add('active');
+        currentHighlight = 0;
+      }
+      
+      currentHighlight = (currentHighlight - 1 + items.length) % items.length;
+      updateHighlight(items);
+    }
+    
+    // Touche Entrée
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (searchSuggestions.classList.contains('active') && currentHighlight >= 0) {
+        items[currentHighlight].click();
+      } else {
+        // Si pas de suggestion sélectionnée, lancer la recherche normale
+        searchCity(citySearchInput.value);
+      }
+    }
+    
+    // Échap
+    if (e.key === 'Escape') {
+      searchSuggestions.classList.remove('active');
+    }
+  });
+  
+  // Fonction pour mettre à jour la mise en surbrillance des suggestions
+  const updateHighlight = (items) => {
+    items.forEach((item, index) => {
+      if (index === currentHighlight) {
+        item.classList.add('highlighted');
+        // Faire défiler vers l'élément surligné si nécessaire
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        item.classList.remove('highlighted');
+      }
+    });
+  };
+  
+  // Fonction pour rechercher et centrer la carte sur une ville
+  const searchCity = async (cityName) => {
+    if (!cityName.trim()) return;
+    
+    try {
+      // Animation de chargement sur le bouton
+      searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+      searchButton.disabled = true;
+      
+      // Utiliser l'API Nominatim pour la recherche
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cityName)}, France&limit=1`);
+      const data = await response.json();
+      
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        // Centrer la carte sur la ville trouvée
+        powairMap.setView([lat, lon], 13, {
+          animate: true,
+          duration: 1.5
+        });
+      } else {
+        // Ajouter un feedback visuel si la ville n'est pas trouvée
+        citySearchInput.classList.add('not-found');
+        setTimeout(() => {
+          citySearchInput.classList.remove('not-found');
+        }, 800);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la recherche de la ville:", error);
+    } finally {
+      // Restaurer le bouton
+      searchButton.innerHTML = '<i class="fas fa-search"></i>';
+      searchButton.disabled = false;
+    }
+  };
+
+  // Événement au clic sur le bouton de recherche
+  searchButton.addEventListener('click', () => {
+    searchCity(citySearchInput.value);
+    searchSuggestions.classList.remove('active');
+  });
+  
+  // Ajouter un style pour le feedback "ville non trouvée"
+  const style = document.createElement('style');
+  style.textContent = `
+    .map-search-input.not-found {
+      animation: shake 0.4s ease-in-out;
+      background-color: rgba(239, 68, 68, 0.1);
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+  `;
+  document.head.appendChild(style);
+}
         
             console.log("Carte Leaflet initialisée.");
 
