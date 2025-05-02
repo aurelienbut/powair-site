@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Gestion des Animations au Scroll (Intersection Observer) ---
     const animatedElements = document.querySelectorAll(
-        '.section-title-container, .step, .benefit-card, .pricing-card, .download-container, .hero-text, .hero-image, .hero-buttons, .scroll-down, .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands, .partner-card'
+        '.section-title-container, .step, .benefit-card, .pricing-card, .download-container, .hero-text, .hero-image, .map-container, .hero-buttons, .scroll-down, .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands, .partner-card'
         // Note : le conteneur de la carte .map-container n'est plus animé ici par défaut
     );
     let countersStarted = false;

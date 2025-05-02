@@ -239,7 +239,7 @@ nav ul li a:hover::after { width: 100%; }
   position: relative;
   width: 100%;
   margin-top: 4rem;
-  opacity: 1; /* Géré par l'animation au scroll via .active */
+  opacity: 0; /* Géré par l'animation au scroll via .active */
   transform: translateY(30px); /* Géré par l'animation au scroll */
   transition: opacity 0.6s ease, transform 0.6s ease;
   /* z-index: 2; */ /* Le z-index ici pourrait entrer en conflit, mettons le sur le wrapper */
