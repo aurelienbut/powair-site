@@ -295,6 +295,11 @@
       font-size: 1.1rem;
     }
 
+    /* Ajustement : on cible spécifiquement le 2ème th pour le centrage */
+    .comparison-table th:nth-child(2) {
+        text-align: center;
+    }
+
     .comparison-table tbody tr {
       background-color: var(--bg-color);
       transition: all 0.3s ease;
@@ -310,11 +315,17 @@
       color: var(--text-color);
     }
 
+    /* Ajustement : on cible spécifiquement le 2ème td pour le centrage */
+     .comparison-table td:nth-child(2) {
+        text-align: center;
+     }
+
     .comparison-table .check {
       color: #22c55e;
       font-size: 1.2rem;
     }
 
+    /* La classe .times n'est plus utilisée mais on la garde au cas où */
     .comparison-table .times {
       color: #ef4444;
       font-size: 1.2rem;
@@ -546,43 +557,36 @@
             <tr>
               <th>Avantages</th>
               <th>Partenaires Pow'air</th>
-              <th>Solutions concurrentes</th>
-            </tr>
+              </tr>
           </thead>
           <tbody>
             <tr>
               <td>Installation et matériel gratuits</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-times times"></i></td>
-            </tr>
+              </tr>
             <tr>
               <td>Aucun coût de maintenance</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-times times"></i></td>
-            </tr>
+              </tr>
             <tr>
               <td>Commissions sur chaque transaction</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-check check"></i></td>
-            </tr>
+              </tr>
             <tr>
               <td>Support technique dédié 7j/7</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-times times"></i></td>
-            </tr>
+              </tr>
             <tr>
               <td>Visibilité sur l'application</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-check check"></i></td>
-            </tr>
+              </tr>
             <tr>
               <td>Campagnes marketing ciblées</td>
               <td><i class="fas fa-check check"></i></td>
-              <td><i class="fas fa-times times"></i></td>
-            </tr>
+              </tr>
           </tbody>
         </table>
-      </div>
+        </div>
     </div>
   </section>
 
@@ -901,32 +905,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Animation des compteurs de statistiques
-      const startCounters = () => {
-        const counters = document.querySelectorAll('.metric-number');
-        counters.forEach(counter => {
-          if (counter.dataset.animated) return;
-          counter.dataset.animated = true;
-
-          const target = parseInt(counter.getAttribute('data-count'), 10);
-          const duration = 2000;
-          let startTimestamp = null;
-
-          const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            counter.textContent = Math.floor(progress * target).toLocaleString();
-
-            if (progress < 1) {
-              window.requestAnimationFrame(step);
-            } else {
-              counter.textContent = target.toLocaleString();
-            }
-          };
-
-          window.requestAnimationFrame(step);
-        });
-      };
+      // Animation des compteurs de statistiques (si présents - non inclus dans ce snippet)
+      // ... (Le code d'animation des compteurs .metric-number irait ici s'il y avait une section metrics)
 
       // Gestion des FAQ
       const faqQuestions = document.querySelectorAll('.faq-question');
@@ -934,41 +914,49 @@
         question.addEventListener('click', () => {
           const answer = question.nextElementSibling;
           const isActive = question.classList.contains('active');
+          const icon = question.querySelector('i'); // Cible l'icône
 
-          // Ferme toutes les réponses
-          document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
-          document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+          // Ferme toutes les réponses SAUF celle cliquée si elle était déjà ouverte
+          document.querySelectorAll('.faq-question').forEach(q => {
+              if (q !== question) {
+                  q.classList.remove('active');
+                  q.querySelector('i').style.transform = 'rotate(0deg)'; // Réinitialise l'icône des autres
+              }
+          });
+          document.querySelectorAll('.faq-answer').forEach(a => {
+             if (a !== answer || isActive) { // Cache les autres réponses ou celle cliquée si on la ferme
+                a.classList.remove('active');
+             }
+          });
 
-          // Ouvre la réponse cliquée si elle n'était pas déjà ouverte
+          // Ouvre/ferme la réponse cliquée
           if (!isActive) {
             question.classList.add('active');
             answer.classList.add('active');
+            if (icon) icon.style.transform = 'rotate(180deg)';
+             // Gestion ARIA
+            question.setAttribute('aria-expanded', 'true');
+            if(answer.id) question.setAttribute('aria-controls', answer.id); // Lie la question à la réponse si ID existe
+          } else {
+             question.classList.remove('active');
+             answer.classList.remove('active');
+             if (icon) icon.style.transform = 'rotate(0deg)';
+              // Gestion ARIA
+             question.setAttribute('aria-expanded', 'false');
+             question.removeAttribute('aria-controls');
           }
         });
+
+        // Ajout ARIA initial
+        question.setAttribute('aria-expanded', 'false');
+        const answer = question.nextElementSibling;
+        if(answer && !answer.id) { // Donne un ID unique si la réponse n'en a pas
+            answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
+        }
+
       });
 
-      // Observer pour déclencher les animations au scroll
-      if ("IntersectionObserver" in window) {
-        // Pour les compteurs
-        const metricsObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              startCounters();
-              metricsObserver.disconnect(); // Ne déclenche les compteurs qu'une fois
-            }
-          });
-        }, { threshold: 0.1 });
-
-        const metricsSection = document.querySelector('.metrics-grid');
-        if (metricsSection) {
-          metricsObserver.observe(metricsSection);
-        }
-      } else {
-        // Fallback pour les navigateurs sans IntersectionObserver
-        startCounters();
-      }
-
-      // Gestion du formulaire partenaire (repris du script principal)
+      // Gestion du formulaire partenaire (repris du script principal, qui devrait idéalement contenir TOUT le JS)
       const partnerForm = document.getElementById('partner-form');
       const partnerSubmitButton = document.getElementById('partner-submit-button');
       const partnerFormMessage = document.getElementById('partner-form-message');
@@ -981,23 +969,48 @@
           partnerSubmitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
           partnerFormMessage.textContent = '';
           partnerFormMessage.style.color = 'inherit';
+           partnerFormMessage.removeAttribute('aria-live'); // Supprime pour éviter l'annonce du vide
 
           const formData = new FormData(partnerForm);
           const data = Object.fromEntries(formData.entries());
 
           try {
-            // Simulation d'envoi - à remplacer par l'appel API réel
-            await new Promise(resolve => setTimeout(resolve, 1500));
+             // REMPLACER par l'appel API réel vers '/api/submit-partner-form' comme dans script.js
+             // Simulation d'envoi pour l'exemple
+             await new Promise(resolve => setTimeout(resolve, 1500));
+             const response = { ok: true }; // Simule une réponse OK
+             const result = { message: "Merci ! Votre demande a bien été envoyée. Un conseiller vous contactera dans les 24h."}; // Simule un message de succès
 
-            // Simulation de succès
-            partnerFormMessage.textContent = "Merci ! Votre demande a bien été envoyée. Un conseiller vous contactera dans les 24h.";
-            partnerFormMessage.style.color = 'var(--accent-color)';
-            partnerForm.reset();
+             // Décommentez ces lignes pour l'appel réel
+             /*
+             const response = await fetch('/api/submit-partner-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+             });
+             const result = await response.json();
+             */
+
+            if (response.ok) {
+              partnerFormMessage.textContent = result.message || "Merci ! Votre demande a bien été envoyée.";
+              partnerFormMessage.style.color = 'var(--accent-color)';
+               partnerFormMessage.setAttribute('aria-live', 'polite'); // Annonce le succès
+              partnerForm.reset();
+            } else {
+              partnerFormMessage.textContent = result.error || `Erreur ${response.status}: Veuillez réessayer.`;
+              partnerFormMessage.style.color = '#E53E3E';
+               partnerFormMessage.setAttribute('aria-live', 'assertive'); // Annonce l'erreur (plus urgent)
+            }
 
           } catch (error) {
             console.error("Erreur lors de l'envoi:", error);
-            partnerFormMessage.textContent = "Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.";
+             if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+               partnerFormMessage.textContent = "Erreur: Impossible de contacter le serveur. Vérifiez l'URL ou l'état du serveur.";
+             } else {
+               partnerFormMessage.textContent = "Une erreur réseau est survenue. Vérifiez votre connexion et réessayez.";
+             }
             partnerFormMessage.style.color = '#E53E3E';
+            partnerFormMessage.setAttribute('aria-live', 'assertive'); // Annonce l'erreur
           } finally {
             partnerSubmitButton.disabled = false;
             partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
