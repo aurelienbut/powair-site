@@ -228,17 +228,60 @@ nav ul li a:hover::after { width: 100%; }
 .benefit-description { color: var(--text-light); font-size: 1rem; margin-bottom: 0; }
 
 /* Réseau */
-.network { position: relative; overflow: hidden; }
-.map-container { position: relative; width: 100%; margin-top: 4rem; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; z-index: 2; }
-.map-container.active { opacity: 1; transform: translateY(0); }
-.map-wrapper { width: 100%; height: 500px; background-color: var(--border-color); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; }
-.dark-mode .map-wrapper { background-color: var(--dark-bg-alt); }
-#map {
-  width: 100%;
-  height: 500px; /* Mettez la hauteur explicite ici */
-  z-index: 0;
+/* --- Bloc CSS pour la section Réseau/Carte --- */
+
+.network {
+  position: relative;
+  overflow: hidden; /* Gardé pour le moment, pourrait être testé en le supprimant si le z-index ne résout rien */
 }
-#map p { color: var(--text-light); margin-top: 50px; text-align: center; }
+
+.map-container {
+  position: relative;
+  width: 100%;
+  margin-top: 4rem;
+  opacity: 0; /* Géré par l'animation au scroll via .active */
+  transform: translateY(30px); /* Géré par l'animation au scroll */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  /* z-index: 2; */ /* Le z-index ici pourrait entrer en conflit, mettons le sur le wrapper */
+}
+
+.map-container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 500px; /* Hauteur du conteneur de carte */
+  background-color: var(--border-color); /* Couleur de fond pendant le chargement */
+  border-radius: var(--radius-xl);
+  overflow: hidden; /* Gardé pour le moment */
+  box-shadow: var(--shadow-lg);
+  position: relative; /* IMPORTANT: Nécessaire pour que z-index fonctionne */
+  z-index: 100; /* TEST : Valeur élevée pour essayer de passer au-dessus d'autres éléments */
+}
+
+.dark-mode .map-wrapper {
+  background-color: var(--dark-bg-alt);
+}
+
+#map {
+  /* width: 1000px; */ /* Votre valeur précédente - 100% est généralement plus sûr */
+  width: 100%;    /* Prend toute la largeur du .map-wrapper */
+  height: 500px;   /* Hauteur explicite, comme vous l'aviez mise */
+  position: relative; /* Assure son propre contexte d'empilement */
+  z-index: auto;    /* Laisse Leaflet gérer les z-index internes, .map-wrapper gère la superposition globale */
+  background-color: #DDDDDD; /* Léger fond gris pour voir si le div #map lui-même est visible */
+}
+
+#map p {
+  /* Style pour le texte placeholder - Normalement plus visible car le div #map est vidé par JS */
+  color: var(--text-light);
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* --- Fin Bloc CSS --- */
 
 /* Tarifs */
 .pricing { position: relative; background-color: var(--bg-alt); overflow: hidden; }
