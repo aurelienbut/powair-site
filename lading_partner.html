@@ -130,6 +130,7 @@
       background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
     }
 
+    /* Styles pour les témoignages (même si la section est enlevée, on peut laisser les styles au cas où) */
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -212,6 +213,8 @@
       font-size: 0.85rem;
       color: var(--text-light);
     }
+    /* Fin des styles témoignages */
+
 
     .faq-container {
       margin-top: 3rem;
@@ -317,7 +320,7 @@
 
     /* Ajustement : on cible spécifiquement le 2ème td pour le centrage */
      .comparison-table td:nth-child(2) {
-        text-align: center;
+       text-align: center;
      }
 
     .comparison-table .check {
@@ -439,7 +442,6 @@
             <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
             <li><a href="#avantages">Vos avantages</a></li>
             <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#temoignages">Témoignages</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
           <a href="#contact" class="btn btn-primary">
@@ -457,9 +459,8 @@
         <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
         <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
         <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
-        <li style="--i:4"><a href="#temoignages">Témoignages</a></li>
-        <li style="--i:5"><a href="#faq">FAQ</a></li>
-        <li style="--i:6"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
+        <li style="--i:4"><a href="#faq">FAQ</a></li>
+        <li style="--i:5"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
       </ul>
     </div>
   </header>
@@ -632,69 +633,7 @@
     </div>
   </section>
 
-  <section id="temoignages" style="padding-top: 40px;">
-    <div class="container">
-      <div class="section-inner">
-        <div class="section-title-container">
-          <div class="section-tag">
-            <i class="fas fa-comment-dots"></i> Témoignages
-          </div>
-          <h2>Ce que disent nos partenaires</h2>
-          <p class="subtitle">Découvrez l'expérience des commerçants qui nous font déjà confiance.</p>
-        </div>
-
-        <div class="testimonial-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">
-              "Depuis que nous avons installé la borne Pow'air, nous avons constaté une augmentation de 15% de notre clientèle. Les clients viennent pour une batterie et restent pour un café ou un repas. Un vrai plus pour notre établissement !"
-            </div>
-            <div class="testimonial-author-info">
-              <div class="testimonial-avatar">
-                <i class="fas fa-coffee"></i>
-              </div>
-              <div class="testimonial-author">
-                <h5>Marie Dupont</h5>
-                <span>Café des Arts et Musique, Paris</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">
-              "Le service client Pow'air est exceptionnel. L'installation a été rapide et professionnelle, et le support technique répond toujours présent. Nous générons maintenant des revenus complémentaires tout en offrant un service utile à nos clients."
-            </div>
-            <div class="testimonial-author-info">
-              <div class="testimonial-avatar">
-                <i class="fas fa-book"></i>
-              </div>
-              <div class="testimonial-author">
-                <h5>Thomas Martin</h5>
-                <span>Librairie Page & Plume, Lyon</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">
-              "Nos clients adorent pouvoir recharger leurs appareils pendant qu'ils font leurs courses. C'est un vrai plus qui nous différencie de nos concurrents. Et le fait de générer des revenus supplémentaires sans investissement initial est un modèle parfait pour les commerçants."
-            </div>
-            <div class="testimonial-author-info">
-              <div class="testimonial-avatar">
-                <i class="fas fa-shopping-basket"></i>
-              </div>
-              <div class="testimonial-author">
-                <h5>Sophie Legrand</h5>
-                <span>Épicerie Bio, Bordeaux</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <div class="section-bg">
+  <section id="faq" style="padding-top: 40px;"> <div class="section-bg">
       <div class="section-bg-pattern"></div>
     </div>
     <div class="container">
@@ -850,7 +789,6 @@
             <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
             <li><a href="#avantages">Vos avantages</a></li>
             <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#temoignages">Témoignages</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -923,7 +861,7 @@
           });
           document.querySelectorAll('.faq-answer').forEach(a => {
              if (a !== answer || isActive) { // Cache les autres réponses ou celle cliquée si on la ferme
-                a.classList.remove('active');
+               a.classList.remove('active');
              }
           });
 
@@ -949,13 +887,13 @@
         question.setAttribute('aria-expanded', 'false');
         const answer = question.nextElementSibling;
         if(answer && !answer.id) { // Donne un ID unique si la réponse n'en a pas
-            answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
+           answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
         }
          // Assurez-vous que la réponse a l'ID référencé si elle existe
          if (answer && answer.id && !question.getAttribute('aria-controls')){
-            // Ne rien faire si déjà lié ou si la réponse n'a pas d'ID
+           // Ne rien faire si déjà lié ou si la réponse n'a pas d'ID
          } else if (answer && !answer.id) {
-             // Géré ci-dessus
+            // Géré ci-dessus
          }
 
 
@@ -989,9 +927,9 @@
              // Décommentez ces lignes pour l'appel réel
              /*
              const response = await fetch('/api/submit-partner-form', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify(data)
              });
              const result = await response.json();
              */
