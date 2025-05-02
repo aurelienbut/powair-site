@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,7 @@
         padding-top: 30px !important;
       }
     }
+
     .metric-card {
       padding: 2rem;
       border-radius: var(--radius-lg);
@@ -385,91 +387,11 @@
         flex-direction: column;
       }
 
-      /* --- Styles pour rendre le tableau responsive --- */
-
-      .comparison-table {
-        box-shadow: none; /* Optionnel: Enlever l'ombre globale si chaque ligne a une bordure */
-        border-radius: 0; /* Optionnel: Enlever le radius global */
-        border: none; /* Optionnel: Supprimer la bordure globale si gérée par ligne */
-      }
-
-      .comparison-table thead {
-        /* Cacher les en-têtes originaux sur mobile */
-        display: none;
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-      }
-
-      .comparison-table tr {
-        /* Transformer chaque ligne en bloc/carte */
-        display: block;
-        margin-bottom: 1.5rem; /* Espace entre les "cartes" de ligne */
-        border: 1px solid var(--border-color); /* Ajouter une bordure à chaque ligne */
-        border-radius: var(--radius-md); /* Appliquer un radius à chaque ligne */
-        overflow: hidden; /* Pour que le radius s'applique bien */
-        background-color: var(--bg-color); /* Fond pour chaque carte */
-        box-shadow: var(--shadow-sm); /* Légère ombre par carte */
-      }
-       .comparison-table tr:last-child {
-          margin-bottom: 0; /* Pas de marge pour la dernière ligne */
-       }
-
-
+      .comparison-table th,
       .comparison-table td {
-        /* Transformer chaque cellule en bloc */
-        display: block;
-        text-align: right; /* Aligner la valeur (check/times/texte) à droite */
-        font-size: 0.9rem; /* Conserver la taille de police réduite */
-        padding: 0.8rem 1rem; /* Ajuster le padding */
-        padding-left: 45%; /* Laisser de l'espace à gauche pour le label */
-        position: relative; /* Nécessaire pour le positionnement du ::before */
-        border-bottom: 1px solid var(--border-color-light, #eee); /* Ligne séparatrice légère entre cellules d'une même ligne */
-         /* Assurez-vous d'avoir --border-color-light ou utilisez var(--border-color) avec opacité */
+        padding: 0.8rem;
+        font-size: 0.9rem;
       }
-
-       .comparison-table td:last-child {
-          border-bottom: 0; /* Pas de bordure pour la dernière cellule de la ligne */
-       }
-
-      .comparison-table td::before {
-        /* Afficher le label (depuis data-label) avant chaque cellule */
-        content: attr(data-label); /* Récupère le texte de l'attribut data-label */
-        position: absolute;
-        left: 1rem; /* Positionner le label à gauche */
-        top: 50%; /* Centrer verticalement */
-        transform: translateY(-50%); /* Ajustement fin du centrage vertical */
-        width: calc(45% - 2rem); /* Largeur du label (ajuster si besoin) */
-        padding-right: 10px;
-        white-space: nowrap; /* Empêcher le retour à la ligne du label */
-        font-weight: 600; /* Mettre le label en évidence */
-        color: var(--text-color); /* Couleur du texte standard */
-        text-align: left; /* Aligner le texte du label à gauche */
-      }
-
-      /* Spécificité pour la première cellule (Avantages) si besoin */
-      .comparison-table td:first-child {
-         /* Le text-align: right; général devrait suffire */
-        font-weight: normal; /* Rétablir le poids normal pour la valeur */
-      }
-       .comparison-table td:first-child::before {
-          font-weight: 700; /* Mettre le label Avantages en gras peut-être */
-       }
-
-
-      /* S'assurer que les icônes restent bien alignées */
-       .comparison-table .check,
-       .comparison-table .times {
-           font-size: 1.1rem; /* Ajuster la taille si besoin */
-       }
-
-      /* --- Fin des styles responsive pour le tableau --- */
-
 
       .step-merchant {
         flex-direction: column;
@@ -483,6 +405,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="gradient-bg">
     <div class="gradient-orb"></div>
@@ -628,38 +551,38 @@
           </thead>
           <tbody>
             <tr>
-              <td data-label="Avantages">Installation et matériel gratuits</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-times times"></i></td>
+              <td>Installation et matériel gratuits</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
             </tr>
             <tr>
-              <td data-label="Avantages">Aucun coût de maintenance</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-times times"></i></td>
+              <td>Aucun coût de maintenance</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
             </tr>
             <tr>
-              <td data-label="Avantages">Commissions sur chaque transaction</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-check check"></i></td>
+              <td>Commissions sur chaque transaction</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-check check"></i></td>
             </tr>
             <tr>
-              <td data-label="Avantages">Support technique dédié 7j/7</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-times times"></i></td>
+              <td>Support technique dédié 7j/7</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
             </tr>
             <tr>
-              <td data-label="Avantages">Visibilité sur l'application</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-check check"></i></td>
+              <td>Visibilité sur l'application</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-check check"></i></td>
             </tr>
             <tr>
-              <td data-label="Avantages">Campagnes marketing ciblées</td>
-              <td data-label="Partenaires Pow'air"><i class="fas fa-check check"></i></td>
-              <td data-label="Solutions concurrentes"><i class="fas fa-times times"></i></td>
+              <td>Campagnes marketing ciblées</td>
+              <td><i class="fas fa-check check"></i></td>
+              <td><i class="fas fa-times times"></i></td>
             </tr>
           </tbody>
         </table>
-        </div>
+      </div>
     </div>
   </section>
 
@@ -886,7 +809,7 @@
                     <option value="Autre">Autre</option>
                   </select>
                 </div>
-                </div>
+              </div>
               <button type="submit" class="btn btn-primary partner-submit" id="partner-submit-button">
                 <i class="fas fa-paper-plane"></i>
                 Envoyer ma demande
@@ -908,18 +831,18 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo-area">
-            <a href="index.html" class="footer-logo">
-              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
-            </a>
-            <p class="footer-description">
-              Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
-            </p>
-            <div class="footer-social">
-              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
+          </a>
+          <p class="footer-description">
+            Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
         <div>
           <h4 class="footer-title">Navigation</h4>
@@ -1084,4 +1007,5 @@
     });
   </script>
 </body>
+
 </html>
