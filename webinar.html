@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pow'air - Webinaire</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles spécifiques à la page webinaire */
+    .webinar-section {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .webinar-container {
+      background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      padding: 3rem 2rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .dark-mode .webinar-container {
+      background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
+      border: 1px solid var(--border-color);
+    }
+
+    .webinar-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .webinar-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .webinar-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: var(--bg-alt);
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--accent-color);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .webinar-badge i {
+      margin-right: 0.5rem;
+      color: var(--accent-color);
+    }
+
+    .dark-mode .webinar-badge {
+      background-color: var(--bg-alt-dark);
+    }
+
+    .webinar-stream-container {
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .webinar-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .webinar-content {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .webinar-main {
+      flex: 3;
+    }
+
+    .webinar-sidebar {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .webinar-info {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .webinar-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .webinar-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .webinar-info-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: var(--bg-alt);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      flex-shrink: 0;
+      border: 1px solid var(--border-color);
+    }
+
+    .webinar-info-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-color);
+    }
+
+    .webinar-info-text p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    .webinar-description {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .webinar-description h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    .webinar-cta {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .webinar-cta h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .webinar-cta p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .webinar-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .webinar-placeholder i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    /* States */
+    .webinar-state-container {
+      margin-bottom: 2rem;
+    }
+
+    .webinar-state {
+      display: none;
+    }
+
+    .webinar-state.active {
+      display: block;
+    }
+
+    .webinar-state-placeholder,
+    .webinar-state-live,
+    .webinar-state-ended,
+    .webinar-state-soon {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .webinar-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .webinar-state-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      font-weight: 700;
+    }
+
+    .webinar-state-text {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .webinar-timer {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1rem 2rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Live badge */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.75rem;
+      background-color: #E53E3E;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: white;
+      margin-left: 0.75rem;
+      position: relative;
+    }
+
+    .live-badge::before {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: white;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    /* Actions */
+    .webinar-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 1.5rem;
+      gap: 1rem;
+    }
+
+    .webinar-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-color);
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .webinar-action:hover {
+      background-color: var(--bg-alt);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .webinar-action i {
+      font-size: 1rem;
+      color: var(--accent-color);
+    }
+
+    /* Auth prompt */
+    #auth-prompt {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .auth-prompt-content {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .auth-prompt-icon {
+      font-size: 3.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-prompt-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .auth-prompt-text {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .auth-prompt-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .webinar-content {
+        flex-direction: column;
+      }
+
+      .webinar-sidebar {
+        min-width: 100%;
+      }
+
+      .webinar-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .webinar-section {
+        padding-top: 100px;
+      }
+
+      .webinar-header h1 {
+        font-size: 2rem;
+      }
+
+      .webinar-action {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      .webinar-timer {
+        font-size: 2rem;
+        padding: 0.75rem 1.5rem;
+      }
+    }
+
+    /* Chat */
+    .webinar-chat {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      height: 400px;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .webinar-chat-header {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .webinar-chat-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .webinar-chat-title i {
+      color: var(--accent-color);
+    }
+
+    .webinar-chat-status {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .webinar-chat-status-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #22c55e;
+      border-radius: 50%;
+    }
+
+    .webinar-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .webinar-chat-message {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .webinar-chat-message.user {
+      align-self: flex-end;
+      background-color: var(--accent-color);
+      color: white;
+      border-bottom-right-radius: 0;
+    }
+
+    .webinar-chat-message.moderator {
+      align-self: flex-start;
+      background-color: var(--bg-alt);
+      color: var(--text-color);
+      border-bottom-left-radius: 0;
+    }
+
+    .webinar-chat-message-info {
+      font-size: 0.75rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .webinar-chat-input-container {
+      padding: 1rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .webinar-chat-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .webinar-chat-input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1);
+    }
+
+    .webinar-chat-send {
+      border-radius: var(--radius-full);
+      margin: 0;
+      border: 1px solid var(--accent-color);
+      padding: 0.75rem 1.25rem;
+      background-color: var(--accent-color);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .webinar-chat-send:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .webinar-chat-send:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Countdown Box (Always visible) */
+    .countdown-box {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .countdown-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .countdown-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 1rem;
+      min-width: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .countdown-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Question Form */
+    .question-form {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .question-form h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      font-size: 0.95rem;
+      color: var(--text-color);
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1);
+    }
+
+    .form-submit {
+      text-align: center;
+    }
+
+    .form-message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      background-color: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .form-message.error {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    
+    /* User Account */
+    #user-account {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .user-info {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .user-info-icon {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 992px) {
+      .user-info {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg">
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+  </div>
+
+  <div class="mode-switch">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Auth Prompt (caché par défaut, affiché si non authentifié) -->
+  <div id="auth-prompt" style="display: none;">
+    <div class="auth-prompt-content">
+      <div class="auth-prompt-icon">
+        <i class="fas fa-lock"></i>
+      </div>
+      <h2 class="auth-prompt-title">Accès Protégé</h2>
+      <p class="auth-prompt-text">Vous devez vous connecter pour accéder à ce webinaire.</p>
+      <div class="auth-prompt-buttons">
+        <a href="webinar-login.html" class="btn btn-primary">Se connecter</a>
+        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+            <li><a href="index.html#network">Notre réseau</a></li>
+            <li><a href="index.html#benefits">Avantages</a></li>
+            <li><a href="index.html#pricing">Tarifs</a></li>
+            <li><a href="index.html#partners">Partenaires</a></li>
+          </ul>
+          <div id="user-account">
+            <div class="user-info" id="user-info">
+              <div class="user-info-icon" id="user-icon"></div>
+              <span id="user-name"></span>
+            </div>
+            <button id="logout-button" class="btn btn-secondary">
+              <i class="fas fa-sign-out-alt"></i>
+              Déconnexion
+            </button>
+          </div>
+          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <ul>
+        <li style="--i:1"><a href="index.html#how-it-works">Comment ça marche</a></li>
+        <li style="--i:2"><a href="index.html#network">Notre réseau</a></li>
+        <li style="--i:3"><a href="index.html#benefits">Avantages</a></li>
+        <li style="--i:4"><a href="index.html#pricing">Tarifs</a></li>
+        <li style="--i:5"><a href="index.html#partners">Partenaires</a></li>
+        <li style="--i:6"><a href="#" id="mobile-logout-button" class="btn btn-secondary">Déconnexion</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="webinar-section">
+    <div class="container">
+      <div class="webinar-container">
+        <div class="webinar-header">
+          <div class="webinar-badge">
+            <i class="fas fa-video"></i>
+            Webinaire Exclusif
+            <span class="live-badge" id="webinar-status-badge">EN DIRECT</span>
+          </div>
+          <h1>L'innovation énergétique mobile avec Pow'air</h1>
+          <p>Découvrez les dernières innovations et projets à venir pour notre réseau de recharge mobile.</p>
+        </div>
+
+        <!-- Compte à rebours (toujours visible) -->
+        <div class="countdown-box">
+          <h3>Prochain webinaire dans</h3>
+          <div class="countdown-timer">
+            <div class="countdown-unit">
+              <div class="countdown-value" id="countdown-days">00</div>
+              <div class="countdown-label">Jours</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="countdown-hours">00</div>
+              <div class="countdown-label">Heures</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="countdown-minutes">00</div>
+              <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="countdown-seconds">00</div>
+              <div class="countdown-label">Secondes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteneur d'états du webinaire -->
+        <div class="webinar-state-container">
+          <!-- État : Chargement -->
+          <div id="state-loading" class="webinar-state">
+            <div class="webinar-state-placeholder">
+              <div class="webinar-state-icon">
+                <i class="fas fa-spinner fa-spin"></i>
+              </div>
+              <h3 class="webinar-state-title">Chargement du webinaire...</h3>
+              <p class="webinar-state-text">Merci de patienter pendant que nous préparons le webinaire.</p>
+            </div>
+          </div>
+
+          <!-- État : Bientôt -->
+          <div id="state-soon" class="webinar-state">
+            <div class="webinar-state-soon">
+              <div class="webinar-state-icon">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+              <h3 class="webinar-state-title">Le webinaire commencera bientôt</h3>
+              <p class="webinar-state-text">Préparez-vous, le direct débutera prochainement. Inscrivez-vous ci-dessous pour être notifié lorsque nous commencerons.</p>
+            </div>
+          </div>
+
+          <!-- État : En direct -->
+          <div id="state-live" class="webinar-state active">
+            <div class="webinar-stream-container">
+              <iframe 
+                id="youtube-iframe"
+                class="webinar-iframe"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1" 
+                title="Webinaire Pow'air" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+
+          <!-- État : Terminé -->
+          <div id="state-ended" class="webinar-state">
+            <div class="webinar-state-ended">
+              <div class="webinar-state-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3 class="webinar-state-title">Le webinaire est terminé</h3>
+              <p class="webinar-state-text">Merci d'avoir participé à notre webinaire. Le replay sera bientôt disponible.</p>
+              <a href="#" class="btn btn-primary" id="replay-button">
+                <i class="fas fa-play"></i>
+                Regarder le replay
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions du webinaire (partage, téléchargement, etc.) -->
+        <div class="webinar-actions">
+          <button class="webinar-action" id="share-button">
+            <i class="fas fa-share-alt"></i> Partager
+          </button>
+          <button class="webinar-action" id="download-button">
+            <i class="fas fa-file-pdf"></i> Télécharger la présentation
+          </button>
+          <button class="webinar-action" id="notify-button">
+            <i class="fas fa-bell"></i> Être notifié
+          </button>
+        </div>
+
+        <!-- Contenu principal du webinaire -->
+        <div class="webinar-content">
+          <div class="webinar-main">
+            <!-- Chat en direct (déplacé avant la description) -->
+            <div class="webinar-chat">
+              <div class="webinar-chat-header">
+                <div class="webinar-chat-title">
+                  <i class="fas fa-comments"></i> Chat en direct
+                </div>
+                <div class="webinar-chat-status">
+                  <div class="webinar-chat-status-dot"></div> En ligne
+                </div>
+              </div>
+              <div class="webinar-chat-messages" id="chat-messages">
+                <div class="webinar-chat-message moderator">
+                  <div class="webinar-chat-message-info">Modérateur</div>
+                  Bienvenue dans le chat du webinaire ! Posez vos questions ici, nous y répondrons pendant la session.
+                </div>
+                <div class="webinar-chat-message moderator">
+                  <div class="webinar-chat-message-info">Anne Dupont (PDG)</div>
+                  Ravi de vous accueillir pour ce webinaire sur les innovations Pow'air ! Nous commencerons dans quelques instants.
+                </div>
+              </div>
+              <div class="webinar-chat-input-container">
+                <input type="text" class="webinar-chat-input" id="chat-input" placeholder="Écrivez votre message..." aria-label="Message">
+                <button class="webinar-chat-send" id="chat-send">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- À propos de ce webinaire (déplacé après le chat) -->
+            <div class="webinar-description">
+              <h3>À propos de ce webinaire</h3>
+              <p>Rejoignez notre PDG et notre équipe de développement pour une présentation exclusive des innovations à venir pour Pow'air. Durant cette session, nous aborderons :</p>
+              <ul>
+                <li>Les nouvelles générations de batteries à haute capacité</li>
+                <li>L'extension de notre réseau dans de nouvelles villes</li>
+                <li>Notre engagement environnemental et économie circulaire</li>
+                <li>Les futures fonctionnalités de notre application mobile</li>
+                <li>Un aperçu de nos partenariats stratégiques pour 2025</li>
+              </ul>
+              <p>Une session de questions-réponses sera organisée à la fin de la présentation. Vous pourrez poser vos questions directement via le chat en direct.</p>
+            </div>
+
+            <!-- Formulaire de question -->
+            <div class="question-form">
+              <h3>Poser une question pour la session Q&R</h3>
+              <form id="question-form">
+                <div class="form-group">
+                  <label for="question-name">Votre nom</label>
+                  <input type="text" id="question-name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="question-email">Votre email</label>
+                  <input type="email" id="question-email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="question-topic">Sujet de votre question</label>
+                  <select id="question-topic" name="topic" required>
+                    <option value="" disabled selected>Choisissez un sujet</option>
+                    <option value="batteries">Nouvelles batteries</option>
+                    <option value="network">Extension du réseau</option>
+                    <option value="app">Application mobile</option>
+                    <option value="environment">Engagement environnemental</option>
+                    <option value="partnerships">Partenariats</option>
+                    <option value="other">Autre</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="question-content">Votre question</label>
+                  <textarea id="question-content" name="question" rows="4" required></textarea>
+                </div>
+                <div class="form-submit">
+                  <button type="submit" class="btn btn-primary" id="question-submit">
+                    <i class="fas fa-question-circle"></i>
+                    Soumettre ma question
+                  </button>
+                </div>
+                <div class="form-message" id="question-form-message"></div>
+              </form>
+            </div>
+          </div>
+
+          <div class="webinar-sidebar">
+            <div class="webinar-info">
+              <h3>Informations</h3>
+              <div class="webinar-info-item">
+                <div class="webinar-info-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="webinar-info-text">
+                  <h4>Date et heure</h4>
+                  <p id="webinar-date">10 Mai 2025, 14:00</p>
+                </div>
+              </div>
+              <div class="webinar-info-item">
+                <div class="webinar-info-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="webinar-info-text">
+                  <h4>Durée</h4>
+                  <p>1 heure 30 minutes</p>
+                </div>
+              </div>
+              <div class="webinar-info-item">
+                <div class="webinar-info-icon">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="webinar-info-text">
+                  <h4>Présentateurs</h4>
+                  <p>Anne Dupont, PDG<br>Marc Lambert, Directeur technique</p>
+                </div>
+              </div>
+              <div class="webinar-info-item">
+                <div class="webinar-info-icon">
+                  <i class="fas fa-language"></i>
+                </div>
+                <div class="webinar-info-text">
+                  <h4>Langue</h4>
+                  <p>Français</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="webinar-cta">
+              <h3>Vous avez aimé ce webinaire ?</h3>
+              <p>Téléchargez notre application et rejoignez la révolution de la recharge mobile.</p>
+              <a href="index.html#download" class="btn btn-primary">
+                <i class="fas fa-download"></i>
+                Télécharger l'App
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-bg"></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo-area">
+            <a href="index.html" class="footer-logo">
+              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
+            </a>
+            <p class="footer-description">
+              La solution simple et rapide pour ne plus jamais être à court de batterie. Louez, utilisez, retournez.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Liens rapides</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+            <li><a href="index.html#network">Notre réseau</a></li>
+            <li><a href="index.html#benefits">Avantages</a></li>
+            <li><a href="index.html#pricing">Tarifs</a></li>
+            <li><a href="index.html#partners">Devenir partenaire</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Légal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Conditions générales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Gestion des cookies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Contactez-nous</h4>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2025 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+        </p>
+        <div class="footer-links-bottom">
+          <a href="#">Conditions</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">Plan du site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Vérification d'authentification
+      const authToken = localStorage.getItem('powairAuthToken');
+      const authPrompt = document.getElementById('auth-prompt');
+      const userInfo = document.getElementById('user-info');
+      const userName = document.getElementById('user-name');
+      const userIcon = document.getElementById('user-icon');
+
+      // Si pas de token, afficher la popup de connexion
+      if (!authToken) {
+        authPrompt.style.display = 'flex';
+        return; // Arrêter l'exécution du reste du script
+      }
+
+      // Vérifier la validité du token
+      async function verifyToken() {
+        try {
+          const response = await fetch('/api/verify-token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authToken}`
+            }
+          });
+          
+          const result = await response.json();
+          
+          if (!response.ok) {
+            // Token invalide, afficher la popup de connexion
+            authPrompt.style.display = 'flex';
+            // Supprimer le token invalide
+            localStorage.removeItem('powairAuthToken');
+          } else {
+            // Token valide, init webinaire et afficher les infos utilisateur
+            initWebinar();
+            
+            // Afficher les infos utilisateur
+            if (result.user && result.user.name) {
+              userInfo.style.display = 'flex';
+              userName.textContent = result.user.name;
+              // Initialiser l'icône avec les initiales
+              const initials = result.user.name
+                .split(' ')
+                .map(part => part.charAt(0))
+                .join('')
+                .toUpperCase();
+              userIcon.textContent = initials;
+            }
+            
+            // Pré-remplir le formulaire de question avec les infos utilisateur
+            if (result.user) {
+              const nameInput = document.getElementById('question-name');
+              const emailInput = document.getElementById('question-email');
+              
+              if (nameInput && result.user.name) {
+                nameInput.value = result.user.name;
+              }
+              
+              if (emailInput && result.user.email) {
+                emailInput.value = result.user.email;
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Erreur lors de la vérification du token:', error);
+          authPrompt.style.display = 'flex';
+        }
+      }
+
+      // Vérifier le token
+      verifyToken();
+
+      // Gestion de la déconnexion
+      const logoutButton = document.getElementById('logout-button');
+      const mobileLogoutButton = document.getElementById('mobile-logout-button');
+      
+      function handleLogout() {
+        localStorage.removeItem('powairAuthToken');
+        window.location.href = 'webinar-login.html';
+      }
+      
+      if (logoutButton) {
+        logoutButton.addEventListener('click', handleLogout);
+      }
+      
+      if (mobileLogoutButton) {
+        mobileLogoutButton.addEventListener('click', handleLogout);
+      }
+
+      // Configuration des webinaires (à récupérer depuis une API en production)
+      const webinarConfig = {
+        title: "L'innovation énergétique mobile avec Pow'air",
+        date: "10 Mai, 2025, 14:00",
+        duration: "1 heure 30 minutes",
+        youtubeId: "dQw4w9WgXcQ", // ID YouTube d'exemple
+        state: "live", // 'loading', 'soon', 'live', 'ended'
+        startTime: new Date("2025-05-10T14:00:00").getTime(),
+        endTime: new Date("2025-05-10T15:30:00").getTime(),
+        presentationUrl: "presentation-powair-2025.pdf"
+      };
+
+      // Initialiser l'interface du webinaire
+      function initWebinar() {
+        // Mise à jour des éléments de la page
+        document.getElementById('webinar-date').textContent = webinarConfig.date;
+        
+        // Gestion de l'état du webinaire
+        updateWebinarState(webinarConfig.state);
+        
+        // Si "soon", initialiser le compte à rebours intégré à l'état
+        if (webinarConfig.state === 'soon') {
+          initStateCountdown(webinarConfig.startTime);
+        }
+        
+        // Si "live", initialiser le lecteur YouTube
+        if (webinarConfig.state === 'live') {
+          initYoutubePlayer(webinarConfig.youtubeId);
+        }
+        
+        // Si "ended" et qu'il y a un replay disponible
+        if (webinarConfig.state === 'ended' && webinarConfig.youtubeId) {
+          document.getElementById('replay-button').style.display = 'inline-flex';
+          document.getElementById('replay-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            updateWebinarState('live');
+            initYoutubePlayer(webinarConfig.youtubeId);
+          });
+        }
+
+        // Initialiser le chat
+        initChat();
+
+        // Initialiser le formulaire de questions
+        initQuestionForm();
+
+        // Initialiser le compte à rebours principal
+        initMainCountdown(webinarConfig.startTime);
+
+        // Listeners pour les boutons d'action
+        document.getElementById('share-button').addEventListener('click', () => {
+          if (navigator.share) {
+            navigator.share({
+              title: webinarConfig.title,
+              text: 'Rejoignez le webinaire Pow\'air !',
+              url: window.location.href
+            })
+            .catch(error => console.log('Erreur de partage:', error));
+          } else {
+            alert('Le partage n\'est pas pris en charge par votre navigateur.');
+          }
+        });
+
+        document.getElementById('download-button').addEventListener('click', () => {
+          // Logique pour télécharger la présentation
+          if (webinarConfig.presentationUrl) {
+            alert('Le téléchargement de la présentation serait lancé ici en production.');
+            // window.open(webinarConfig.presentationUrl, '_blank');
+          } else {
+            alert('La présentation n\'est pas encore disponible.');
+          }
+        });
+
+        document.getElementById('notify-button').addEventListener('click', () => {
+          if (Notification.permission === 'granted') {
+            alert('Vous serez notifié lorsque le webinaire commencera.');
+          } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+              if (permission === 'granted') {
+                alert('Vous serez notifié lorsque le webinaire commencera.');
+              }
+            });
+          } else {
+            alert('Les notifications sont bloquées. Veuillez modifier les paramètres de votre navigateur.');
+          }
+        });
+      }
+
+      // Fonction pour initialiser le chat
+      function initChat() {
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Fonction pour ajouter un message au chat
+        function addChatMessage(author, content, isUser = false) {
+          const messageEl = document.createElement('div');
+          messageEl.className = `webinar-chat-message ${isUser ? 'user' : 'moderator'}`;
+          
+          const infoEl = document.createElement('div');
+          infoEl.className = 'webinar-chat-message-info';
+          infoEl.textContent = author;
+          
+          messageEl.appendChild(infoEl);
+          messageEl.appendChild(document.createTextNode(content));
+          
+          chatMessages.appendChild(messageEl);
+          
+          // Scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Réponses automatiques (pour simulation)
+        const autoResponses = [
+          { author: "Modérateur", content: "Merci pour votre question, nous y répondrons dans un instant." },
+          { author: "Anne Dupont (PDG)", content: "Excellente question ! C'est effectivement un point important que nous allons aborder." },
+          { author: "Marc Lambert (Dir. Tech)", content: "Pour répondre à votre question, notre technologie utilise les dernières avancées en matière de batterie à charge rapide." },
+          { author: "Modérateur", content: "N'hésitez pas à continuer de poser vos questions, nous en sélectionnerons d'autres bientôt." }
+        ];
+
+        // Event listener pour l'envoi de message
+        chatSend.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            sendChatMessage();
+          }
+        });
+
+        function sendChatMessage() {
+          const message = chatInput.value.trim();
+          if (!message) return;
+          
+          // Ajouter le message de l'utilisateur
+          addChatMessage("Vous", message, true);
+          
+          // Effacer l'input
+          chatInput.value = '';
+          
+          // Simuler une réponse après un délai aléatoire
+          setTimeout(() => {
+            const randomResponse = autoResponses[Math.floor(Math.random() * autoResponses.length)];
+            addChatMessage(randomResponse.author, randomResponse.content);
+          }, 1500 + Math.random() * 3000);
+        }
+      }
+
+      // Fonction pour initialiser le formulaire de questions
+      function initQuestionForm() {
+        const form = document.getElementById('question-form');
+        const submitButton = document.getElementById('question-submit');
+        const messageEl = document.getElementById('question-form-message');
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          
+          // Désactiver le bouton pendant la soumission
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+          
+          // Simuler une soumission de formulaire
+          setTimeout(() => {
+            // Réactiver le bouton
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-question-circle"></i> Soumettre ma question';
+            
+            // Afficher un message de succès
+            messageEl.className = 'form-message success';
+            messageEl.textContent = 'Votre question a été soumise avec succès. Elle sera examinée par nos modérateurs.';
+            messageEl.style.display = 'block';
+            
+            // Réinitialiser le formulaire
+            form.reset();
+            
+            // Cacher le message après un certain temps
+            setTimeout(() => {
+              messageEl.style.display = 'none';
+            }, 5000);
+          }, 1500);
+        });
+      }
+
+      // Fonction pour mettre à jour l'état du webinaire
+      function updateWebinarState(state) {
+        // Cacher tous les états
+        document.querySelectorAll('.webinar-state').forEach(el => {
+          el.classList.remove('active');
+        });
+        
+        // Afficher l'état correspondant
+        const stateElement = document.getElementById(`state-${state}`);
+        if (stateElement) {
+          stateElement.classList.add('active');
+        }
+        
+        // Mettre à jour le badge d'état
+        const statusBadge = document.getElementById('webinar-status-badge');
+        if (statusBadge) {
+          switch(state) {
+            case 'soon':
+              statusBadge.textContent = 'À VENIR';
+              break;
+            case 'live':
+              statusBadge.textContent = 'EN DIRECT';
+              break;
+            case 'ended':
+              statusBadge.textContent = 'TERMINÉ';
+              break;
+            default:
+              statusBadge.textContent = 'CHARGEMENT';
+          }
+        }
+
+        // Si on passe en mode live, initialiser le lecteur YouTube
+        if (state === 'live') {
+          initYoutubePlayer(webinarConfig.youtubeId);
+        }
+      }
+
+      // Fonction pour initialiser le compte à rebours intégré à l'état
+      function initStateCountdown(targetTime) {
+        const countdownElement = document.getElementById('webinar-countdown');
+        if (!countdownElement) return;
+        
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = targetTime - now;
+          
+          if (distance <= 0) {
+            // Le webinaire devrait commencer
+            clearInterval(countdownInterval);
+            countdownElement.textContent = "00:00:00";
+            updateWebinarState('live');
+            return;
+          }
+          
+          // Calcul des heures, minutes et secondes
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+          // Mise à jour de l'affichage
+          countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Mise à jour immédiate
+        updateCountdown();
+        
+        // Mise à jour toutes les secondes
+        const countdownInterval = setInterval(updateCountdown, 1000);
+      }
+
+      // Fonction pour initialiser le compte à rebours principal (toujours visible)
+      function initMainCountdown(targetTime) {
+        const daysEl = document.getElementById('countdown-days');
+        const hoursEl = document.getElementById('countdown-hours');
+        const minutesEl = document.getElementById('countdown-minutes');
+        const secondsEl = document.getElementById('countdown-seconds');
+        
+        function updateMainCountdown() {
+          const now = new Date().getTime();
+          const distance = targetTime - now;
+          
+          // Si le temps est écoulé, afficher 00 partout
+          if (distance <= 0) {
+            daysEl.textContent = "00";
+            hoursEl.textContent = "00";
+            minutesEl.textContent = "00";
+            secondsEl.textContent = "00";
+            return;
+          }
+          
+          // Calcul des jours, heures, minutes et secondes
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+          // Mise à jour de l'affichage
+          daysEl.textContent = days.toString().padStart(2, '0');
+          hoursEl.textContent = hours.toString().padStart(2, '0');
+          minutesEl.textContent = minutes.toString().padStart(2, '0');
+          secondsEl.textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Mise à jour immédiate
+        updateMainCountdown();
+        
+        // Mise à jour toutes les secondes
+        setInterval(updateMainCountdown, 1000);
+      }
+
+      // Fonction pour initialiser le lecteur YouTube
+      function initYoutubePlayer(videoId) {
+        const iframe = document.getElementById('youtube-iframe');
+        if (iframe) {
+          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

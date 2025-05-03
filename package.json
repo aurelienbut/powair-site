@@ -18,6 +18,8 @@
   "homepage": "https://github.com/aurelienbut/powair-site#readme",
   "description": "",
   "dependencies": {
-    "airtable": "^0.12.2"
+    "airtable": "^0.12.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
   }
 }

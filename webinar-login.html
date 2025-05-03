@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pow'air - Connexion Webinaire</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles spécifiques à la page de connexion webinaire */
+    .login-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 3rem;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+    
+    .dark-mode .login-container {
+      background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
+      border: 1px solid var(--border-color);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .login-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: var(--bg-alt);
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--accent-color);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .login-badge i {
+      margin-right: 0.5rem;
+      color: var(--accent-color);
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .form-group input {
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      font-size: 1rem;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(var(--gradient-start-color-rgb), 0.2);
+    }
+
+    .login-button {
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .login-message {
+      text-align: center;
+      min-height: 1.5rem;
+      margin-top: 1.5rem;
+      color: #E53E3E;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .login-message.success {
+      color: #38A169;
+    }
+
+    /* Style pour la section entière */
+    .login-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 160px 0 60px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .login-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .login-bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: 0.15;
+      transition: all 8s ease;
+    }
+
+    .dark-mode .login-bg-shape {
+      opacity: 0.1;
+    }
+
+    .login-bg-shape:nth-child(1) {
+      width: 60vw;
+      height: 60vw;
+      top: -20%;
+      right: -30%;
+      background: var(--gradient-start-color);
+      animation: floatPartnerBG 25s ease-in-out infinite alternate;
+    }
+
+    .login-bg-shape:nth-child(2) {
+      width: 50vw;
+      height: 50vw;
+      bottom: -20%;
+      left: -20%;
+      background: var(--gradient-end-color);
+      animation: floatPartnerBG 20s ease-in-out infinite alternate-reverse;
+      opacity: 0.2;
+    }
+
+    .dark-mode .login-bg-shape:nth-child(2) {
+      opacity: 0.15;
+    }
+
+    .login-help {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .login-help a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .login-help a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Invitation box */
+    .invitation-box {
+      background-color: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+    
+    .invitation-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+    
+    .invitation-box p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+
+      .login-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg">
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+  </div>
+
+  <div class="mode-switch">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+            <li><a href="index.html#network">Notre réseau</a></li>
+            <li><a href="index.html#benefits">Avantages</a></li>
+            <li><a href="index.html#pricing">Tarifs</a></li>
+            <li><a href="index.html#partners">Partenaires</a></li>
+          </ul>
+          <a href="index.html#download" class="btn btn-primary">
+            <i class="fas fa-download"></i>
+            Télécharger l'App
+          </a>
+          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <ul>
+        <li style="--i:1"><a href="index.html#how-it-works">Comment ça marche</a></li>
+        <li style="--i:2"><a href="index.html#network">Notre réseau</a></li>
+        <li style="--i:3"><a href="index.html#benefits">Avantages</a></li>
+        <li style="--i:4"><a href="index.html#pricing">Tarifs</a></li>
+        <li style="--i:5"><a href="index.html#partners">Partenaires</a></li>
+        <li style="--i:6"><a href="index.html#download" class="btn btn-primary">Télécharger l'App</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="login-section">
+    <div class="login-bg">
+      <div class="login-bg-shape"></div>
+      <div class="login-bg-shape"></div>
+    </div>
+    <div class="container">
+      <div class="login-container">
+        <div class="login-header">
+          <div class="login-badge">
+            <i class="fas fa-video"></i>
+            Webinaire Exclusif
+          </div>
+          <h1>Accès Webinaire</h1>
+          <p>Connectez-vous pour accéder au webinaire Pow'air en direct.</p>
+        </div>
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Votre email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+          </div>
+          <button type="submit" class="btn btn-primary login-button">
+            <i class="fas fa-sign-in-alt"></i>
+            Se connecter
+          </button>
+          <div id="login-message" class="login-message"></div>
+        </form>
+        
+        <div class="invitation-box">
+          <h3>Vous n'avez pas d'identifiants ?</h3>
+          <p>Ce webinaire est exclusivement réservé à nos partenaires et clients premium. Si vous êtes éligible mais n'avez pas encore vos identifiants, contactez-nous.</p>
+          <a href="mailto:webinaire@powair.example.com" class="btn btn-secondary">
+            <i class="fas fa-envelope"></i>
+            Demander un accès
+          </a>
+        </div>
+        
+        <div class="login-help">
+          <p>Problème de connexion ? <a href="mailto:contact@powair.example.com">Contactez notre support</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-bg"></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo-area">
+            <a href="index.html" class="footer-logo">
+              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
+            </a>
+            <p class="footer-description">
+              La solution simple et rapide pour ne plus jamais être à court de batterie. Louez, utilisez, retournez.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Liens rapides</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+            <li><a href="index.html#network">Notre réseau</a></li>
+            <li><a href="index.html#benefits">Avantages</a></li>
+            <li><a href="index.html#pricing">Tarifs</a></li>
+            <li><a href="index.html#partners">Devenir partenaire</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Légal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Conditions générales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Gestion des cookies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Contactez-nous</h4>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2025 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+        </p>
+        <div class="footer-links-bottom">
+          <a href="#">Conditions</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">Plan du site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('login-form');
+      const loginMessage = document.getElementById('login-message');
+      
+      if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          
+          // Récupérer les valeurs du formulaire
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          
+          // Désactiver le bouton pendant la vérification
+          const submitButton = loginForm.querySelector('button[type="submit"]');
+          const originalButtonText = submitButton.innerHTML;
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
+          
+          try {
+            // Appel à l'API d'authentification
+            const response = await fetch('/api/auth', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+              // Authentification réussie
+              loginMessage.textContent = 'Connexion réussie! Redirection en cours...';
+              loginMessage.classList.add('success');
+              
+              // Stocker le token dans le localStorage
+              localStorage.setItem('powairAuthToken', result.token);
+              
+              // Rediriger vers la page du webinaire
+              setTimeout(() => {
+                window.location.href = 'webinar.html';
+              }, 1500);
+            } else {
+              // Échec de l'authentification
+              loginMessage.textContent = result.error || 'Identifiants incorrects. Veuillez réessayer.';
+              loginMessage.classList.remove('success');
+              
+              // Réactiver le bouton
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalButtonText;
+            }
+          } catch (error) {
+            console.error('Erreur lors de la connexion:', error);
+            loginMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+            loginMessage.classList.remove('success');
+            
+            // Réactiver le bouton
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
