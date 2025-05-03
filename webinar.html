@@ -1274,17 +1274,41 @@
             }
         }
     
-        // Fonction de déconnexion (corrigée)
-        function handleLogout(event) {
-            if (event) { event.preventDefault(); }
-            localStorage.removeItem('powairAuthToken');
-            authPrompt.style.display = 'flex';
-            hideUserInfo();
-            resetVideoPlayer();
-            // Optionnel: Réinitialiser d'autres états (chat, formulaires, etc.) si nécessaire
-            // Optionnel: Mettre à jour l'état général du webinaire si nécessaire
-            // updateWebinarState('loading'); // ou autre état approprié
+        // Fonction de déconnexion (corrigée ET améliorée pour réinitialiser le formulaire)
+    function handleLogout(event) {
+        if (event) { event.preventDefault(); }
+
+        // 1. Actions de déconnexion standard
+        localStorage.removeItem('powairAuthToken');
+        hideUserInfo();
+        resetVideoPlayer();
+
+        // 2. Réinitialiser le formulaire de connexion dans la modale
+        if (loginForm) {
+            // Réinitialiser le message d'erreur/succès
+            if (loginMessage) {
+                loginMessage.textContent = '';
+                loginMessage.classList.remove('success'); // Enlève aussi la classe succès si elle y était
+            }
+
+            // Réinitialiser les champs (optionnel mais propre)
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            if (emailInput) emailInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+
+            // Réinitialiser le bouton de soumission
+            const submitButton = loginForm.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = false; // Réactiver le bouton
+                // Remettre le texte/contenu HTML original du bouton
+                submitButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
+            }
         }
+
+        // 3. Afficher la modale de connexion (maintenant réinitialisée)
+        authPrompt.style.display = 'flex';
+    }
     
         // --- Initialisation du webinaire (Structure conservée) ---
         function initWebinar() {
