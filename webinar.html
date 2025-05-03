@@ -1132,469 +1132,296 @@
   <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Vérification d'authentification
-      const authToken = localStorage.getItem('powairAuthToken');
-      const authPrompt = document.getElementById('auth-prompt');
-      const userInfo = document.getElementById('user-info');
-      const userName = document.getElementById('user-name');
-      const userIcon = document.getElementById('user-icon');
-      const loginForm = document.getElementById('login-form');
-      const loginMessage = document.getElementById('login-message');
-
-      // Fonction de gestion du formulaire de connexion
-      if (loginForm) {
-        loginForm.addEventListener('submit', async (event) => {
-          event.preventDefault();
-          
-          // Récupérer les valeurs du formulaire
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          
-          // Désactiver le bouton pendant la vérification
-          const submitButton = loginForm.querySelector('button[type="submit"]');
-          const originalButtonText = submitButton.innerHTML;
-          submitButton.disabled = true;
-          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
-          
-          try {
-            // Appel à l'API d'authentification
-            const response = await fetch('/api/auth', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ email, password }),
-            });
-            
-            const result = await response.json();
-            
-            if (response.ok) {
-              // Authentification réussie
-              loginMessage.textContent = 'Connexion réussie!';
-              loginMessage.classList.add('success');
-              
-              // Stocker le token dans le localStorage
-              localStorage.setItem('powairAuthToken', result.token);
-              
-              // Après authentification réussie, masquer la fenêtre et initialiser le webinaire
-              setTimeout(() => {
-                authPrompt.style.display = 'none';
-                
-                // Afficher les infos utilisateur
-                if (result.user && result.user.name) {
-                  userInfo.style.display = 'flex';
-                  userName.textContent = result.user.name;
-                  // Initialiser l'icône avec les initiales
-                  const initials = result.user.name
+        // --- Variables ---
+        const authPrompt = document.getElementById('auth-prompt');
+        const userInfo = document.getElementById('user-info');
+        const userName = document.getElementById('user-name');
+        const userIcon = document.getElementById('user-icon');
+        const loginForm = document.getElementById('login-form');
+        const loginMessage = document.getElementById('login-message');
+        const logoutButton = document.getElementById('logout-button');
+        const mobileLogoutButton = document.getElementById('mobile-logout-button');
+        const youtubeContainer = document.getElementById('youtube-container');
+        const initialYoutubePlaceholderHTML = `
+            <i class="fas fa-lock"></i>
+            <p>Le lecteur vidéo sera disponible après connexion</p>
+        `; // Sauvegarde du placeholder initial
+    
+        // Configuration (gardée pour l'exemple)
+        const webinarConfig = {
+            title: "L'innovation énergétique mobile avec Pow'air",
+            date: "10 Mai, 2025, 14:00",
+            duration: "1 heure 30 minutes",
+            youtubeId: "dQw4w9WgXcQ", // ID YouTube d'exemple
+            state: "live", // 'loading', 'soon', 'live', 'ended'
+            startTime: new Date("2025-05-10T14:00:00").getTime(),
+            endTime: new Date("2025-05-10T15:30:00").getTime(),
+            presentationUrl: "presentation-powair-2025.pdf"
+        };
+    
+        // --- Fonctions ---
+    
+        // Fonction pour afficher les infos utilisateur
+        function displayUserInfo(user) {
+            if (user && user.name && userInfo && userName && userIcon) {
+                userInfo.style.display = 'flex';
+                userName.textContent = user.name;
+                const initials = user.name
                     .split(' ')
                     .map(part => part.charAt(0))
                     .join('')
                     .toUpperCase();
-                  userIcon.textContent = initials;
+                userIcon.textContent = initials;
+                 // Assurez-vous que le bouton de déconnexion est visible
+                if(logoutButton) logoutButton.style.display = 'inline-flex';
+                // (Pas besoin pour le bouton mobile car il est dans un menu qui s'ouvre/ferme)
+            }
+        }
+    
+        // Fonction pour masquer les infos utilisateur
+        function hideUserInfo() {
+            if (userInfo) userInfo.style.display = 'none';
+            if (userName) userName.textContent = '';
+            if (userIcon) userIcon.textContent = '';
+             // Cachez le bouton de déconnexion principal
+            if(logoutButton) logoutButton.style.display = 'none';
+        }
+    
+         // Fonction pour réinitialiser la zone vidéo
+        function resetVideoPlayer() {
+            if (youtubeContainer) {
+                youtubeContainer.innerHTML = initialYoutubePlaceholderHTML;
+                // S'assurer que l'état visuel correspond (par exemple, remettre 'active' sur state-live si besoin)
+                 // Ou mieux, appeler updateWebinarState pour remettre un état cohérent (ex: 'loading' ou 'soon')
+                 // updateWebinarState('loading'); // Ou un état "déconnecté" si vous en créez un
+            }
+        }
+    
+        // Fonction de gestion du formulaire de connexion
+        async function handleLoginSubmit(event) {
+            event.preventDefault();
+            console.log("Attempting login..."); // Log pour débogage
+    
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const email = emailInput ? emailInput.value : null;
+            const password = passwordInput ? passwordInput.value : null;
+    
+            if (!email || !password) {
+                loginMessage.textContent = 'Veuillez entrer email et mot de passe.';
+                loginMessage.classList.remove('success');
+                return;
+            }
+    
+            const submitButton = loginForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
+            loginMessage.textContent = ''; // Reset message
+    
+            try {
+                // Simuler un appel API (remplacer par votre fetch réel)
+                console.log("Calling fake API /api/auth");
+                // const response = await fetch('/api/auth', { /* ... votre fetch ... */ });
+                // const result = await response.json();
+    
+                // --- Simulation ---
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Simule délai réseau
+                let result = {};
+                let response = { ok: false };
+                if (email === "test@test.com" && password === "password") {
+                     response.ok = true;
+                     result = {
+                        token: "fake-jwt-token-" + Date.now(),
+                        user: { name: "Utilisateur Test", email: "test@test.com" }
+                     };
+                     console.log("Simulated API success", result);
+                } else {
+                    result = { error: "Identifiants simulés incorrects." };
+                     console.log("Simulated API failure");
                 }
-                
-                // Initialiser le webinaire
-                initWebinar();
-                
-                // Pré-remplir le formulaire de question avec les infos utilisateur
-                if (result.user) {
-                  const nameInput = document.getElementById('question-name');
-                  const emailInput = document.getElementById('question-email');
-                  
-                  if (nameInput && result.user.name) {
-                    nameInput.value = result.user.name;
-                  }
-                  
-                  if (emailInput && result.user.email) {
-                    emailInput.value = result.user.email;
-                  }
+                 // --- Fin Simulation ---
+    
+                if (response.ok) {
+                    loginMessage.textContent = 'Connexion réussie!';
+                    loginMessage.classList.add('success');
+                    localStorage.setItem('powairAuthToken', result.token);
+    
+                    setTimeout(() => {
+                        authPrompt.style.display = 'none'; // Masque la modale
+                        displayUserInfo(result.user); // Affiche infos user
+                        initWebinar(); // Initialise le contenu du webinaire
+                        // Pré-remplir form question (si existe et si besoin)
+                         // prefillQuestionForm(result.user);
+                         loginMessage.textContent = ''; // Nettoie le message après succès
+                         loginMessage.classList.remove('success');
+                    }, 500); // Léger délai pour voir le message succès
+    
+                } else {
+                    loginMessage.textContent = result.error || 'Identifiants incorrects.';
+                    loginMessage.classList.remove('success');
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
                 }
-              }, 1000);
-              
+            } catch (error) {
+                console.error('Erreur lors de la connexion:', error);
+                loginMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+                loginMessage.classList.remove('success');
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
+        }
+    
+        // Fonction de vérification du token
+        async function verifyToken(token) {
+            console.log("Verifying token..."); // Log
+            try {
+                 // Simuler un appel API (remplacer par votre fetch réel)
+                 console.log("Calling fake API /api/verify-token");
+                // const response = await fetch('/api/verify-token', { headers: {'Authorization': `Bearer ${token}`}});
+                // const result = await response.json();
+    
+                 // --- Simulation ---
+                await new Promise(resolve => setTimeout(resolve, 500));
+                 let result = {};
+                 let response = { ok: false };
+                 // Pour la simulation, on considère tout token commençant par "fake-jwt-token-" comme valide
+                 if (token && token.startsWith("fake-jwt-token-")) {
+                     response.ok = true;
+                     result = { user: { name: "Utilisateur Test", email: "test@test.com" } };
+                     console.log("Simulated token verification success");
+                 } else {
+                     console.log("Simulated token verification failed");
+                 }
+                 // --- Fin Simulation ---
+    
+                if (response.ok) {
+                    console.log("Token valid. Initializing webinar.");
+                    authPrompt.style.display = 'none'; // Assure que la modale est cachée
+                    displayUserInfo(result.user);
+                    initWebinar(); // Initialise le contenu principal
+                    // prefillQuestionForm(result.user); // Pré-remplir si besoin
+    
+                } else {
+                    console.log("Token invalid or expired.");
+                    localStorage.removeItem('powairAuthToken');
+                    authPrompt.style.display = 'flex'; // Affiche modale connexion
+                    hideUserInfo(); // Cache les infos utilisateur
+                    resetVideoPlayer(); // Remet le placeholder vidéo
+                }
+            } catch (error) {
+                console.error('Erreur lors de la vérification du token:', error);
+                localStorage.removeItem('powairAuthToken');
+                authPrompt.style.display = 'flex';
+                hideUserInfo();
+                resetVideoPlayer();
+            }
+        }
+    
+        // Fonction de déconnexion
+        function handleLogout(event) {
+            // Empêche l'action par défaut si c'est un événement (ex: clic sur lien <a>)
+            if (event) {
+               event.preventDefault();
+            }
+            console.log("Logging out..."); // Log
+            localStorage.removeItem('powairAuthToken');
+            authPrompt.style.display = 'flex'; // Affiche modale connexion
+            hideUserInfo(); // Cache les infos utilisateur
+            resetVideoPlayer(); // Réinitialise la zone vidéo
+    
+            // Optionnel: Réinitialiser d'autres états (chat, formulaires, etc.)
+            // resetChat();
+            // resetQuestionForm();
+    
+            // Optionnel: Mettre à jour l'état général du webinaire si nécessaire
+            // updateWebinarState('loading'); // ou 'soon', ou un état 'logged_out'
+             console.log("Logout complete.");
+        }
+    
+        // --- Initialisation du webinaire (fonctions existantes à adapter si besoin) ---
+        function initWebinar() {
+             console.log("Initializing webinar content...");
+             // Vos fonctions existantes:
+             updateWebinarState(webinarConfig.state); // Met à jour l'état visuel principal
+             if (webinarConfig.state === 'soon') initStateCountdown(webinarConfig.startTime);
+             if (webinarConfig.state === 'live') initYoutubePlayer(webinarConfig.youtubeId);
+             // ... autres initialisations (chat, actions, etc.) ...
+             initChat();
+             initQuestionForm();
+             initMainCountdown(webinarConfig.startTime);
+             setupActionButtons(); // Assurez-vous que les listeners des boutons sont (ré)attachés si nécessaire
+        }
+    
+        function initYoutubePlayer(videoId) {
+            // Votre fonction existante, mais vérifiez si youtubeContainer existe encore
+            if (youtubeContainer) {
+                console.log("Initializing YouTube player with ID:", videoId);
+                 // Préférez créer un nouvel iframe à chaque fois pour éviter états résiduels
+                youtubeContainer.innerHTML = ''; // Vide d'abord
+                const iframe = document.createElement('iframe');
+                iframe.id = 'youtube-iframe';
+                iframe.className = 'webinar-iframe';
+                // ATTENTION: URL YouTube modifiée pour être valide (utiliser youtube.com/embed/)
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                iframe.title = 'Webinaire Pow\'air';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                iframe.setAttribute('allowfullscreen', '');
+                youtubeContainer.appendChild(iframe);
             } else {
-              // Échec de l'authentification
-              loginMessage.textContent = result.error || 'Identifiants incorrects. Veuillez réessayer.';
-              loginMessage.classList.remove('success');
-              
-              // Réactiver le bouton
-              submitButton.disabled = false;
-              submitButton.innerHTML = originalButtonText;
+                console.error("YouTube container not found!");
             }
-          } catch (error) {
-            console.error('Erreur lors de la connexion:', error);
-            loginMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
-            loginMessage.classList.remove('success');
-            
-            // Réactiver le bouton
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonText;
-          }
-        });
-      }
-
-      // Si pas de token, afficher la popup de connexion
-      if (!authToken) {
-        authPrompt.style.display = 'flex';
-        return; // Arrêter l'exécution du reste du script
-      }
-
-      // Vérifier la validité du token
-      async function verifyToken() {
-        try {
-          const response = await fetch('/api/verify-token', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${authToken}`
-            }
-          });
-          
-          const result = await response.json();
-          
-          if (!response.ok) {
-  // Token invalide, afficher la popup de connexion
-  authPrompt.style.display = 'flex';
-  // Supprimer le token invalide
-  localStorage.removeItem('powairAuthToken');
-} else {
-  // Token valide, init webinaire et afficher les infos utilisateur
-  initWebinar();
-  
-  // Si l'état du webinaire est "live", initialiser le lecteur YouTube
-  if (webinarConfig.state === 'live') {
-    initYoutubePlayer(webinarConfig.youtubeId);
-  }
-            
-            // Afficher les infos utilisateur
-            if (result.user && result.user.name) {
-              userInfo.style.display = 'flex';
-              userName.textContent = result.user.name;
-              // Initialiser l'icône avec les initiales
-              const initials = result.user.name
-                .split(' ')
-                .map(part => part.charAt(0))
-                .join('')
-                .toUpperCase();
-              userIcon.textContent = initials;
-            }
-            
-            // Pré-remplir le formulaire de question avec les infos utilisateur
-            if (result.user) {
-              const nameInput = document.getElementById('question-name');
-              const emailInput = document.getElementById('question-email');
-              
-              if (nameInput && result.user.name) {
-                nameInput.value = result.user.name;
-              }
-              
-              if (emailInput && result.user.email) {
-                emailInput.value = result.user.email;
-              }
-            }
-          }
-        } catch (error) {
-          console.error('Erreur lors de la vérification du token:', error);
-          authPrompt.style.display = 'flex';
         }
-      }
-
-      // Vérifier le token
-      verifyToken();
-
-      // Gestion de la déconnexion
-      const logoutButton = document.getElementById('logout-button');
-      const mobileLogoutButton = document.getElementById('mobile-logout-button');
-      
-      function handleLogout() {
-        localStorage.removeItem('powairAuthToken');
-        // Afficher à nouveau la fenêtre de connexion au lieu de rediriger
-        authPrompt.style.display = 'flex';
-      }
-      
-      if (logoutButton) {
-        logoutButton.addEventListener('click', handleLogout);
-      }
-      
-      if (mobileLogoutButton) {
-        mobileLogoutButton.addEventListener('click', handleLogout);
-      }
-
-      // Configuration des webinaires (à récupérer depuis une API en production)
-      const webinarConfig = {
-        title: "L'innovation énergétique mobile avec Pow'air",
-        date: "10 Mai, 2025, 14:00",
-        duration: "1 heure 30 minutes",
-        youtubeId: "dQw4w9WgXcQ", // ID YouTube d'exemple
-        state: "live", // 'loading', 'soon', 'live', 'ended'
-        startTime: new Date("2025-05-10T14:00:00").getTime(),
-        endTime: new Date("2025-05-10T15:30:00").getTime(),
-        presentationUrl: "presentation-powair-2025.pdf"
-      };
-
-      // Initialiser l'interface du webinaire
-      function initWebinar() {
-        // Mise à jour des éléments de la page
-        document.getElementById('webinar-date').textContent = webinarConfig.date;
-        
-        // Gestion de l'état du webinaire
-        updateWebinarState(webinarConfig.state);
-        
-        // Si "soon", initialiser le compte à rebours intégré à l'état
-        if (webinarConfig.state === 'soon') {
-          initStateCountdown(webinarConfig.startTime);
+    
+        // --- Mettez ici vos autres fonctions init: initChat, initQuestionForm, updateWebinarState, etc. ---
+        // ... (Gardez vos fonctions existantes pour le chat, le compte à rebours, etc.)
+        // Exemple rapide pour les fonctions manquantes dans l'extrait initial
+         function updateWebinarState(state) { console.log("Updating webinar state to:", state); /* ... votre logique ... */ }
+         function initStateCountdown(time) { console.log("Init state countdown"); /* ... */ }
+         function initChat() { console.log("Init chat"); /* ... */ }
+         function initQuestionForm() { console.log("Init question form"); /* ... */ }
+         function initMainCountdown(time) { console.log("Init main countdown"); /* ... */ }
+         function setupActionButtons() { console.log("Setup action buttons"); /* ... attacher listeners ...*/ }
+         // function resetChat() { console.log("Resetting chat (TODO)"); /* Logique pour vider/désactiver chat */ }
+         // function resetQuestionForm() { console.log("Resetting question form (TODO)"); /* Logique pour vider form */ }
+    
+    
+        // --- Logique Principale au Chargement ---
+        console.log("DOM Content Loaded. Checking auth status...");
+        const initialAuthToken = localStorage.getItem('powairAuthToken');
+    
+        if (loginForm) {
+            loginForm.addEventListener('submit', handleLoginSubmit);
+        } else {
+             console.error("Login form not found!");
         }
-        
-        // Si "live", initialiser le lecteur YouTube
-        if (webinarConfig.state === 'live') {
-          initYoutubePlayer(webinarConfig.youtubeId);
+    
+        if (logoutButton) {
+            logoutButton.addEventListener('click', handleLogout);
         }
-        
-        // Si "ended" et qu'il y a un replay disponible
-        if (webinarConfig.state === 'ended' && webinarConfig.youtubeId) {
-          document.getElementById('replay-button').style.display = 'inline-flex';
-          document.getElementById('replay-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            updateWebinarState('live');
-            initYoutubePlayer(webinarConfig.youtubeId);
-          });
-        }
-
-        // Initialiser le chat
-        initChat();
-
-        // Initialiser le formulaire de questions
-        initQuestionForm();
-
-        // Initialiser le compte à rebours principal
-        initMainCountdown(webinarConfig.startTime);
-
-        // Listeners pour les boutons d'action
-        document.getElementById('share-button').addEventListener('click', () => {
-          if (navigator.share) {
-            navigator.share({
-              title: webinarConfig.title,
-              text: 'Rejoignez le webinaire Pow\'air !',
-              url: window.location.href
-            })
-            .catch(error => console.log('Erreur de partage:', error));
-          } else {
-            alert('Le partage n\'est pas pris en charge par votre navigateur.');
-          }
-        });
-
-        document.getElementById('download-button').addEventListener('click', () => {
-          // Logique pour télécharger la présentation
-          if (webinarConfig.presentationUrl) {
-            alert('Le téléchargement de la présentation serait lancé ici en production.');
-            // window.open(webinarConfig.presentationUrl, '_blank');
-          } else {
-            alert('La présentation n\'est pas encore disponible.');
-          }
-        });
-
-        document.getElementById('notify-button').addEventListener('click', () => {
-          if (Notification.permission === 'granted') {
-            alert('Vous serez notifié lorsque le webinaire commencera.');
-          } else if (Notification.permission !== 'denied') {
-            Notification.requestPermission().then(permission => {
-              if (permission === 'granted') {
-                alert('Vous serez notifié lorsque le webinaire commencera.');
-              }
+         if (mobileLogoutButton) {
+             // Passer l'événement à handleLogout pour preventDefault
+            mobileLogoutButton.addEventListener('click', function(event) {
+                 handleLogout(event);
             });
-          } else {
-            alert('Les notifications sont bloquées. Veuillez modifier les paramètres de votre navigateur.');
-          }
-        });
-      }
-
-      // Fonction pour initialiser le chat
-      function initChat() {
-        const chatInput = document.getElementById('chat-input');
-        const chatSend = document.getElementById('chat-send');
-        const chatMessages = document.getElementById('chat-messages');
-
-        // Fonction pour ajouter un message au chat
-        function addChatMessage(author, content, isUser = false) {
-          const messageEl = document.createElement('div');
-          messageEl.className = `webinar-chat-message ${isUser ? 'user' : 'moderator'}`;
-          
-          const infoEl = document.createElement('div');
-          infoEl.className = 'webinar-chat-message-info';
-          infoEl.textContent = author;
-          
-          messageEl.appendChild(infoEl);
-          messageEl.appendChild(document.createTextNode(content));
-          
-          chatMessages.appendChild(messageEl);
-          
-          // Scroll to bottom
-          chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
-        // Réponses automatiques (pour simulation)
-        const autoResponses = [
-          { author: "Modérateur", content: "Merci pour votre question, nous y répondrons dans un instant." },
-          { author: "Anne Dupont (PDG)", content: "Excellente question ! C'est effectivement un point important que nous allons aborder." },
-          { author: "Marc Lambert (Dir. Tech)", content: "Pour répondre à votre question, notre technologie utilise les dernières avancées en matière de batterie à charge rapide." },
-          { author: "Modérateur", content: "N'hésitez pas à continuer de poser vos questions, nous en sélectionnerons d'autres bientôt." }
-        ];
-
-        // Event listener pour l'envoi de message
-        chatSend.addEventListener('click', sendChatMessage);
-        chatInput.addEventListener('keydown', e => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            sendChatMessage();
-          }
-        });
-
-        function sendChatMessage() {
-          const message = chatInput.value.trim();
-          if (!message) return;
-          
-          // Ajouter le message de l'utilisateur
-          addChatMessage("Vous", message, true);
-          
-          // Effacer l'input
-          chatInput.value = '';
-          
-          // Simuler une réponse après un délai aléatoire
-          setTimeout(() => {
-            const randomResponse = autoResponses[Math.floor(Math.random() * autoResponses.length)];
-            addChatMessage(randomResponse.author, randomResponse.content);
-          }, 1500 + Math.random() * 3000);
+    
+        if (!initialAuthToken) {
+            console.log("No token found. Displaying login prompt.");
+            authPrompt.style.display = 'flex';
+            hideUserInfo(); // Assure que user info est caché
+            resetVideoPlayer(); // Assure que la vidéo est le placeholder
+            // Cachez aussi le bouton de déconnexion principal au cas où
+            if(logoutButton) logoutButton.style.display = 'none';
+    
+        } else {
+            console.log("Token found. Verifying...");
+            authPrompt.style.display = 'none'; // Cache la modale en attendant la vérification
+            verifyToken(initialAuthToken);
         }
-      }
-
-      // Fonction pour mettre à jour l'état du webinaire
-      function updateWebinarState(state) {
-        // Cacher tous les états
-        document.querySelectorAll('.webinar-state').forEach(el => {
-          el.classList.remove('active');
-        });
-        
-        // Afficher l'état correspondant
-        const stateElement = document.getElementById(`state-${state}`);
-        if (stateElement) {
-          stateElement.classList.add('active');
-        }
-        
-        // Mettre à jour le badge d'état
-        const statusBadge = document.getElementById('webinar-status-badge');
-        if (statusBadge) {
-          switch(state) {
-            case 'soon':
-              statusBadge.textContent = 'À VENIR';
-              break;
-            case 'live':
-              statusBadge.textContent = 'EN DIRECT';
-              break;
-            case 'ended':
-              statusBadge.textContent = 'TERMINÉ';
-              break;
-            default:
-              statusBadge.textContent = 'CHARGEMENT';
-          }
-        }
-
-        // Si on passe en mode live, initialiser le lecteur YouTube
-        if (state === 'live') {
-          initYoutubePlayer(webinarConfig.youtubeId);
-        }
-      }
-
-      // Fonction pour initialiser le compte à rebours intégré à l'état
-      function initStateCountdown(targetTime) {
-        const countdownElement = document.getElementById('webinar-countdown');
-        if (!countdownElement) return;
-        
-        function updateCountdown() {
-          const now = new Date().getTime();
-          const distance = targetTime - now;
-          
-          if (distance <= 0) {
-            // Le webinaire devrait commencer
-            clearInterval(countdownInterval);
-            countdownElement.textContent = "00:00:00";
-            updateWebinarState('live');
-            return;
-          }
-          
-          // Calcul des heures, minutes et secondes
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          
-          // Mise à jour de l'affichage
-          countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-        
-        // Mise à jour immédiate
-        updateCountdown();
-        
-        // Mise à jour toutes les secondes
-        const countdownInterval = setInterval(updateCountdown, 1000);
-      }
-
-      // Fonction pour initialiser le compte à rebours principal (toujours visible)
-      function initMainCountdown(targetTime) {
-        const daysEl = document.getElementById('countdown-days');
-        const hoursEl = document.getElementById('countdown-hours');
-        const minutesEl = document.getElementById('countdown-minutes');
-        const secondsEl = document.getElementById('countdown-seconds');
-        
-        function updateMainCountdown() {
-          const now = new Date().getTime();
-          const distance = targetTime - now;
-          
-          // Si le temps est écoulé, afficher 00 partout
-          if (distance <= 0) {
-            daysEl.textContent = "00";
-            hoursEl.textContent = "00";
-            minutesEl.textContent = "00";
-            secondsEl.textContent = "00";
-            return;
-          }
-          
-          // Calcul des jours, heures, minutes et secondes
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          
-          // Mise à jour de l'affichage
-          daysEl.textContent = days.toString().padStart(2, '0');
-          hoursEl.textContent = hours.toString().padStart(2, '0');
-          minutesEl.textContent = minutes.toString().padStart(2, '0');
-          secondsEl.textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        // Mise à jour immédiate
-        updateMainCountdown();
-        
-        // Mise à jour toutes les secondes
-        setInterval(updateMainCountdown, 1000);
-      }
-
-      // Fonction pour initialiser le lecteur YouTube
-      function initYoutubePlayer(videoId) {
-  const container = document.getElementById('youtube-container');
-  if (container) {
-    // Vider le contenu existant
-    container.innerHTML = '';
-    // Créer et ajouter l'iframe
-    const iframe = document.createElement('iframe');
-    iframe.id = 'youtube-iframe';
-    iframe.className = 'webinar-iframe';
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-    iframe.title = 'Webinaire Pow\'air';
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-    iframe.setAttribute('allowfullscreen', '');
-    container.appendChild(iframe);
-  }
-}
+    
     });
-  </script>
+    </script>
 </body>
 </html>
