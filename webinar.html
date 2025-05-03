@@ -1142,12 +1142,9 @@
         const logoutButton = document.getElementById('logout-button');
         const mobileLogoutButton = document.getElementById('mobile-logout-button');
         const youtubeContainer = document.getElementById('youtube-container');
-        const initialYoutubePlaceholderHTML = `
-            <i class="fas fa-lock"></i>
-            <p>Le lecteur vidéo sera disponible après connexion</p>
-        `; // Sauvegarde du placeholder initial
+        const initialYoutubePlaceholderHTML = youtubeContainer ? youtubeContainer.innerHTML : '<p>Chargement...</p>'; // Sauvegarde du placeholder initial
     
-        // Configuration (gardée pour l'exemple)
+        // Configuration (gardée pour l'exemple - Utilisez vos propres valeurs si nécessaire)
         const webinarConfig = {
             title: "L'innovation énergétique mobile avec Pow'air",
             date: "10 Mai, 2025, 14:00",
@@ -1159,48 +1156,35 @@
             presentationUrl: "presentation-powair-2025.pdf"
         };
     
-        // --- Fonctions ---
-    
-        // Fonction pour afficher les infos utilisateur
+        // --- Fonctions d'aide pour l'UI ---
         function displayUserInfo(user) {
             if (user && user.name && userInfo && userName && userIcon) {
                 userInfo.style.display = 'flex';
                 userName.textContent = user.name;
-                const initials = user.name
-                    .split(' ')
-                    .map(part => part.charAt(0))
-                    .join('')
-                    .toUpperCase();
+                const initials = user.name.split(' ').map(part => part.charAt(0)).join('').toUpperCase();
                 userIcon.textContent = initials;
-                 // Assurez-vous que le bouton de déconnexion est visible
                 if(logoutButton) logoutButton.style.display = 'inline-flex';
-                // (Pas besoin pour le bouton mobile car il est dans un menu qui s'ouvre/ferme)
             }
         }
     
-        // Fonction pour masquer les infos utilisateur
         function hideUserInfo() {
             if (userInfo) userInfo.style.display = 'none';
             if (userName) userName.textContent = '';
             if (userIcon) userIcon.textContent = '';
-             // Cachez le bouton de déconnexion principal
             if(logoutButton) logoutButton.style.display = 'none';
         }
     
-         // Fonction pour réinitialiser la zone vidéo
         function resetVideoPlayer() {
             if (youtubeContainer) {
                 youtubeContainer.innerHTML = initialYoutubePlaceholderHTML;
-                // S'assurer que l'état visuel correspond (par exemple, remettre 'active' sur state-live si besoin)
-                 // Ou mieux, appeler updateWebinarState pour remettre un état cohérent (ex: 'loading' ou 'soon')
-                 // updateWebinarState('loading'); // Ou un état "déconnecté" si vous en créez un
             }
         }
     
-        // Fonction de gestion du formulaire de connexion
+        // --- Fonctions principales ---
+    
+        // Gestion du formulaire de connexion (avec votre fetch original)
         async function handleLoginSubmit(event) {
             event.preventDefault();
-            console.log("Attempting login..."); // Log pour débogage
     
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
@@ -1220,27 +1204,13 @@
             loginMessage.textContent = ''; // Reset message
     
             try {
-                // Simuler un appel API (remplacer par votre fetch réel)
-                console.log("Calling fake API /api/auth");
-                // const response = await fetch('/api/auth', { /* ... votre fetch ... */ });
-                // const result = await response.json();
-    
-                // --- Simulation ---
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Simule délai réseau
-                let result = {};
-                let response = { ok: false };
-                if (email === "test@test.com" && password === "password") {
-                     response.ok = true;
-                     result = {
-                        token: "fake-jwt-token-" + Date.now(),
-                        user: { name: "Utilisateur Test", email: "test@test.com" }
-                     };
-                     console.log("Simulated API success", result);
-                } else {
-                    result = { error: "Identifiants simulés incorrects." };
-                     console.log("Simulated API failure");
-                }
-                 // --- Fin Simulation ---
+                // Appel à l'API d'authentification (VOTRE LOGIQUE ORIGINALE)
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+                const result = await response.json();
     
                 if (response.ok) {
                     loginMessage.textContent = 'Connexion réussie!';
@@ -1248,17 +1218,17 @@
                     localStorage.setItem('powairAuthToken', result.token);
     
                     setTimeout(() => {
-                        authPrompt.style.display = 'none'; // Masque la modale
+                        authPrompt.style.display = 'none';
                         displayUserInfo(result.user); // Affiche infos user
                         initWebinar(); // Initialise le contenu du webinaire
                         // Pré-remplir form question (si existe et si besoin)
-                         // prefillQuestionForm(result.user);
-                         loginMessage.textContent = ''; // Nettoie le message après succès
-                         loginMessage.classList.remove('success');
-                    }, 500); // Léger délai pour voir le message succès
+                        // prefillQuestionForm(result.user);
+                        loginMessage.textContent = '';
+                        loginMessage.classList.remove('success');
+                    }, 500);
     
                 } else {
-                    loginMessage.textContent = result.error || 'Identifiants incorrects.';
+                    loginMessage.textContent = result.error || 'Identifiants incorrects. Veuillez réessayer.';
                     loginMessage.classList.remove('success');
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonText;
@@ -1272,42 +1242,28 @@
             }
         }
     
-        // Fonction de vérification du token
+        // Vérification du token (avec votre fetch original)
         async function verifyToken(token) {
-            console.log("Verifying token..."); // Log
             try {
-                 // Simuler un appel API (remplacer par votre fetch réel)
-                 console.log("Calling fake API /api/verify-token");
-                // const response = await fetch('/api/verify-token', { headers: {'Authorization': `Bearer ${token}`}});
-                // const result = await response.json();
-    
-                 // --- Simulation ---
-                await new Promise(resolve => setTimeout(resolve, 500));
-                 let result = {};
-                 let response = { ok: false };
-                 // Pour la simulation, on considère tout token commençant par "fake-jwt-token-" comme valide
-                 if (token && token.startsWith("fake-jwt-token-")) {
-                     response.ok = true;
-                     result = { user: { name: "Utilisateur Test", email: "test@test.com" } };
-                     console.log("Simulated token verification success");
-                 } else {
-                     console.log("Simulated token verification failed");
-                 }
-                 // --- Fin Simulation ---
+                // Appel à l'API de vérification (VOTRE LOGIQUE ORIGINALE)
+                const response = await fetch('/api/verify-token', {
+                    method: 'POST', // Ou GET selon votre API
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                     }
+                 });
+                const result = await response.json();
     
                 if (response.ok) {
-                    console.log("Token valid. Initializing webinar.");
-                    authPrompt.style.display = 'none'; // Assure que la modale est cachée
+                    authPrompt.style.display = 'none';
                     displayUserInfo(result.user);
-                    initWebinar(); // Initialise le contenu principal
-                    // prefillQuestionForm(result.user); // Pré-remplir si besoin
-    
+                    initWebinar(); // Initialise le contenu principal si token valide
                 } else {
-                    console.log("Token invalid or expired.");
                     localStorage.removeItem('powairAuthToken');
-                    authPrompt.style.display = 'flex'; // Affiche modale connexion
-                    hideUserInfo(); // Cache les infos utilisateur
-                    resetVideoPlayer(); // Remet le placeholder vidéo
+                    authPrompt.style.display = 'flex';
+                    hideUserInfo();
+                    resetVideoPlayer();
                 }
             } catch (error) {
                 console.error('Erreur lors de la vérification du token:', error);
@@ -1318,107 +1274,90 @@
             }
         }
     
-        // Fonction de déconnexion
+        // Fonction de déconnexion (corrigée)
         function handleLogout(event) {
-            // Empêche l'action par défaut si c'est un événement (ex: clic sur lien <a>)
-            if (event) {
-               event.preventDefault();
-            }
-            console.log("Logging out..."); // Log
+            if (event) { event.preventDefault(); }
             localStorage.removeItem('powairAuthToken');
-            authPrompt.style.display = 'flex'; // Affiche modale connexion
-            hideUserInfo(); // Cache les infos utilisateur
-            resetVideoPlayer(); // Réinitialise la zone vidéo
-    
-            // Optionnel: Réinitialiser d'autres états (chat, formulaires, etc.)
-            // resetChat();
-            // resetQuestionForm();
-    
+            authPrompt.style.display = 'flex';
+            hideUserInfo();
+            resetVideoPlayer();
+            // Optionnel: Réinitialiser d'autres états (chat, formulaires, etc.) si nécessaire
             // Optionnel: Mettre à jour l'état général du webinaire si nécessaire
-            // updateWebinarState('loading'); // ou 'soon', ou un état 'logged_out'
-             console.log("Logout complete.");
+            // updateWebinarState('loading'); // ou autre état approprié
         }
     
-        // --- Initialisation du webinaire (fonctions existantes à adapter si besoin) ---
+        // --- Initialisation du webinaire (Structure conservée) ---
         function initWebinar() {
-             console.log("Initializing webinar content...");
-             // Vos fonctions existantes:
-             updateWebinarState(webinarConfig.state); // Met à jour l'état visuel principal
-             if (webinarConfig.state === 'soon') initStateCountdown(webinarConfig.startTime);
-             if (webinarConfig.state === 'live') initYoutubePlayer(webinarConfig.youtubeId);
-             // ... autres initialisations (chat, actions, etc.) ...
-             initChat();
-             initQuestionForm();
-             initMainCountdown(webinarConfig.startTime);
-             setupActionButtons(); // Assurez-vous que les listeners des boutons sont (ré)attachés si nécessaire
+            // Vos fonctions existantes:
+            updateWebinarState(webinarConfig.state); // Met à jour l'état visuel principal
+            if (webinarConfig.state === 'soon') initStateCountdown(webinarConfig.startTime);
+            // Initialisation du lecteur seulement si l'état est 'live' ou pour un replay
+            if (webinarConfig.state === 'live' || (webinarConfig.state === 'ended' /* condition replay activé */)) {
+                 initYoutubePlayer(webinarConfig.youtubeId);
+            }
+            // ... autres initialisations (chat, actions, etc.) ...
+            initChat();
+            // initQuestionForm(); // Décommentez si vous avez cette fonction
+            initMainCountdown(webinarConfig.startTime);
+            setupActionButtons(); // Assurez-vous que les listeners des boutons sont (ré)attachés si nécessaire
         }
     
         function initYoutubePlayer(videoId) {
-            // Votre fonction existante, mais vérifiez si youtubeContainer existe encore
-            if (youtubeContainer) {
-                console.log("Initializing YouTube player with ID:", videoId);
-                 // Préférez créer un nouvel iframe à chaque fois pour éviter états résiduels
+            // Fonction pour insérer l'iframe YouTube (URL corrigée)
+            if (youtubeContainer && videoId) {
                 youtubeContainer.innerHTML = ''; // Vide d'abord
                 const iframe = document.createElement('iframe');
                 iframe.id = 'youtube-iframe';
                 iframe.className = 'webinar-iframe';
-                // ATTENTION: URL YouTube modifiée pour être valide (utiliser youtube.com/embed/)
                 iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
                 iframe.title = 'Webinaire Pow\'air';
                 iframe.setAttribute('frameborder', '0');
                 iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
                 iframe.setAttribute('allowfullscreen', '');
                 youtubeContainer.appendChild(iframe);
-            } else {
-                console.error("YouTube container not found!");
+            } else if (!youtubeContainer) {
+                 console.error("YouTube container not found!");
             }
         }
     
-        // --- Mettez ici vos autres fonctions init: initChat, initQuestionForm, updateWebinarState, etc. ---
-        // ... (Gardez vos fonctions existantes pour le chat, le compte à rebours, etc.)
-        // Exemple rapide pour les fonctions manquantes dans l'extrait initial
-         function updateWebinarState(state) { console.log("Updating webinar state to:", state); /* ... votre logique ... */ }
-         function initStateCountdown(time) { console.log("Init state countdown"); /* ... */ }
-         function initChat() { console.log("Init chat"); /* ... */ }
-         function initQuestionForm() { console.log("Init question form"); /* ... */ }
-         function initMainCountdown(time) { console.log("Init main countdown"); /* ... */ }
-         function setupActionButtons() { console.log("Setup action buttons"); /* ... attacher listeners ...*/ }
-         // function resetChat() { console.log("Resetting chat (TODO)"); /* Logique pour vider/désactiver chat */ }
-         // function resetQuestionForm() { console.log("Resetting question form (TODO)"); /* Logique pour vider form */ }
+        // --- Mettez ici les DÉFINITIONS de vos autres fonctions si elles étaient dans ce bloc ---
+        // (initChat, updateWebinarState, initStateCountdown, initMainCountdown, setupActionButtons, etc.)
+        // Assurez-vous qu'elles sont bien définies ici ou dans script.js
+        // Exemple (gardez vos définitions réelles):
+        function updateWebinarState(state) { console.log("Updating webinar state to:", state); /* ... votre logique ... */ }
+        function initStateCountdown(time) { console.log("Init state countdown"); /* ... */ }
+        function initChat() { console.log("Init chat"); /* ... */ }
+        // function initQuestionForm() { console.log("Init question form"); /* ... */ }
+        function initMainCountdown(time) { console.log("Init main countdown"); /* ... */ }
+        function setupActionButtons() { console.log("Setup action buttons"); /* ... attacher listeners ...*/ }
     
     
         // --- Logique Principale au Chargement ---
-        console.log("DOM Content Loaded. Checking auth status...");
         const initialAuthToken = localStorage.getItem('powairAuthToken');
     
+        // Attacher le listener au formulaire de connexion
         if (loginForm) {
             loginForm.addEventListener('submit', handleLoginSubmit);
         } else {
              console.error("Login form not found!");
         }
     
+        // Attacher les listeners aux boutons de déconnexion
         if (logoutButton) {
             logoutButton.addEventListener('click', handleLogout);
         }
          if (mobileLogoutButton) {
-             // Passer l'événement à handleLogout pour preventDefault
-            mobileLogoutButton.addEventListener('click', function(event) {
-                 handleLogout(event);
-            });
+            mobileLogoutButton.addEventListener('click', function(event) { handleLogout(event); });
         }
     
+        // Décider quoi faire au chargement basé sur le token
         if (!initialAuthToken) {
-            console.log("No token found. Displaying login prompt.");
             authPrompt.style.display = 'flex';
             hideUserInfo(); // Assure que user info est caché
             resetVideoPlayer(); // Assure que la vidéo est le placeholder
-            // Cachez aussi le bouton de déconnexion principal au cas où
-            if(logoutButton) logoutButton.style.display = 'none';
-    
         } else {
-            console.log("Token found. Verifying...");
             authPrompt.style.display = 'none'; // Cache la modale en attendant la vérification
-            verifyToken(initialAuthToken);
+            verifyToken(initialAuthToken); // Vérifie le token existant
         }
     
     });
