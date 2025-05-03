@@ -922,15 +922,10 @@
           <!-- État : En direct -->
           <div id="state-live" class="webinar-state active">
             <div class="webinar-stream-container">
-              <iframe 
-                id="youtube-iframe"
-                class="webinar-iframe"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1" 
-                title="Webinaire Pow'air" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
+              <div id="youtube-container" class="webinar-placeholder">
+                <i class="fas fa-lock"></i>
+                <p>Le lecteur vidéo sera disponible après connexion</p>
+              </div>
             </div>
           </div>
 
@@ -1052,11 +1047,11 @@
             </div>
 
             <div class="webinar-cta">
-              <h3>Vous avez aimé ce webinaire ?</h3>
-              <p>Téléchargez notre application et rejoignez la révolution de la recharge mobile.</p>
-              <a href="index.html#download" class="btn btn-primary">
-                <i class="fas fa-download"></i>
-                Télécharger l'App
+              <h3>Besoin d'informations complémentaires ?</h3>
+              <p>Programmez un rendez-vous personnalisé avec l'un de nos conseillers Pow'air.</p>
+              <a href="#" class="btn btn-primary" id="appointment-button">
+                <i class="fas fa-calendar-check"></i>
+                Programmer un rendez-vous
               </a>
             </div>
           </div>
@@ -1257,13 +1252,18 @@
           const result = await response.json();
           
           if (!response.ok) {
-            // Token invalide, afficher la popup de connexion
-            authPrompt.style.display = 'flex';
-            // Supprimer le token invalide
-            localStorage.removeItem('powairAuthToken');
-          } else {
-            // Token valide, init webinaire et afficher les infos utilisateur
-            initWebinar();
+  // Token invalide, afficher la popup de connexion
+  authPrompt.style.display = 'flex';
+  // Supprimer le token invalide
+  localStorage.removeItem('powairAuthToken');
+} else {
+  // Token valide, init webinaire et afficher les infos utilisateur
+  initWebinar();
+  
+  // Si l'état du webinaire est "live", initialiser le lecteur YouTube
+  if (webinarConfig.state === 'live') {
+    initYoutubePlayer(webinarConfig.youtubeId);
+  }
             
             // Afficher les infos utilisateur
             if (result.user && result.user.name) {
@@ -1578,11 +1578,22 @@
 
       // Fonction pour initialiser le lecteur YouTube
       function initYoutubePlayer(videoId) {
-        const iframe = document.getElementById('youtube-iframe');
-        if (iframe) {
-          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-        }
-      }
+  const container = document.getElementById('youtube-container');
+  if (container) {
+    // Vider le contenu existant
+    container.innerHTML = '';
+    // Créer et ajouter l'iframe
+    const iframe = document.createElement('iframe');
+    iframe.id = 'youtube-iframe';
+    iframe.className = 'webinar-iframe';
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.title = 'Webinaire Pow\'air';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    container.appendChild(iframe);
+  }
+}
     });
   </script>
 </body>
