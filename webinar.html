@@ -374,7 +374,6 @@
       gap: 1rem;
       justify-content: center;
     }
-
     
 
     /* Styles pour le formulaire de connexion dans la fenêtre modale */
@@ -539,18 +538,23 @@
     margin-bottom: 0.75rem;
   }
   
+  /* Compte à rebours plus petit tout en gardant une seule ligne */
   .countdown-timer {
-    gap: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap; /* Empêche le retour à la ligne */
+    justify-content: center;
+    gap: 0.4rem; /* Espace réduit entre les éléments */
   }
   
   .countdown-value {
-    font-size: 1.5rem;
-    padding: 0.4rem 0.5rem;
-    min-width: 3rem;
+    font-size: 1.3rem; /* Taille réduite des chiffres */
+    padding: 0.3rem 0.5rem;
+    min-width: 2.4rem; /* Largeur minimale réduite */
   }
   
   .countdown-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem; /* Taille réduite du texte */
+    margin-top: 0.3rem;
   }
   
   /* Chat plus adapté */
@@ -583,6 +587,42 @@
   .webinar-chat-send {
     padding: 0.6rem 1rem;
   }
+  
+  /* Réduction de la taille du bouton "Prendre un rendez-vous" sur mobile */
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Spécifiquement pour le bouton de rendez-vous */
+  #appointment-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #appointment-button i {
+    font-size: 0.9rem;
+    margin-right: 0.4rem;
+  }
+  
+  /* Ajustement pour la zone CTA contenant le bouton */
+  .webinar-cta {
+    padding: 1.5rem;
+  }
+  
+  .webinar-cta h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .webinar-cta p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
 }
 
 /* Ajustements pour petit mobile */
@@ -596,19 +636,29 @@
   
   .webinar-action {
     justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
   
   /* Compte à rebours encore plus compact */
   .countdown-timer {
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.25rem; /* Gap encore plus réduit */
   }
   
+  .countdown-value {
+    font-size: 1.1rem; /* Chiffres encore plus petits */
+    padding: 0.3rem 0.4rem;
+    min-width: 2rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.6rem;
+  }
+  
+  /* Annuler le passage à deux lignes défini précédemment */
   .countdown-unit {
-    flex: 0 0 calc(50% - 0.5rem);
-    margin-bottom: 0.5rem;
+    flex: none; /* Réinitialise la définition flex précédente */
+    margin-bottom: 0; /* Supprime la marge qui séparait les lignes */
   }
   
   /* Information blocs plus compacts */
@@ -702,42 +752,11 @@
     margin-top: 1.25rem;
     margin-bottom: 1.75rem;
   }
-}
-
-/* Correction spécifique pour l'affichage sur très petits écrans */
-@media (max-width: 360px) {
-  .countdown-unit {
-    flex: 0 0 calc(50% - 0.5rem);
-  }
   
-  .countdown-value {
-    font-size: 1.3rem;
-    padding: 0.3rem 0.4rem;
-    min-width: 2.5rem;
-  }
-  
-  .countdown-label {
-    font-size: 0.65rem;
-  }
-  
-  .webinar-header h1 {
-    font-size: 1.5rem;
-  }
-  
-  .webinar-badge {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.7rem;
-  }
-  
-  /* Réduire encore les padding pour gagner de l'espace */
-  .webinar-container {
-    padding: 1.25rem 0.75rem;
-  }
-  
-  .webinar-info, 
-  .webinar-description, 
-  .webinar-cta {
-    padding: 1rem;
+  /* Réduction supplémentaire pour le bouton de rendez-vous sur très petits écrans */
+  #appointment-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -765,6 +784,39 @@
   
   #auth-prompt .login-help {
     font-size: 0.8rem;
+  }
+}
+
+/* Correction spécifique pour l'affichage sur très petits écrans */
+@media (max-width: 360px) {
+  .countdown-value {
+    font-size: 0.9rem; /* Encore plus petit */
+    padding: 0.25rem 0.35rem;
+    min-width: 1.8rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.55rem;
+  }
+  
+  .webinar-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .webinar-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+  
+  /* Réduire encore les padding pour gagner de l'espace */
+  .webinar-container {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .webinar-info, 
+  .webinar-description, 
+  .webinar-cta {
+    padding: 1rem;
   }
 }
 
