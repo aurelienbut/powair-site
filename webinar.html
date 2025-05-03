@@ -375,6 +375,80 @@
       justify-content: center;
     }
 
+    /* Styles pour le formulaire de connexion dans la fenêtre modale */
+    #auth-prompt .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    #auth-prompt .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+    }
+
+    #auth-prompt .form-group label {
+      font-weight: 600;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    #auth-prompt .form-group input {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      font-size: 1rem;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    #auth-prompt .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(var(--gradient-start-color-rgb), 0.2);
+    }
+
+    #auth-prompt .login-button {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+
+    #auth-prompt .login-message {
+      text-align: center;
+      min-height: 1.5rem;
+      margin-top: 0.5rem;
+      color: #E53E3E;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    #auth-prompt .login-message.success {
+      color: #38A169;
+    }
+
+    #auth-prompt .login-help {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    #auth-prompt .auth-prompt-content {
+      max-width: 450px;
+      padding: 2rem;
+    }
+
+    #auth-prompt .auth-prompt-buttons {
+      margin-top: 1rem;
+    }
+
     /* Responsive */
     @media (max-width: 992px) {
       .webinar-content {
@@ -723,11 +797,34 @@
       <div class="auth-prompt-icon">
         <i class="fas fa-lock"></i>
       </div>
-      <h2 class="auth-prompt-title">Accès Protégé</h2>
-      <p class="auth-prompt-text">Vous devez vous connecter pour accéder à ce webinaire.</p>
+      <h2 class="auth-prompt-title">Accès Webinaire</h2>
+      <p class="auth-prompt-text">Connectez-vous pour accéder au webinaire Pow'air en direct.</p>
+      
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Votre email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+        </div>
+        <button type="submit" class="btn btn-primary login-button">
+          <i class="fas fa-sign-in-alt"></i>
+          Se connecter
+        </button>
+        <div id="login-message" class="login-message"></div>
+      </form>
+      
+      <div class="login-help">
+        <p>Problème de connexion ? <a href="mailto:contact@powair.example.com">Contactez notre support</a></p>
+      </div>
+      
       <div class="auth-prompt-buttons">
-        <a href="webinar-login.html" class="btn btn-primary">Se connecter</a>
-        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+        <a href="index.html" class="btn btn-secondary">
+          <i class="fas fa-home"></i>
+          Retour à l'accueil
+        </a>
       </div>
     </div>
   </div>
@@ -1095,6 +1192,99 @@
       const userInfo = document.getElementById('user-info');
       const userName = document.getElementById('user-name');
       const userIcon = document.getElementById('user-icon');
+      const loginForm = document.getElementById('login-form');
+      const loginMessage = document.getElementById('login-message');
+
+      // Fonction de gestion du formulaire de connexion
+      if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          
+          // Récupérer les valeurs du formulaire
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          
+          // Désactiver le bouton pendant la vérification
+          const submitButton = loginForm.querySelector('button[type="submit"]');
+          const originalButtonText = submitButton.innerHTML;
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
+          
+          try {
+            // Appel à l'API d'authentification
+            const response = await fetch('/api/auth', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+              // Authentification réussie
+              loginMessage.textContent = 'Connexion réussie!';
+              loginMessage.classList.add('success');
+              
+              // Stocker le token dans le localStorage
+              localStorage.setItem('powairAuthToken', result.token);
+              
+              // Après authentification réussie, masquer la fenêtre et initialiser le webinaire
+              setTimeout(() => {
+                authPrompt.style.display = 'none';
+                
+                // Afficher les infos utilisateur
+                if (result.user && result.user.name) {
+                  userInfo.style.display = 'flex';
+                  userName.textContent = result.user.name;
+                  // Initialiser l'icône avec les initiales
+                  const initials = result.user.name
+                    .split(' ')
+                    .map(part => part.charAt(0))
+                    .join('')
+                    .toUpperCase();
+                  userIcon.textContent = initials;
+                }
+                
+                // Initialiser le webinaire
+                initWebinar();
+                
+                // Pré-remplir le formulaire de question avec les infos utilisateur
+                if (result.user) {
+                  const nameInput = document.getElementById('question-name');
+                  const emailInput = document.getElementById('question-email');
+                  
+                  if (nameInput && result.user.name) {
+                    nameInput.value = result.user.name;
+                  }
+                  
+                  if (emailInput && result.user.email) {
+                    emailInput.value = result.user.email;
+                  }
+                }
+              }, 1000);
+              
+            } else {
+              // Échec de l'authentification
+              loginMessage.textContent = result.error || 'Identifiants incorrects. Veuillez réessayer.';
+              loginMessage.classList.remove('success');
+              
+              // Réactiver le bouton
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalButtonText;
+            }
+          } catch (error) {
+            console.error('Erreur lors de la connexion:', error);
+            loginMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+            loginMessage.classList.remove('success');
+            
+            // Réactiver le bouton
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+          }
+        });
+      }
 
       // Si pas de token, afficher la popup de connexion
       if (!authToken) {
@@ -1166,7 +1356,8 @@
       
       function handleLogout() {
         localStorage.removeItem('powairAuthToken');
-        window.location.href = 'webinar-login.html';
+        // Afficher à nouveau la fenêtre de connexion au lieu de rediriger
+        authPrompt.style.display = 'flex';
       }
       
       if (logoutButton) {
