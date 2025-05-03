@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkScroll();
     }
 
-    // --- Gestion du Menu Mobile ---
+    // --- Gestion du Menu Mobil   e ---
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
