@@ -1007,45 +1007,7 @@
               </ul>
               <p>Une session de questions-réponses sera organisée à la fin de la présentation. Vous pourrez poser vos questions directement via le chat en direct.</p>
             </div>
-
-            <!-- Formulaire de question -->
-            <div class="question-form">
-              <h3>Poser une question pour la session Q&R</h3>
-              <form id="question-form">
-                <div class="form-group">
-                  <label for="question-name">Votre nom</label>
-                  <input type="text" id="question-name" name="name" required>
-                </div>
-                <div class="form-group">
-                  <label for="question-email">Votre email</label>
-                  <input type="email" id="question-email" name="email" required>
-                </div>
-                <div class="form-group">
-                  <label for="question-topic">Sujet de votre question</label>
-                  <select id="question-topic" name="topic" required>
-                    <option value="" disabled selected>Choisissez un sujet</option>
-                    <option value="batteries">Nouvelles batteries</option>
-                    <option value="network">Extension du réseau</option>
-                    <option value="app">Application mobile</option>
-                    <option value="environment">Engagement environnemental</option>
-                    <option value="partnerships">Partenariats</option>
-                    <option value="other">Autre</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="question-content">Votre question</label>
-                  <textarea id="question-content" name="question" rows="4" required></textarea>
-                </div>
-                <div class="form-submit">
-                  <button type="submit" class="btn btn-primary" id="question-submit">
-                    <i class="fas fa-question-circle"></i>
-                    Soumettre ma question
-                  </button>
-                </div>
-                <div class="form-message" id="question-form-message"></div>
-              </form>
-            </div>
-          </div>
+            
 
           <div class="webinar-sidebar">
             <div class="webinar-info">
@@ -1501,41 +1463,6 @@
             addChatMessage(randomResponse.author, randomResponse.content);
           }, 1500 + Math.random() * 3000);
         }
-      }
-
-      // Fonction pour initialiser le formulaire de questions
-      function initQuestionForm() {
-        const form = document.getElementById('question-form');
-        const submitButton = document.getElementById('question-submit');
-        const messageEl = document.getElementById('question-form-message');
-
-        form.addEventListener('submit', e => {
-          e.preventDefault();
-          
-          // Désactiver le bouton pendant la soumission
-          submitButton.disabled = true;
-          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-          
-          // Simuler une soumission de formulaire
-          setTimeout(() => {
-            // Réactiver le bouton
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-question-circle"></i> Soumettre ma question';
-            
-            // Afficher un message de succès
-            messageEl.className = 'form-message success';
-            messageEl.textContent = 'Votre question a été soumise avec succès. Elle sera examinée par nos modérateurs.';
-            messageEl.style.display = 'block';
-            
-            // Réinitialiser le formulaire
-            form.reset();
-            
-            // Cacher le message après un certain temps
-            setTimeout(() => {
-              messageEl.style.display = 'none';
-            }, 5000);
-          }, 1500);
-        });
       }
 
       // Fonction pour mettre à jour l'état du webinaire
