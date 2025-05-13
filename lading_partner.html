@@ -11,396 +11,7 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <style>
-    /* Ajustements spécifiques pour la landing page commerçants */
-
-    .metric-card {
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      background-color: var(--bg-color);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent-color);
-    }
-
-    .metric-icon {
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-
-    .metric-number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent-color);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .metric-label {
-      color: var(--text-light);
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .feature-card {
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      background-color: var(--bg-color);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent-color);
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-      background-image: var(--gradient-primary);
-      background-color: var(--gradient-start-color);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .feature-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    .feature-description {
-      color: var(--text-light);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 0;
-      flex-grow: 1;
-    }
-
-    .hero-merchant {
-      position: relative;
-      background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      padding: 3rem 2rem;
-      margin-top: 1,5rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
-    }
-
-    .dark-mode .hero-merchant {
-      background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
-    }
-
-    /* Styles pour les témoignages (même si la section est enlevée, on peut laisser les styles au cas où) */
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .testimonial-card {
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      background-color: var(--bg-color);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      height: 100%;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent-color);
-    }
-
-    .testimonial-quote {
-      font-style: italic;
-      color: var(--text-color);
-      position: relative;
-      padding: 0 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .testimonial-quote::before,
-    .testimonial-quote::after {
-      content: '"';
-      font-size: 2rem;
-      font-family: 'Georgia', serif;
-      line-height: 0;
-      color: var(--accent-color);
-      opacity: 0.5;
-      position: absolute;
-    }
-
-    .testimonial-quote::before {
-      left: 0;
-      top: 0.5rem;
-    }
-
-    .testimonial-quote::after {
-      right: 0;
-      bottom: -0.3rem;
-    }
-
-    .testimonial-author-info {
-      display: flex;
-      align-items: center;
-    }
-
-    .testimonial-avatar {
-      width: 3rem;
-      height: 3rem;
-      background-image: var(--gradient-primary);
-      background-color: var(--gradient-start-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 1rem;
-      color: var(--main-white);
-      font-size: 1.2rem;
-    }
-
-    .testimonial-author h5 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-      color: var(--text-color);
-    }
-
-    .testimonial-author span {
-      font-size: 0.85rem;
-      color: var(--text-light);
-    }
-    /* Fin des styles témoignages */
-
-
-    .faq-container {
-      margin-top: 3rem;
-    }
-
-    .faq-item {
-      margin-bottom: 1.5rem;
-      border-radius: var(--radius-lg);
-      background-color: var(--bg-color);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-      box-shadow: var(--shadow-md);
-      border-color: var(--accent-color);
-    }
-
-    .faq-question {
-      padding: 1.5rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .faq-question i {
-      color: var(--accent-color);
-      transition: transform 0.3s ease;
-    }
-
-    .faq-question.active i {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      padding: 0 1.5rem 1.5rem;
-      color: var(--text-light);
-      font-size: 1rem;
-      line-height: 1.6;
-      display: none;
-    }
-
-    .faq-answer.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .hero-cta {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 3rem;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-      padding: 1.2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .comparison-table th {
-      background-color: var(--accent-color);
-      color: var(--main-white);
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    /* Ajustement : on cible spécifiquement le 2ème th pour le centrage */
-    .comparison-table th:nth-child(2) {
-        text-align: center;
-    }
-
-    .comparison-table tbody tr {
-      background-color: var(--bg-color);
-      transition: all 0.3s ease;
-    }
-
-    .comparison-table tbody tr:hover {
-      background-color: var(--bg-alt);
-    }
-
-    .comparison-table td:first-child {
-      text-align: left;
-      font-weight: 600;
-      color: var(--text-color);
-    }
-
-    /* Ajustement : on cible spécifiquement le 2ème td pour le centrage */
-     .comparison-table td:nth-child(2) {
-       text-align: center;
-     }
-
-    .comparison-table .check {
-      color: #22c55e;
-      font-size: 1.2rem;
-    }
-
-    /* La classe .times n'est plus utilisée mais on la garde au cas où */
-    .comparison-table .times {
-      color: #ef4444;
-      font-size: 1.2rem;
-    }
-
-    .step-merchant {
-      padding: 1.5rem;
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .step-merchant:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--accent-color);
-    }
-
-    .step-number-merchant {
-      min-width: 3rem;
-      height: 3rem;
-      background-image: var(--gradient-primary);
-      background-color: var(--gradient-start-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--main-white);
-      font-weight: 700;
-      font-size: 1.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .step-content-merchant h4 {
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-      color: var(--text-color);
-    }
-
-    .step-content-merchant p {
-      margin-bottom: 0;
-      color: var(--text-light);
-    }
-
-    /* Réduction de l'espace pour la section hero en version desktop */
-
-
-    @media (max-width: 768px) {
-      .hero-merchant {
-        padding: 3rem 1.5rem;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-      }
-
-      .comparison-table th,
-      .comparison-table td {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-      }
-
-      .step-merchant {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-      }
-
-      .step-content-merchant {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
+  </head>
 
 <body>
   <div class="gradient-bg">
@@ -449,14 +60,13 @@
 
   <section class="hero" id="hero">
     <div class="container">
-      <div class="hero-container" style="text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto;">
+      <div class="hero-container" style="text-align: center;"> <div style="max-width: 800px; margin: 0 auto;">
           <div class="hero-badge" style="display: inline-flex; margin-bottom: 2rem;">
             <i class="fas fa-bolt"></i>
             Solution partenaire #1 pour les commerçants
           </div>
 
-          <h1 style="margin-bottom: 1.5rem;">Boostez votre <span style="color: #4C86F9;">business</span> avec Pow'air</h1>
+          <h1 style="margin-bottom: 1.5rem;">Boostez votre <span class="text-accent-color">business</span> avec Pow'air</h1>
           <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; max-width: 650px; margin-left: auto; margin-right: auto;">
             Rejoignez le réseau de recharge mobile leader en France. Attirez de nouveaux clients, générez des revenus supplémentaires et offrez un service innovant sans investissement.
           </p>
@@ -693,8 +303,7 @@
     </div>
   </section>
 
-  <section id="contact" class="pricing">
-    <div class="container">
+  <section id="contact" class="pricing"> <div class="container">
       <div class="section-inner">
         <div class="section-title-container">
           <div class="section-tag">
@@ -704,8 +313,7 @@
           <p class="subtitle">Remplissez le formulaire ci-dessous et rejoignez notre réseau de partenaires.</p>
         </div>
 
-        <div class="partner-contact-form active">
-          <form id="partner-form">
+        <div class="partner-contact-form active"> <form id="partner-form">
             <div class="form-header">
               <h3>Demande de partenariat</h3>
               <p>Laissez-nous vos coordonnées et un conseiller vous contactera sous 24h.</p>
@@ -735,7 +343,7 @@
                 <i class="fas fa-paper-plane"></i>
                 Envoyer ma demande
               </button>
-              <div id="partner-form-message" style="margin-top: 1rem; text-align: center; min-height: 1.5em; color: inherit;"></div>
+              <div id="partner-form-message" class="form-message"></div>
             </div>
             <div class="form-alternative">
               <span>Vous préférez nous parler directement ? Appelez-nous au </span>
@@ -817,9 +425,7 @@
   </div>
  </footer>
 
-  <script src="script.js"></script>
-
-  <script>
+  <script src="script.js"></script> <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Animation des compteurs de statistiques (si présents - non inclus dans ce snippet)
       // ... (Le code d'animation des compteurs .metric-number irait ici s'il y avait une section metrics)
@@ -842,9 +448,9 @@
               }
           });
           document.querySelectorAll('.faq-answer').forEach(a => {
-             if (a !== answer || isActive) { // Cache les autres réponses ou celle cliquée si on la ferme
-               a.classList.remove('active');
-             }
+              if (a !== answer || isActive) { // Cache les autres réponses ou celle cliquée si on la ferme
+                a.classList.remove('active');
+              }
           });
 
           // Ouvre/ferme la réponse cliquée
@@ -852,16 +458,16 @@
             question.classList.add('active');
             answer.classList.add('active');
             if (icon) icon.style.transform = 'rotate(180deg)';
-             // Gestion ARIA
+              // Gestion ARIA
             question.setAttribute('aria-expanded', 'true');
             if(answer.id) question.setAttribute('aria-controls', answer.id); // Lie la question à la réponse si ID existe
           } else {
-             question.classList.remove('active');
-             answer.classList.remove('active');
-             if (icon) icon.style.transform = 'rotate(0deg)';
+              question.classList.remove('active');
+              answer.classList.remove('active');
+              if (icon) icon.style.transform = 'rotate(0deg)';
               // Gestion ARIA
-             question.setAttribute('aria-expanded', 'false');
-             question.removeAttribute('aria-controls');
+              question.setAttribute('aria-expanded', 'false');
+              question.removeAttribute('aria-controls');
           }
         });
 
@@ -869,16 +475,14 @@
         question.setAttribute('aria-expanded', 'false');
         const answer = question.nextElementSibling;
         if(answer && !answer.id) { // Donne un ID unique si la réponse n'en a pas
-           answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
+            answer.id = `faq-answer-${Math.random().toString(36).substring(2, 9)}`;
         }
-         // Assurez-vous que la réponse a l'ID référencé si elle existe
-         if (answer && answer.id && !question.getAttribute('aria-controls')){
-           // Ne rien faire si déjà lié ou si la réponse n'a pas d'ID
-         } else if (answer && !answer.id) {
-            // Géré ci-dessus
-         }
-
-
+        // Assurez-vous que la réponse a l'ID référencé si elle existe
+        if (answer && answer.id && !question.getAttribute('aria-controls')){
+          // Ne rien faire si déjà lié ou si la réponse n'a pas d'ID
+        } else if (answer && !answer.id) {
+          // Géré ci-dessus
+        }
       });
 
       // Gestion du formulaire partenaire (repris du script principal, qui devrait idéalement contenir TOUT le JS)
@@ -892,50 +496,56 @@
 
           partnerSubmitButton.disabled = true;
           partnerSubmitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+          
+          // Modification ici: Utilisation de classList pour gérer les styles des messages
           partnerFormMessage.textContent = '';
-          partnerFormMessage.style.color = 'inherit';
-           partnerFormMessage.removeAttribute('aria-live'); // Supprime pour éviter l'annonce du vide
+          partnerFormMessage.classList.remove('form-message-info', 'form-message-error', 'form-message-success'); // Nettoie toutes les classes de message possibles
+          partnerFormMessage.removeAttribute('aria-live'); 
 
           const formData = new FormData(partnerForm);
           const data = Object.fromEntries(formData.entries());
 
           try {
-             // REMPLACER par l'appel API réel vers '/api/submit-partner-form' comme dans script.js
-             // Simulation d'envoi pour l'exemple
-             await new Promise(resolve => setTimeout(resolve, 1500));
-             const response = { ok: true }; // Simule une réponse OK
-             const result = { message: "Merci ! Votre demande a bien été envoyée. Un conseiller vous contactera dans les 24h."}; // Simule un message de succès
+              // REMPLACER par l'appel API réel vers '/api/submit-partner-form' comme dans script.js
+              // Simulation d'envoi pour l'exemple
+              await new Promise(resolve => setTimeout(resolve, 1500)); 
+              // Simule une réponse OK ou une erreur aléatoirement pour tester les deux classes
+              const isSuccess = Math.random() > 0.5; 
+              const response = { ok: isSuccess }; 
+              const result = isSuccess ? 
+                             { message: "Merci ! Votre demande a bien été envoyée. Un conseiller vous contactera dans les 24h."} :
+                             { error: "Une erreur simulée est survenue lors de l'envoi." };
 
-             // Décommentez ces lignes pour l'appel réel
-             /*
-             const response = await fetch('/api/submit-partner-form', {
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-               body: JSON.stringify(data)
-             });
-             const result = await response.json();
-             */
+              // Décommentez ces lignes pour l'appel réel
+              /*
+              const response = await fetch('/api/submit-partner-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+              });
+              const result = await response.json();
+              */
 
-            if (response.ok) {
-              partnerFormMessage.textContent = result.message || "Merci ! Votre demande a bien été envoyée.";
-              partnerFormMessage.style.color = 'var(--accent-color)';
-               partnerFormMessage.setAttribute('aria-live', 'polite'); // Annonce le succès
-              partnerForm.reset();
-            } else {
-              partnerFormMessage.textContent = result.error || `Erreur ${response.status}: Veuillez réessayer.`;
-              partnerFormMessage.style.color = '#E53E3E';
-               partnerFormMessage.setAttribute('aria-live', 'assertive'); // Annonce l'erreur (plus urgent)
-            }
+              if (response.ok) {
+                partnerFormMessage.textContent = result.message || "Merci ! Votre demande a bien été envoyée.";
+                partnerFormMessage.classList.add('form-message-info'); // Classe pour message d'information/succès avec couleur accent
+                partnerFormMessage.setAttribute('aria-live', 'polite'); 
+                partnerForm.reset();
+              } else {
+                partnerFormMessage.textContent = result.error || `Erreur ${response.status || 'inconnue'}: Veuillez réessayer.`;
+                partnerFormMessage.classList.add('form-message-error'); // Classe pour message d'erreur
+                partnerFormMessage.setAttribute('aria-live', 'assertive'); 
+              }
 
           } catch (error) {
             console.error("Erreur lors de l'envoi:", error);
-             if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
-               partnerFormMessage.textContent = "Erreur: Impossible de contacter le serveur. Vérifiez l'URL ou l'état du serveur.";
-             } else {
-               partnerFormMessage.textContent = "Une erreur réseau est survenue. Vérifiez votre connexion et réessayez.";
-             }
-            partnerFormMessage.style.color = '#E53E3E';
-            partnerFormMessage.setAttribute('aria-live', 'assertive'); // Annonce l'erreur
+              if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+                partnerFormMessage.textContent = "Erreur: Impossible de contacter le serveur. Vérifiez l'URL ou l'état du serveur.";
+              } else {
+                partnerFormMessage.textContent = "Une erreur réseau est survenue. Vérifiez votre connexion et réessayez.";
+              }
+            partnerFormMessage.classList.add('form-message-error'); // Classe pour message d'erreur
+            partnerFormMessage.setAttribute('aria-live', 'assertive'); 
           } finally {
             partnerSubmitButton.disabled = false;
             partnerSubmitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';

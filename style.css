@@ -50,6 +50,35 @@
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   --radius-full: 9999px;
+
+  /* --- NOUVELLES VARIABLES DE COULEUR CENTRALISÉES --- */
+  --pure-black: #000000;
+  --pure-black-rgb: 0, 0, 0;
+  /* --main-white est déjà #FFFFFF */
+  
+  --color-success: #22c55e;
+  --color-success-rgb: 34, 197, 94;
+  --color-success-alt: #38A169; /* Pour login message distinct */
+  --color-success-bg-transparent: rgba(var(--color-success-rgb), 0.1);
+  --color-success-border-transparent: rgba(var(--color-success-rgb), 0.2);
+
+  --color-error: #E53E3E; /* Standardisation du rouge pour erreurs */
+  --color-error-rgb: 229, 62, 62;
+  --color-error-alt: #ef4444; /* Si une nuance spécifique est nécessaire pour form-message.error text */
+  --color-error-bg-transparent: rgba(var(--color-error-rgb), 0.1);
+  --color-error-border-transparent: rgba(var(--color-error-rgb), 0.2);
+
+  --color-live-badge-bg: var(--color-error); /* Le badge live utilise la couleur d'erreur */
+  
+  --hero-gradient-end-color: #E0F2FE;
+  --hero-background-gradient: linear-gradient(135deg, var(--bg-alt), var(--hero-gradient-end-color));
+  --hero-merchant-background-gradient-dark: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark)); /* Pour lading_partner.html dark mode */
+  --webinar-container-background-gradient-dark: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark)); /* Pour webinar.html dark mode */
+
+
+  --webinar-placeholder-bg: var(--pure-black);
+  --webinar-placeholder-text: var(--main-white);
+  --backdrop-color: rgba(var(--pure-black-rgb), 0.5);
 }
 
 /* Mode "Sombre" */
@@ -67,6 +96,9 @@
   --shadow-md: 0 8px 25px rgba(var(--main-white-rgb), 0.07);
   --shadow-lg: 0 15px 35px rgba(var(--main-white-rgb), 0.08);
   --shadow-xl: 0 20px 50px rgba(var(--main-white-rgb), 0.1);
+
+  /* Adaptation des gradients spécifiques pour le mode sombre si nécessaire */
+  --hero-background-gradient: linear-gradient(135deg, var(--bg-alt-dark), var(--dark-bg-base)); /* Exemple d'adaptation */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -97,8 +129,6 @@ header.scrolled { background-color: rgba(var(--main-white-rgb), 0.95); box-shado
 .header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; transition: padding 0.3s ease; flex-wrap: nowrap; }
 header.scrolled .header-content { padding: 0.75rem 0; }
 .logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color); z-index: 1001; text-decoration: none; flex-shrink: 0; margin-right: auto; text-shadow: 0 1px 3px rgba(var(--gradient-start-color-rgb), 0.1); text-transform: uppercase; }
-/*.logo span { color: var(--accent-color); } */
-/*.logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--accent-color); }*/
 nav { display: flex; align-items: center; gap: 1rem; }
 nav ul { display: flex; list-style: none; gap: 1.5rem; }
 nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 700; font-size: 1rem; transition: color 0.2s ease; position: relative; padding-bottom: 4px; }
@@ -159,9 +189,7 @@ nav ul li a:hover::after { width: 100%; }
 .dark-mode .hero-phone-notch { background-color: var(--border-color); }
 .hero-phone-screen {
   width: 100%;      /* Conserve la largeur à 100% du conteneur */
-  /* height: 100%; */ /* Supprimez ou commentez cette ligne */
   height: auto;       /* Ajoutez cette ligne */
-  /* object-fit: cover; */ /* Supprimez ou commentez cette ligne */
   display: block;     /* Assurez-vous que l'image se comporte comme un bloc */
   aspect-ratio: 10 / 19;
 }
@@ -217,7 +245,6 @@ nav ul li a:hover::after { width: 100%; }
 .benefit-card.active { opacity: 1; transform: translateY(0); }
 .benefit-card:nth-child(2).active { transition-delay: 0.1s; }
 .benefit-card:nth-child(3).active { transition-delay: 0.2s; }
-/* La 4ème carte a été retirée */
 .benefit-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-md); border-color: var(--accent-color); }
 .benefit-content { padding: 2rem; position: relative; z-index: 2; }
 .benefit-icon { width: 3.5rem; height: 3.5rem; background: var(--bg-alt); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border-color); }
@@ -228,60 +255,47 @@ nav ul li a:hover::after { width: 100%; }
 .benefit-description { color: var(--text-light); font-size: 1rem; margin-bottom: 0; }
 
 /* Réseau */
-/* --- Bloc CSS pour la section Réseau/Carte --- */
-
 .network {
   position: relative;
-  overflow: hidden; /* Gardé pour le moment, pourrait être testé en le supprimant si le z-index ne résout rien */
+  overflow: hidden;
 }
-
 .map-container {
   position: relative;
   width: 100%;
   margin-top: 4rem;
-  opacity: 0; /* Géré par l'animation au scroll via .active */
-  transform: translateY(30px); /* Géré par l'animation au scroll */
+  opacity: 0;
+  transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
-  /* z-index: 2; */ /* Le z-index ici pourrait entrer en conflit, mettons le sur le wrapper */
 }
-
 .map-container.active {
   opacity: 1;
   transform: translateY(0);
 }
-
 .map-wrapper {
   width: 100%;
-  height: 500px; /* Hauteur du conteneur de carte */
-  background-color: var(--border-color); /* Couleur de fond pendant le chargement */
+  height: 500px;
+  background-color: var(--border-color);
   border-radius: var(--radius-xl);
-  overflow: hidden; /* Gardé pour le moment */
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
-  position: relative; /* IMPORTANT: Nécessaire pour que z-index fonctionne */
-  z-index: 100; /* TEST : Valeur élevée pour essayer de passer au-dessus d'autres éléments */
+  position: relative;
+  z-index: 100;
 }
-
 .dark-mode .map-wrapper {
   background-color: var(--dark-bg-alt);
 }
-
 #map {
-  /* width: 1000px; */ /* Votre valeur précédente - 100% est généralement plus sûr */
-  width: 100%;    /* Prend toute la largeur du .map-wrapper */
-  height: 500px;   /* Hauteur explicite, comme vous l'aviez mise */
-  position: relative; /* Assure son propre contexte d'empilement */
-  z-index: auto;    /* Laisse Leaflet gérer les z-index internes, .map-wrapper gère la superposition globale */
-  background-color: #DDDDDD; /* Léger fond gris pour voir si le div #map lui-même est visible */
+  width: 100%;
+  height: 500px;
+  position: relative;
+  z-index: auto;
+  background-color: #DDDDDD; /* Placeholder, sera couvert par la carte */
 }
-
 #map p {
-  /* Style pour le texte placeholder - Normalement plus visible car le div #map est vidé par JS */
   color: var(--text-light);
   margin-top: 50px;
   text-align: center;
 }
-
-/* Styles pour la recherche sur la carte avec autocomplétion */
 .map-search-container {
   position: absolute;
   bottom: 20px;
@@ -292,47 +306,40 @@ nav ul li a:hover::after { width: 100%; }
   z-index: 1000;
   padding: 0 15px;
 }
-
 .map-search-wrapper {
   display: flex;
   background-color: var(--bg-color);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-color);
-  overflow: visible; /* Changé de 'hidden' à 'visible' pour permettre aux suggestions de déborder */
+  overflow: visible;
   transition: all 0.3s ease;
-  position: relative; /* Pour positionner les suggestions */
+  position: relative;
 }
-
 .map-search-wrapper:focus-within {
   box-shadow: var(--shadow-xl);
   border-color: var(--accent-color);
 }
-
 .map-search-input {
   flex-grow: 1;
   padding: 0.875rem 1.5rem;
   border: none;
   outline: none;
-  font-size: 16px; /* Taille minimale pour empêcher le zoom sur iOS */
+  font-size: 16px;
   background-color: transparent;
   color: var(--text-color);
   border-radius: var(--radius-full) 0 0 var(--radius-full);
-  touch-action: manipulation; /* Empêche certains comportements tactiles indésirables */
-  -webkit-appearance: none; /* Désactive l'apparence par défaut sur iOS */
+  touch-action: manipulation;
+  -webkit-appearance: none;
 }
-
 .map-search-input::placeholder {
   color: var(--text-light);
 }
-
 .map-search-button {
   border-radius: 0 var(--radius-full) var(--radius-full) 0;
   padding: 0.875rem 1.25rem;
   margin: 0;
 }
-
-/* Styles pour les suggestions */
 .search-suggestions {
   position: absolute;
   top: auto;
@@ -350,13 +357,11 @@ nav ul li a:hover::after { width: 100%; }
   pointer-events: none;
   z-index: 1001;
 }
-
 .search-suggestions.active {
   max-height: 300px;
   opacity: 1;
   pointer-events: auto;
 }
-
 .suggestion-item {
   padding: 0.75rem 1.5rem;
   cursor: pointer;
@@ -366,41 +371,33 @@ nav ul li a:hover::after { width: 100%; }
   gap: 0.75rem;
   border-bottom: 1px solid var(--border-color);
 }
-
 .suggestion-item:last-child {
   border-bottom: none;
 }
-
 .suggestion-item:hover,
 .suggestion-item.highlighted {
   background-color: var(--bg-alt);
 }
-
 .suggestion-item i {
   color: var(--accent-color);
   font-size: 1rem;
   width: 20px;
   text-align: center;
 }
-
 .suggestion-item.location-option {
   font-weight: 600;
   color: var(--accent-color);
   border-bottom: 1px solid var(--border-color);
 }
-
 .suggestion-item .suggestion-main {
   font-weight: 600;
   color: var(--text-color);
 }
-
 .suggestion-item .suggestion-secondary {
   font-size: 0.85rem;
   color: var(--text-light);
   margin-top: 0.1rem;
 }
-
-/* Loader pour le chargement des suggestions */
 .suggestion-loader {
   display: flex;
   align-items: center;
@@ -408,28 +405,40 @@ nav ul li a:hover::after { width: 100%; }
   padding: 1rem;
   color: var(--text-light);
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .map-search-container {
-    max-width: calc(100% - 30px);
-    bottom: 15px;
-  }
-  
-  .map-search-input {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .map-search-button {
-    padding: 0.75rem 1rem;
-  }
-  
-  .suggestion-item {
-    padding: 0.6rem 1rem;
-  }
+/* Styles pour le marqueur utilisateur (déplacé de JS vers CSS) */
+.user-location-marker {
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    border: 3px solid var(--main-white); /* Utilisation de la variable CSS */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-/* --- Fin Bloc CSS --- */
+.user-location-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    opacity: 0.4;
+    animation: user-location-pulse 2s infinite;
+}
+@keyframes user-location-pulse {
+    0% { transform: scale(1); opacity: 0.4; }
+    70% { transform: scale(3); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+}
+/* Style pour l'input de recherche de carte non trouvé (déplacé de JS vers CSS) */
+.map-search-input.not-found {
+    animation: shake 0.4s ease-in-out;
+    background-color: var(--color-error-bg-transparent); /* Utilisation de la variable CSS */
+}
+/* L'animation @keyframes shake est déjà dans la section responsive. Si elle n'y est pas, ajoutez-la :
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+*/
 
 /* Tarifs */
 .pricing { position: relative; background-color: var(--bg-alt); overflow: hidden; }
@@ -460,7 +469,7 @@ nav ul li a:hover::after { width: 100%; }
 .pricing-feature-text { font-size: 0.9375rem; color: var(--text-color); font-weight: 500; line-height: 1.5; }
 .pricing-action { padding: 0 2rem 2rem; margin-top: 1.5rem; text-align: center; }
 
- /* Partenaires */
+/* Partenaires */
 .partners { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-alt) 100%); }
 .partners-bg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .partners-bg-shape { position: absolute; border-radius: 50%; filter: blur(150px); opacity: 0.15; transition: all 8s ease; }
@@ -522,8 +531,8 @@ nav ul li a:hover::after { width: 100%; }
 .process-step:hover .process-step-number { transform: scale(1.1); box-shadow: var(--shadow-md); }
 .process-step-content h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
 .process-step-content p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 0; }
-.partner-contact-form { background: linear-gradient(135deg, var(--bg-alt), #E0F2FE); border-radius: var(--radius-xl); padding: 3rem; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; border: 1px solid var(--border-color);}
-.dark-mode .partner-contact-form { background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark)); border: 1px solid var(--border-color);}
+.partner-contact-form { background: var(--hero-background-gradient); border-radius: var(--radius-xl); padding: 3rem; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; border: 1px solid var(--border-color);}
+.dark-mode .partner-contact-form { background: var(--hero-merchant-background-gradient-dark); border: 1px solid var(--border-color);}
 .partner-contact-form.active { opacity: 1; transform: translateY(0); }
 .form-header { text-align: center; margin-bottom: 2.5rem; }
 .form-header h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-color); }
@@ -556,8 +565,8 @@ nav ul li a:hover::after { width: 100%; }
 
 /* Download */
 .download { position: relative; overflow: hidden; padding-bottom: 100px; }
-.download-container { position: relative; background: linear-gradient(135deg, var(--bg-alt), #E0F2FE); border-radius: var(--radius-2xl); padding: 4rem; margin-top: 4rem; overflow: hidden; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; z-index: 2; border: 1px solid var(--border-color);}
-.dark-mode .download-container { background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark)); border: 1px solid var(--border-color); }
+.download-container { position: relative; background: var(--hero-background-gradient); border-radius: var(--radius-2xl); padding: 4rem; margin-top: 4rem; overflow: hidden; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; z-index: 2; border: 1px solid var(--border-color);}
+.dark-mode .download-container { background: var(--hero-merchant-background-gradient-dark); border: 1px solid var(--border-color); }
 .download-container.active { opacity: 1; transform: translateY(0); }
 .download-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.1; overflow: hidden; pointer-events: none; }
 .dark-mode .download-bg { opacity: 0.05; }
@@ -593,8 +602,6 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; margin-bottom: 4rem; position: relative; z-index: 1; }
 .footer-logo-area { grid-column: span 1 / span 2; max-width: 400px; }
 .footer-logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color-dark); margin-bottom: 1rem; text-decoration: none; text-transform: uppercase; }
-/*.footer-logo span { color: var(--gradient-end-color); /* Cyan pour le span */
-/*.footer-logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--gradient-end-color); /* Cyan pour icone */
 .footer-description { color: #9CA3AF; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: 1rem; }
 .social-icon { width: 2.25rem; height: 2.25rem; background-color: var(--dark-bg-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.9rem; text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--border-color-dark);}
@@ -621,44 +628,28 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-links-bottom a:hover { color: var(--gradient-end-color); }
 
 .logo {
-  display: flex; /* Gardez ceci pour l'alignement vertical si nécessaire */
-  align-items: center; /* Gardez ceci */
+  display: flex;
+  align-items: center;
   text-decoration: none;
   flex-shrink: 0;
-  /* margin-right: auto;  Peut-être encore utile */
-  /* z-index: 1001; */
-  /* Supprimez les styles spécifiques au texte comme font-weight, font-size, text-transform, text-shadow, color ici
-     sauf si vous voulez qu'ils s'appliquent à un texte qui serait *à côté* de l'image, ce qui n'est pas le cas. */
 }
-
 .footer-logo {
-  display: flex; /* Gardez ceci */
-  align-items: center; /* Gardez ceci */
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  /* margin-bottom: 1rem; Peut-être encore utile */
-  /* Supprimez les styles de texte ici aussi */
 }
-
-/* NOUVEAUX STYLES pour l'image du logo */
 .logo img,
 .footer-logo img {
-  max-height: 70px; /* Ajustez cette valeur ! Hauteur maximale souhaitée pour votre logo. */
-  width: auto;     /* Permet à la largeur de s'ajuster pour conserver les proportions. */
-  display: block;  /* Bon pour éviter des espaces inattendus sous l'image. */
-  /* Vous pouvez ajouter d'autres styles si nécessaire, par exemple :
-     margin-right: 10px; // Si vous aviez du texte à côté.
-  */
+  max-height: 70px;
+  width: auto;
+  display: block;
 }
-
-/* Spécificité pour le footer si vous voulez une taille différente */
 .footer-logo img {
-  max-height: 70px; /* Par exemple, un peu plus grand dans le footer */
+  max-height: 70px;
 }
-
 .logo span {
   color: var(--accent-color);
 }
-
 .footer-logo span {
   color: var(--gradient-end-color);
 }
@@ -669,7 +660,6 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* === Responsive Adjustments (inchangés structurellement) === */
-/* Les ajustements de taille/mise en page restent les mêmes */
 @media (max-width: 1200px) {
   .container { padding: 0 2rem; }
   .hero-content { gap: 3rem; }
@@ -678,7 +668,6 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { max-width: 95%; margin-top: 3rem; margin-bottom: 3rem; }
   .partner-contact-form { padding: 2.5rem; }
 }
-
 @media (max-width: 992px) {
   section { padding: 80px 0; }
   .hero { padding-top: 80px; padding-bottom: 60px; min-height: auto; text-align: center; }
@@ -704,26 +693,20 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   .partner-logo { padding: 0.8rem 1.5rem; }
   .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { max-width: 95%; margin-top: 2.5rem; margin-bottom: 2.5rem; }
 }
-
 @media (max-width: 768px) {
   .suggestion-item {
     padding: 0.8rem 1rem; /* Plus d'espace pour les doigts */
     min-height: 44px; /* Taille minimale recommandée pour les cibles tactiles */
   }
-  
-  /* Augmenter légèrement la zone cliquable */
-  .map-search-button, 
+  .map-search-button,
   .map-location-button {
     min-width: 44px;
     min-height: 44px;
   }
-  
-  /* Agrandir la zone de suggestions sur petit écran */
   .search-suggestions.active {
     max-height: 250px; /* Réduire légèrement la hauteur maximale */
   }
 }
-
 @media (max-width: 768px) {
   h1 { font-size: clamp(2.5rem, 8vw, 3rem); }
   h2 { font-size: clamp(2rem, 6vw, 2.5rem); }
@@ -774,17 +757,15 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   .partner-logo i { font-size: 1.2rem; }
   .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { margin-top: 2rem; margin-bottom: 2rem; }
 }
-
 .hero-phone.no-frame {
- border: none;
- background-color: transparent;
- box-shadow: var(--shadow-lg);
+  border: none;
+  background-color: transparent;
+  box-shadow: var(--shadow-lg);
 }
-
 /* Styles pour le nouveau conteneur hero */
 .hero-container {
   position: relative;
-  background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
+  background: var(--hero-background-gradient); /* Utilisation de la variable */
   border-radius: var(--radius-xl);
   overflow: hidden;
   padding: 3rem 2rem;
@@ -792,87 +773,797 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   border: 1px solid var(--border-color);
   margin-top: 1,5rem;
 }
-
 /* Ajustement pour le mode sombre */
 .dark-mode .hero-container {
-  background: none !important; /* Supprime tout fond existant */
-  background-image: none !important; /* Force la suppression du dégradé */
-  background-color: var(--dark-bg-base) !important; /* Applique uniquement la couleur noire */
+  background: var(--dark-bg-base) !important; /* Fallback si la variable de gradient pour dark mode n'est pas spécifique */
 }
-
-/* Adaptation des éléments internes */
 .hero-container .hero-content {
   margin: 0;
 }
-
 .hero-container .hero-text {
   padding-left: 1rem;
 }
-
-/* Ajustement du scroll-down */
 .hero-container .scroll-down {
   bottom: -4rem;
 }
-
-/* Media queries */
 @media (max-width: 992px) {
   .hero-container {
     padding: 2.5rem 1.5rem;
   }
-  
   .hero-container .hero-text {
     padding-left: 0;
   }
 }
-
 @media (max-width: 768px) {
   .hero-container {
     padding: 2rem 1rem;
     margin-top: 2rem;
   }
 }
-
 @media (max-width: 576px) {
-   h1 { font-size: 2rem; }
-   h2 { font-size: 1.8rem; }
-   .container { padding: 0 1rem; }
-   .hero-buttons { flex-direction: column; align-items: stretch; gap: 0.8rem; }
-   .hero-buttons .btn { width: 100%; }
-   header .container .header-content .logo { font-size: 1.1rem; margin-right: 0.5rem; }
-   header .container .header-content nav .btn.btn-primary { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
-   header .container .header-content nav .mobile-menu-button { font-size: 1.5rem; }
-   header .container .header-content nav { gap: 0.3rem; }
-   header .container .header-content { padding: 0.6rem 0; }
-   .download-buttons { flex-direction: column; align-items: center; }
-   .app-button { width: 100%; max-width: 280px;}
-   .benefits .section-inner { padding: 1.5rem; margin-top: -10px; margin-bottom: 10px; }
-   .stat-number { font-size: 2rem; }
-   .stat-label { font-size: 0.8rem; }
-   .testimonial-content p { font-size: 1rem; }
-   .form-header h3 { font-size: 1.5rem; }
-   .form-header p { font-size: 0.9rem; }
-   .partner-contact-form { padding: 1.5rem; }
-   .partner-logos { flex-direction: column; align-items: center; gap: 1rem; }
-   .partner-logo { width: 80%; }
-   .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { margin-top: 1.5rem; margin-bottom: 1.5rem; }
-   .partners-cards { gap: 1rem; }
-   .process-steps { padding: 1.5rem; }
-   .process-steps::before { left: 1rem; top: 3rem; height: calc(100% - 6rem); }
-   .process-step-number { width: 2rem; height: 2rem; font-size: 1rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    .container { padding: 0 1rem; }
+    .hero-buttons { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+    .hero-buttons .btn { width: 100%; }
+    header .container .header-content .logo { font-size: 1.1rem; margin-right: 0.5rem; }
+    header .container .header-content nav .btn.btn-primary { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
+    header .container .header-content nav .mobile-menu-button { font-size: 1.5rem; }
+    header .container .header-content nav { gap: 0.3rem; }
+    header .container .header-content { padding: 0.6rem 0; }
+    .download-buttons { flex-direction: column; align-items: center; }
+    .app-button { width: 100%; max-width: 280px;}
+    .benefits .section-inner { padding: 1.5rem; margin-top: -10px; margin-bottom: 10px; }
+    .stat-number { font-size: 2rem; }
+    .stat-label { font-size: 0.8rem; }
+    .testimonial-content p { font-size: 1rem; }
+    .form-header h3 { font-size: 1.5rem; }
+    .form-header p { font-size: 0.9rem; }
+    .partner-contact-form { padding: 1.5rem; }
+    .partner-logos { flex-direction: column; align-items: center; gap: 1rem; }
+    .partner-logo { width: 80%; }
+    .partners-benefits, .partners-stats, .partners-testimonials, .partner-process, .partner-contact-form, .partner-brands { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+    .partners-cards { gap: 1rem; }
+    .process-steps { padding: 1.5rem; }
+    .process-steps::before { left: 1rem; top: 3rem; height: calc(100% - 6rem); }
+    .process-step-number { width: 2rem; height: 2rem; font-size: 1rem; }
 }
-
-/* === Desktop Scroll Down (> 992px) === */
-  @media (min-width: 993px) {
-     .hero-content { grid-template-columns: 1fr minmax(auto, 500px); gap: 2rem; }
-     .hero-image { grid-row: 1 / 3; max-width: 500px; }
-     .hero-phone-container { max-width: 400px; }
-     .scroll-down { bottom: -2rem; transform: translateX(-50%) translateY(130px); }
-     .scroll-down.active { transform: translateX(-50%) translateY(100px); }
+@media (min-width: 993px) {
+    .hero-content { grid-template-columns: 1fr minmax(auto, 500px); gap: 2rem; }
+    .hero-image { grid-row: 1 / 3; max-width: 500px; }
+    .hero-phone-container { max-width: 400px; }
+    .scroll-down { bottom: -2rem; transform: translateX(-50%) translateY(130px); }
+    .scroll-down.active { transform: translateX(-50%) translateY(100px); }
 }
-
 @media (max-width: 768px) {
- .hero-phone {
-   transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg) scale(0.8);
- }
+  .hero-phone {
+    transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg) scale(0.8);
+  }
 }
 
+/* --- STYLES AJOUTÉS/DÉPLACÉS POUR CENTRALISATION DES COULEURS --- */
+
+/* Classes utilitaires pour le texte */
+.text-accent-color { /* Pour remplacer style="color: #4C86F9;" */
+    color: var(--accent-color); /* --accent-color est déjà #4C86F9 en mode clair */
+}
+.text-danger { /* Pour remplacer style="color: red;" ou les JS modifiant la couleur en rouge */
+    color: var(--color-error);
+}
+
+/* Styles pour les messages de formulaire (utilisés par JS) */
+#partner-form-message.form-message { /* ID est déjà utilisé, on ajoute la classe de base */
+    /* Les styles de base (padding, text-align, etc.) peuvent être dans .form-message */
+}
+.form-message {
+    padding: 0.75rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1rem;
+    min-height: 1.5em; /* de l'ancien style en ligne */
+    color: inherit; /* de l'ancien style en ligne, sera surchargé */
+    border-width: 1px;
+    border-style: solid;
+}
+.form-message-success { /* Classe à ajouter par JS */
+    color: var(--color-success);
+    background-color: var(--color-success-bg-transparent);
+    border-color: var(--color-success-border-transparent);
+}
+.form-message-error { /* Classe à ajouter par JS */
+    color: var(--color-error);
+    background-color: var(--color-error-bg-transparent);
+    border-color: var(--color-error-border-transparent);
+}
+
+/* Styles déplacés depuis lading_partner.html <style> */
+.metric-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.metric-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+.metric-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+.metric-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+.metric-label {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.feature-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+.feature-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    background-image: var(--gradient-primary);
+    background-color: var(--gradient-start-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+.feature-description {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+.hero-merchant { /* Utilisé dans lading_partner.html */
+    position: relative;
+    background: var(--hero-background-gradient); /* Utilisation de la variable */
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    padding: 3rem 2rem;
+    margin-top: 1.5rem; /* Correction de la virgule en point */
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+.dark-mode .hero-merchant {
+    background: var(--hero-merchant-background-gradient-dark); /* Variable pour dark mode */
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.testimonial-card { /* Ce sélecteur est différent de .partners .testimonial-slider */
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+.testimonial-quote {
+    font-style: italic;
+    color: var(--text-color);
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+}
+.testimonial-quote::before,
+.testimonial-quote::after {
+    content: '"';
+    font-size: 2rem;
+    font-family: 'Georgia', serif;
+    line-height: 0;
+    color: var(--accent-color);
+    opacity: 0.5;
+    position: absolute;
+}
+.testimonial-quote::before { left: 0; top: 0.5rem; }
+.testimonial-quote::after { right: 0; bottom: -0.3rem; }
+.testimonial-author-info { display: flex; align-items: center; }
+.testimonial-card .testimonial-avatar { /* Spécificité pour éviter conflit avec celui de .partners */
+    width: 3rem;
+    height: 3rem;
+    background-image: var(--gradient-primary);
+    background-color: var(--gradient-start-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--main-white);
+    font-size: 1.2rem;
+}
+.testimonial-card .testimonial-author h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: var(--text-color);
+}
+.testimonial-card .testimonial-author span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+.faq-container { margin-top: 3rem; }
+.faq-item {
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-color);
+}
+.faq-question {
+    padding: 1.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.faq-question i { color: var(--accent-color); transition: transform 0.3s ease; }
+.faq-question.active i { transform: rotate(180deg); }
+.faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    display: none;
+}
+.faq-answer.active { display: block; animation: fadeIn 0.5s ease; }
+.hero-cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+.comparison-table th,
+.comparison-table td {
+    padding: 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+.comparison-table th {
+    background-color: var(--accent-color);
+    color: var(--main-white);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.comparison-table th:nth-child(2) { text-align: center; }
+.comparison-table tbody tr { background-color: var(--bg-color); transition: all 0.3s ease; }
+.comparison-table tbody tr:hover { background-color: var(--bg-alt); }
+.comparison-table td:first-child { text-align: left; font-weight: 600; color: var(--text-color); }
+.comparison-table td:nth-child(2) { text-align: center; }
+.comparison-table .check { color: var(--color-success); font-size: 1.2rem; }
+.comparison-table .times { color: var(--color-error); font-size: 1.2rem; } /* Si cette classe est réactivée */
+.step-merchant {
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.step-merchant:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-color);
+}
+.step-number-merchant {
+    min-width: 3rem;
+    height: 3rem;
+    background-image: var(--gradient-primary);
+    background-color: var(--gradient-start-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-white);
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.step-content-merchant h4 { margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--text-color); }
+.step-content-merchant p { margin-bottom: 0; color: var(--text-light); }
+
+/* Styles déplacés depuis webinar.html <style> */
+.webinar-section {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    position: relative;
+    overflow: visible;
+}
+.webinar-container { /* classe .webinar-container-gradiented peut être utilisée si le fond est identique au hero */
+    background: var(--hero-background-gradient); /* Utilisation de la variable */
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+.dark-mode .webinar-container {
+    background: var(--webinar-container-background-gradient-dark); /* Variable pour dark mode */
+}
+.webinar-header { text-align: center; margin-bottom: 2.5rem; }
+.webinar-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.webinar-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-alt);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+.webinar-badge i { margin-right: 0.5rem; color: var(--accent-color); }
+.dark-mode .webinar-badge { background-color: var(--bg-alt-dark); }
+.webinar-stream-container {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+.webinar-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.webinar-content { display: flex; gap: 2rem; margin-top: 2rem; }
+.webinar-main { flex: 3; }
+.webinar-sidebar { flex: 1; min-width: 250px; }
+.webinar-info {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+.webinar-info h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-color); }
+.webinar-info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+.webinar-info-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--bg-alt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+}
+.webinar-info-text h4 { font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-color); }
+.webinar-info-text p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 0; }
+.webinar-description {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+.webinar-description h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-color); }
+.webinar-cta {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+.webinar-cta h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-color); }
+.webinar-cta p { font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem; }
+.webinar-placeholder { /* Pour le conteneur youtube avant chargement ou si erreur */
+    width: 100%;
+    height: 100%;
+    background-color: var(--webinar-placeholder-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--webinar-placeholder-text);
+    font-weight: 600;
+}
+.webinar-placeholder i { font-size: 3rem; margin-bottom: 1rem; color: var(--accent-color); }
+.webinar-state-container { margin-bottom: 2rem; }
+.webinar-state { display: none; }
+.webinar-state.active { display: block; }
+.webinar-state-placeholder,
+.webinar-state-live, /* Ce conteneur existe-t-il toujours en dehors du stream? */
+.webinar-state-ended,
+.webinar-state-soon {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+.webinar-state-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--accent-color); }
+.webinar-state-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-color); font-weight: 700; }
+.webinar-state-text { font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem; }
+.webinar-timer { /* Ceci semble être le compteur dans l'état "soon" */
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    background: var(--bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 1rem 2rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    background-color: var(--color-live-badge-bg);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--main-white);
+    margin-left: 0.75rem;
+    position: relative;
+}
+.live-badge::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--main-white);
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+.webinar-actions { display: flex; justify-content: flex-end; align-items: center; margin-top: 1.5rem; gap: 1rem; }
+.webinar-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-color);
+    border-radius: var(--radius-full);
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.webinar-action:hover { background-color: var(--bg-alt); transform: translateY(-3px); box-shadow: var(--shadow); }
+.webinar-action i { font-size: 1rem; color: var(--accent-color); }
+#auth-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--backdrop-color);
+    backdrop-filter: blur(5px);
+    display: flex; /* Géré par JS pour l'affichage */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+.auth-prompt-content {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+.auth-prompt-icon { font-size: 3.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
+.auth-prompt-title { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-color); }
+.auth-prompt-text { font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; }
+.auth-prompt-buttons { display: flex; gap: 1rem; justify-content: center; }
+#auth-prompt .login-form { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; width: 100%; }
+#auth-prompt .form-group { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; }
+#auth-prompt .form-group label { font-weight: 600; color: var(--text-color); font-size: 1rem; }
+#auth-prompt .form-group input {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+#auth-prompt .form-group input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(var(--gradient-start-color-rgb), 0.2); }
+#auth-prompt .login-button { margin-top: 0.5rem; padding: 0.75rem; font-size: 1rem; }
+#auth-prompt .login-message { /* Classe de base pour le message */
+    text-align: center;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+#auth-prompt .login-message.error-text { /* Classe à ajouter par JS pour erreur */
+    color: var(--color-error);
+}
+#auth-prompt .login-message.success-text { /* Classe à ajouter par JS pour succès */
+    color: var(--color-success-alt);
+}
+#auth-prompt .login-help { text-align: center; margin: 1rem 0; font-size: 0.9rem; color: var(--text-light); }
+#auth-prompt .auth-prompt-content { max-width: 450px; padding: 2rem; }
+#auth-prompt .auth-prompt-buttons { margin-top: 1rem; }
+.webinar-chat {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    height: 400px;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.webinar-chat-header { padding: 1rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.webinar-chat-title { font-weight: 700; font-size: 1.1rem; color: var(--text-color); display: flex; align-items: center; gap: 0.5rem; }
+.webinar-chat-title i { color: var(--accent-color); }
+.webinar-chat-status { font-size: 0.8rem; color: var(--text-light); display: flex; align-items: center; gap: 0.5rem; }
+.webinar-chat-status-dot { width: 0.5rem; height: 0.5rem; background-color: var(--color-success); border-radius: 50%; }
+.webinar-chat-messages { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.webinar-chat-message { max-width: 80%; padding: 0.75rem 1rem; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.4; position: relative; }
+.webinar-chat-message.user { align-self: flex-end; background-color: var(--accent-color); color: var(--main-white); border-bottom-right-radius: 0; }
+.webinar-chat-message.moderator { align-self: flex-start; background-color: var(--bg-alt); color: var(--text-color); border-bottom-left-radius: 0; }
+.webinar-chat-message-info { font-size: 0.75rem; margin-bottom: 0.3rem; font-weight: 600; }
+.webinar-chat-input-container { padding: 1rem; border-top: 1px solid var(--border-color); display: flex; gap: 0.5rem; }
+.webinar-chat-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: 0.95rem;
+    outline: none;
+    font-family: inherit;
+}
+.webinar-chat-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1); }
+.webinar-chat-send {
+    border-radius: var(--radius-full);
+    margin: 0;
+    border: 1px solid var(--accent-color);
+    padding: 0.75rem 1.25rem;
+    background-color: var(--accent-color);
+    color: var(--main-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.webinar-chat-send:hover { opacity: 0.9; transform: translateY(-2px); }
+.webinar-chat-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.countdown-box {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.countdown-box h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-color); }
+.countdown-timer { display: flex; justify-content: center; gap: 1rem; }
+.countdown-unit { display: flex; flex-direction: column; align-items: center; }
+.countdown-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1rem;
+    min-width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+}
+.countdown-label { font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem; font-weight: 500; }
+.question-form {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+.question-form h3 { font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text-color); text-align: center; }
+.form-group { margin-bottom: 1.5rem; } /* Peut être commun avec #auth-prompt .form-group */
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text-color); }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: 0.95rem;
+    color: var(--text-color);
+    font-family: inherit;
+}
+.form-group textarea { min-height: 100px; resize: vertical; }
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1); }
+.form-submit { text-align: center; }
+/* .form-message est déjà défini plus haut et peut être réutilisé ici */
+#user-account { display: flex; align-items: center; gap: 1rem; }
+.user-info { display: none; align-items: center; gap: 0.5rem; color: var(--text-color); font-weight: 600; font-size: 0.9rem; }
+.user-info-icon { /* S'il est différent de .webinar-info-icon */
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--accent-color);
+    color: var(--main-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Responsive pour les styles ajoutés (webinar et lading_partner) */
+@media (max-width: 992px) {
+    .webinar-content { flex-direction: column; }
+    .webinar-sidebar { min-width: 100%; }
+    .webinar-container { padding: 2rem 1.5rem; }
+}
+@media (max-width: 768px) {
+    .webinar-section { padding-top: 100px; }
+    .webinar-header h1 { font-size: 2rem; }
+    .webinar-action { padding: 0.5rem 1rem; font-size: 0.8rem; }
+    .webinar-timer { font-size: 2rem; padding: 0.75rem 1.5rem; }
+    /* Ajustements pour lading_partner.html sur mobile */
+    .hero-merchant { padding: 3rem 1.5rem; }
+    .hero-cta { flex-direction: column; }
+    .comparison-table th, .comparison-table td { padding: 0.8rem; font-size: 0.9rem; }
+    .step-merchant { flex-direction: column; text-align: center; padding: 1.5rem; }
+    .step-content-merchant { width: 100%; }
+    /* Ajustements pour webinar.html sur mobile */
+    .container { padding-left: 15px; padding-right: 15px; }
+    .webinar-container { padding: 1.5rem 1rem; }
+    .webinar-section { padding-top: 80px; padding-bottom: 40px; }
+    .webinar-header h1 { font-size: 1.75rem; line-height: 1.3; margin-bottom: 0.75rem; }
+    .webinar-header p { font-size: 0.95rem; }
+    .webinar-badge { padding: 0.4rem 0.8rem; font-size: 0.8rem; margin-bottom: 1rem; }
+    .live-badge { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
+    .countdown-box { padding: 1rem; margin-bottom: 1.5rem; }
+    .countdown-box h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .countdown-timer { gap: 0.5rem; }
+    .countdown-value { font-size: 1.5rem; padding: 0.4rem 0.5rem; min-width: 3rem; }
+    .countdown-label { font-size: 0.7rem; }
+    .webinar-chat { height: 300px; }
+    .webinar-chat-header { padding: 0.75rem; }
+    .webinar-chat-messages { padding: 1rem; }
+    .webinar-chat-message { max-width: 85%; padding: 0.6rem 0.8rem; font-size: 0.9rem; }
+    .webinar-chat-input-container { padding: 0.75rem; }
+    .webinar-chat-input { padding: 0.6rem 0.8rem; }
+    .webinar-chat-send { padding: 0.6rem 1rem; }
+    .mobile-menu-button { margin-left: 0.5rem; }
+    .header-content { padding: 0.75rem 0; }
+    .logo { font-size: 1.5rem; }
+    /* .logo-icon est dans le HTML, mais pas stylé explicitement ici, peut être une image */
+}
+@media (max-width: 480px) {
+    .webinar-actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .webinar-action { justify-content: center; padding: 0.75rem 1rem; font-size: 0.9rem; }
+    .countdown-timer { flex-wrap: wrap; justify-content: center; }
+    .countdown-unit { flex: 0 0 calc(50% - 0.5rem); margin-bottom: 0.5rem; }
+    .webinar-info, .webinar-description, .webinar-cta { padding: 1.25rem; margin-bottom: 1.25rem; }
+    .webinar-info h3, .webinar-description h3, .webinar-cta h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .webinar-info-item { gap: 0.75rem; margin-bottom: 1rem; }
+    .webinar-info-icon { width: 2rem; height: 2rem; font-size: 1rem; }
+    .webinar-info-text h4 { font-size: 1rem; }
+    .webinar-info-text p { font-size: 0.85rem; }
+    #auth-prompt .auth-prompt-content { padding: 1.5rem; }
+    .auth-prompt-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .auth-prompt-title { font-size: 1.5rem; }
+    .auth-prompt-text { font-size: 0.95rem; margin-bottom: 1.5rem; }
+    #auth-prompt .form-group input { padding: 0.6rem 0.8rem; }
+    .webinar-state-placeholder, .webinar-state-live, .webinar-state-ended, .webinar-state-soon { padding: 1.25rem; }
+    .webinar-state-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .webinar-state-title { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .webinar-state-text { font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .webinar-timer { font-size: 1.75rem; padding: 0.75rem 1.25rem; margin-bottom: 1.25rem; }
+    .webinar-stream-container { margin-top: 1.25rem; margin-bottom: 1.75rem; }
+    /* Responsive pour login-form dans auth-prompt */
+    #auth-prompt .login-form { gap: 0.5rem; }
+    #auth-prompt .form-group { gap: 0.25rem; }
+    #auth-prompt .form-group label { font-size: 0.9rem; }
+    #auth-prompt .form-group input { font-size: 0.95rem; }
+    #auth-prompt .login-button { padding: 0.7rem; }
+    #auth-prompt .login-help { font-size: 0.8rem; }
+}
+@media (max-width: 360px) {
+    .countdown-unit { flex: 0 0 calc(50% - 0.5rem); }
+    .countdown-value { font-size: 1.3rem; padding: 0.3rem 0.4rem; min-width: 2.5rem; }
+    .countdown-label { font-size: 0.65rem; }
+    .webinar-header h1 { font-size: 1.5rem; }
+    .webinar-badge { font-size: 0.75rem; padding: 0.35rem 0.7rem; }
+    .webinar-container { padding: 1.25rem 0.75rem; }
+    .webinar-info, .webinar-description, .webinar-cta { padding: 1rem; }
+}
+@media (max-width: 992px) { /* Cache les infos utilisateur textes sur mobile pour le header webinar */
+    #user-account .user-info { display: none !important; }
+}
