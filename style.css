@@ -254,7 +254,7 @@ header.scrolled .header-content {
   display: flex;
   align-items: center;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: var(--text-color);
   z-index: 1001;
   text-decoration: none;
@@ -2569,7 +2569,7 @@ footer {
 }
 
 .logo img, .footer-logo img {
-  max-height: 70px;
+  max-height: 60px;
   width: auto;
   display: block;
 }
