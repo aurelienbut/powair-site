@@ -3004,8 +3004,8 @@ footer {
     max-height: 55px; /* Était 70px par défaut. Ajustez cette valeur. */
   }
   header .container .header-content nav .btn.btn-primary {
-    padding: 0.5rem 0.7rem;
-    font-size: 0.8rem;
+    padding: 0.7rem 0.6rem;
+    font-size: 0.7rem;
   }
   header .container .header-content nav .mobile-menu-button {
     font-size: 1.5rem;
