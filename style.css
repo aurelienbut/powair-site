@@ -1,12 +1,24 @@
 /* style.css */
 :root {
   /* === PALETTE GRADIENT BLEU/CYAN === */
-  --gradient-start-color: #4C86F9; /* Bleu vif */
-  --gradient-end-color: #00C4FF;   /* Cyan vif */
-  --gradient-primary: linear-gradient(135deg, var(--gradient-start-color), var(--gradient-end-color));
-  --gradient-primary-hover: linear-gradient(135deg, #3A7BD5, #00B3E6); /* Un peu plus sombre/saturé */
-
-  --gradient-start-color-rgb: 76, 134, 249; /* RGB du bleu de départ */
+  --gradient-start-color: #62acfd; /* Nouveau bleu */
+  --gradient-end-color: #8ddcee;   /* Nouveau cyan */
+  
+  /* Gradient plus harmonieux avec angle ajusté et couleur intermédiaire */
+  --gradient-primary: linear-gradient(120deg, 
+    var(--gradient-start-color), 
+    #75bae6, /* Couleur intermédiaire pour une transition plus douce */
+    var(--gradient-end-color));
+  
+  /* Version hover légèrement plus sombre */
+  --gradient-primary-hover: linear-gradient(120deg, 
+    #5097e4, /* Version plus sombre du bleu */
+    #67a9d3, /* Intermédiaire plus sombre */
+    #7ccad9); /* Version plus sombre du cyan */
+  
+  /* Mise à jour des RGB pour les ombres et transparences */
+  --gradient-start-color-rgb: 98, 172, 253; /* RGB du #62acfd */
+  
   --main-white: #FFFFFF;
   --main-white-rgb: 255, 255, 255;
   --dark-bg-base: #121212; /* Fond très sombre pour dark mode */
@@ -141,8 +153,8 @@ nav ul li a:hover::after { width: 100%; }
 .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(var(--main-white-rgb), 0.1); transform: translateY(-100%); transition: transform 0.3s ease; z-index: -1; }
 .dark-mode .btn::before { background: rgba(0, 0, 0, 0.1); }
 .btn:hover::before { transform: translateY(0); }
-.btn.btn-primary { background-image: var(--gradient-primary); background-color: var(--gradient-start-color); /* Fallback */ color: var(--main-white); box-shadow: 0 4px 15px rgba(var(--gradient-start-color-rgb), 0.2); flex-shrink: 0; }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); background-image: var(--gradient-primary-hover); background-color: #3A7BD5; /* Fallback hover */ }
+.btn.btn-primary { background-image: var(--gradient-primary); background-color: var(--gradient-start-color); /* Fallback */ color: var(--main-white); box-shadow: 0 4px 15px rgba(var(--gradient-start-color-rgb), 0.15); flex-shrink: 0; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); background-image: var(--gradient-primary-hover); background-color: #5097e4; /* Fallback hover */ }
 .btn-secondary { background-color: var(--bg-alt); color: var(--accent-color); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
 .dark-mode .btn-secondary { background-color: var(--bg-alt); border: 1px solid var(--border-color); color: var(--accent-color); }
 .btn-secondary:hover { background-color: var(--border-color); transform: translateY(-3px); box-shadow: var(--shadow); }
@@ -162,7 +174,7 @@ nav ul li a:hover::after { width: 100%; }
 
 /* Effet Fond Dégradé Flottant (Adapté) */
 .gradient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -2; }
-.gradient-orb { position: absolute; border-radius: 50%; filter: blur(180px); opacity: 0.3; transition: all 5s ease; }
+.gradient-orb { position: absolute; border-radius: 50%; filter: blur(180px); opacity: 0.25; transition: all 5s ease; }
 .dark-mode .gradient-orb { opacity: 0.2; filter: blur(200px); }
 .gradient-orb:nth-child(1) { top: -30%; left: -20%; width: 70vw; height: 70vw; background-color: var(--gradient-start-color); animation: floatBG 25s ease-in-out infinite alternate; }
 .gradient-orb:nth-child(2) { bottom: -40%; right: -30%; width: 80vw; height: 80vw; background-color: var(--gradient-end-color); animation: floatBG 30s ease-in-out infinite alternate 1s; }
@@ -238,8 +250,8 @@ nav ul li a:hover::after { width: 100%; }
 .dark-mode .benefits-bg-shape { opacity: 0.8; }
 .benefits-bg-shape:nth-child(1) { top: -25%; right: -25%; background: linear-gradient(135deg, var(--gradient-end-color), var(--bg-color)); }
 .benefits-bg-shape:nth-child(2) { bottom: -25%; left: -25%; background: linear-gradient(135deg, var(--gradient-start-color), var(--gradient-end-color)); }
-.dark-mode .benefits-bg-shape:nth-child(1) { background: linear-gradient(135deg, rgba(0, 196, 255, 0.1), rgba(18, 18, 18, 0.1)); }
-.dark-mode .benefits-bg-shape:nth-child(2) { background: linear-gradient(135deg, rgba(76, 134, 249, 0.1), rgba(0, 196, 255, 0.1)); }
+.dark-mode .benefits-bg-shape:nth-child(1) { background: linear-gradient(135deg, rgba(141, 220, 238, 0.1), rgba(18, 18, 18, 0.1)); }
+.dark-mode .benefits-bg-shape:nth-child(2) { background: linear-gradient(135deg, rgba(98, 172, 253, 0.1), rgba(141, 220, 238, 0.1)); }
 .benefits-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 4rem; }
 .benefit-card { border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, opacity 0.5s ease; overflow: hidden; position: relative; border: 1px solid var(--border-color); opacity: 0; transform: translateY(30px); background-color: var(--bg-color); }
 .benefit-card.active { opacity: 1; transform: translateY(0); }
@@ -441,7 +453,7 @@ nav ul li a:hover::after { width: 100%; }
 */
 
 /* Tarifs */
-.pricing { position: relative; background-color: var(--bg-alt); overflow: hidden; }
+.pricing { position: relative; overflow: hidden; background-color: var(--bg-alt); }
 .pricing::before, .pricing::after { content: ''; position: absolute; border-radius: 50%; opacity: 0.2; z-index: 0; pointer-events: none; filter: blur(120px); }
 .pricing::before { width: 800px; height: 800px; background-color: var(--gradient-start-color); top: -400px; left: -300px; opacity: 0.1; }
 .dark-mode .pricing::before { opacity: 0.05; }
@@ -1566,4 +1578,12 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 }
 @media (max-width: 992px) { /* Cache les infos utilisateur textes sur mobile pour le header webinar */
     #user-account .user-info { display: none !important; }
+}
+
+/* Ajout de l'animation shake manquante */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
 }
