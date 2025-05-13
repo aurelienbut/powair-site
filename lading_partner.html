@@ -14,14 +14,6 @@
   <style>
     /* Ajustements spécifiques pour la landing page commerçants */
 
-    /* Ajout d'une règle spécifique pour la version mobile */
-    @media (max-width: 768px) {
-      .hero {
-        margin-top: 70px !important;
-        padding-top: 30px !important;
-      }
-    }
-
     .metric-card {
       padding: 2rem;
       border-radius: var(--radius-lg);
@@ -380,17 +372,7 @@
     }
 
     /* Réduction de l'espace pour la section hero en version desktop */
-    @media (min-width: 992px) {
-      .hero {
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-      }
 
-      .hero-merchant {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-    }
 
     @media (max-width: 768px) {
       .hero-merchant {
@@ -432,40 +414,40 @@
   </div>
 
   <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
-        </a>
-        <nav>
-          <ul>
-            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-            <li><a href="#avantages">Vos avantages</a></li>
-            <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-          <a href="#contact" class="btn btn-primary">
-            <i class="fas fa-handshake"></i>
-            Devenir Partenaire
-          </a>
-          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </nav>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <ul>
-        <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-        <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
-        <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
-        <li style="--i:4"><a href="#faq">FAQ</a></li>
-        <li style="--i:5"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
-      </ul>
-    </div>
-  </header>
+  <div class="container">
+  <div class="header-content">
+  <a href="index.html" class="logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <nav>
+  <ul>
+  <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li><a href="#avantages">Vos avantages</a></li>
+  <li><a href="#fonctionnement">Fonctionnement</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-primary">
+  <i class="fas fa-handshake"></i>
+  Devenir Partenaire
+  </a>
+  <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+  <i class="fas fa-bars"></i>
+  </button>
+  </nav>
+  </div>
+  </div>
+  <div class="mobile-menu">
+  <ul>
+  <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
+  <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
+  <li style="--i:4"><a href="#faq">FAQ</a></li>
+  <li style="--i:5"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
+  </ul>
+  </div>
+ </header>
 
-  <section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
+  <section class="hero" id="hero">
     <div class="container">
       <div class="hero-merchant" style="text-align: center; padding: 2.5rem 2rem;">
         <div style="max-width: 800px; margin: 0 auto;">
@@ -766,74 +748,74 @@
   </section>
 
   <footer id="footer">
-    <div class="footer-bg"></div>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo-area">
-          <a href="index.html" class="footer-logo">
-            <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
-          </a>
-          <p class="footer-description">
-            Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer-title">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-            <li><a href="#avantages">Vos avantages</a></li>
-            <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Ressources</h4>
-          <ul class="footer-links">
-            <li><a href="#">Kit marketing partenaires</a></li>
-            <li><a href="#">Guide d'installation</a></li>
-            <li><a href="#">Études de cas</a></li>
-            <li><a href="#">Support technique</a></li>
-            <li><a href="#">Blog partenaires</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Contactez-nous</h4>
-          <div class="footer-contact">
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <span class="contact-text"><a href="mailto:partenaires@powair.example.com">partenaires@powair.example.com</a></span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          © 2024 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
-        </p>
-        <div class="footer-links-bottom">
-          <a href="#">Conditions</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">Plan du site</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div class="footer-bg"></div>
+  <div class="container">
+  <div class="footer-content">
+  <div class="footer-logo-area">
+  <a href="index.html" class="footer-logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <p class="footer-description">
+  Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
+  </p>
+  <div class="footer-social">
+  <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+  <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  </div>
+  <div>
+  <h4 class="footer-title">Navigation</h4>
+  <ul class="footer-links">
+  <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li><a href="#avantages">Vos avantages</a></li>
+  <li><a href="#fonctionnement">Fonctionnement</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="#contact">Contact</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Ressources</h4>
+  <ul class="footer-links">
+  <li><a href="#">Kit marketing partenaires</a></li>
+  <li><a href="#">Guide d'installation</a></li>
+  <li><a href="#">Études de cas</a></li>
+  <li><a href="#">Support technique</a></li>
+  <li><a href="#">Blog partenaires</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Contactez-nous</h4>
+  <div class="footer-contact">
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+  <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+  <span class="contact-text"><a href="mailto:partenaires@powair.example.com">partenaires@powair.example.com</a></span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-phone"></i></div>
+  <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+  <p class="footer-copyright">
+  © 2024 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+  </p>
+  <div class="footer-links-bottom">
+  <a href="#">Conditions</a>
+  <a href="#">Confidentialité</a>
+  <a href="#">Plan du site</a>
+  </div>
+  </div>
+  </div>
+ </footer>
 
   <script src="script.js"></script>
 
