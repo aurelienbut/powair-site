@@ -97,8 +97,8 @@ header.scrolled { background-color: rgba(var(--main-white-rgb), 0.95); box-shado
 .header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; transition: padding 0.3s ease; flex-wrap: nowrap; }
 header.scrolled .header-content { padding: 0.75rem 0; }
 .logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color); z-index: 1001; text-decoration: none; flex-shrink: 0; margin-right: auto; text-shadow: 0 1px 3px rgba(var(--gradient-start-color-rgb), 0.1); text-transform: uppercase; }
-.logo span { color: var(--accent-color); }
-.logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--accent-color); }
+/*.logo span { color: var(--accent-color); } */
+/*.logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--accent-color); }*/
 nav { display: flex; align-items: center; gap: 1rem; }
 nav ul { display: flex; list-style: none; gap: 1.5rem; }
 nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 700; font-size: 1rem; transition: color 0.2s ease; position: relative; padding-bottom: 4px; }
@@ -593,8 +593,8 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; margin-bottom: 4rem; position: relative; z-index: 1; }
 .footer-logo-area { grid-column: span 1 / span 2; max-width: 400px; }
 .footer-logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color-dark); margin-bottom: 1rem; text-decoration: none; text-transform: uppercase; }
-.footer-logo span { color: var(--gradient-end-color); /* Cyan pour le span */ }
-.footer-logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--gradient-end-color); /* Cyan pour icone */ }
+/*.footer-logo span { color: var(--gradient-end-color); /* Cyan pour le span */
+/*.footer-logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--gradient-end-color); /* Cyan pour icone */
 .footer-description { color: #9CA3AF; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: 1rem; }
 .social-icon { width: 2.25rem; height: 2.25rem; background-color: var(--dark-bg-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.9rem; text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--border-color-dark);}
@@ -619,6 +619,49 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-links-bottom { display: flex; gap: 1.5rem; }
 .footer-links-bottom a { color: #9CA3AF; text-decoration: none; font-size: 0.8rem; transition: all 0.3s ease; }
 .footer-links-bottom a:hover { color: var(--gradient-end-color); }
+
+.logo {
+  display: flex; /* Gardez ceci pour l'alignement vertical si nécessaire */
+  align-items: center; /* Gardez ceci */
+  text-decoration: none;
+  flex-shrink: 0;
+  /* margin-right: auto;  Peut-être encore utile */
+  /* z-index: 1001; */
+  /* Supprimez les styles spécifiques au texte comme font-weight, font-size, text-transform, text-shadow, color ici
+     sauf si vous voulez qu'ils s'appliquent à un texte qui serait *à côté* de l'image, ce qui n'est pas le cas. */
+}
+
+.footer-logo {
+  display: flex; /* Gardez ceci */
+  align-items: center; /* Gardez ceci */
+  text-decoration: none;
+  /* margin-bottom: 1rem; Peut-être encore utile */
+  /* Supprimez les styles de texte ici aussi */
+}
+
+/* NOUVEAUX STYLES pour l'image du logo */
+.logo img,
+.footer-logo img {
+  max-height: 70px; /* Ajustez cette valeur ! Hauteur maximale souhaitée pour votre logo. */
+  width: auto;     /* Permet à la largeur de s'ajuster pour conserver les proportions. */
+  display: block;  /* Bon pour éviter des espaces inattendus sous l'image. */
+  /* Vous pouvez ajouter d'autres styles si nécessaire, par exemple :
+     margin-right: 10px; // Si vous aviez du texte à côté.
+  */
+}
+
+/* Spécificité pour le footer si vous voulez une taille différente */
+.footer-logo img {
+  max-height: 70px; /* Par exemple, un peu plus grand dans le footer */
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+.footer-logo span {
+  color: var(--gradient-end-color);
+}
 
 /* Animations (inchangées) */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -747,6 +790,7 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   padding: 3rem 2rem;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-color);
+  margin-top: 5rem;
 }
 
 /* Ajustement pour le mode sombre */
