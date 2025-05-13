@@ -1,11 +1,10 @@
 --- Concatenation du projet : C:\Users\aurel\Documents\full of doc\POW'AIR\html version\toufff one ---
---- Généré le : 2025-05-13 15:32:40.724875 ---
+--- Généré le : 2025-05-13 17:04:01.786922 ---
 
---- Fichiers Inclus (4) ---
+--- Fichiers Inclus (3) ---
 - index.html
 - lading_partner.html
 - style.css
-- webinar.html
 
 ========================================
 
@@ -38,42 +37,42 @@
   </div>
 
   <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="#" class="logo">
-          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
-        </a>
-        <nav>
-          <ul>
-            <li><a href="#how-it-works">Comment ça marche</a></li>
-            <li><a href="#network">Notre réseau</a></li>
-            <li><a href="#benefits">Avantages</a></li>
-            <li><a href="#pricing">Tarifs</a></li>
-            <li><a href="#partners">Partenaires</a></li>
-          </ul>
-          <a href="#download" class="btn btn-primary">
-            <i class="fas fa-download"></i>
-            Télécharger l'App
-          </a>
-          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </nav>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <ul>
-        <li style="--i:1"><a href="#how-it-works">Comment ça marche</a></li>
-        <li style="--i:2"><a href="#network">Notre réseau</a></li>
-        <li style="--i:3"><a href="#benefits">Avantages</a></li>
-        <li style="--i:4"><a href="#pricing">Tarifs</a></li>
-        <li style="--i:5"><a href="#partners">Partenaires</a></li>
-        <li style="--i:6"><a href="#download" class="btn btn-primary">Télécharger l'App</a></li>
-      </ul>
-    </div>
-  </header>
+  <div class="container">
+  <div class="header-content">
+  <a href="#" class="logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <nav>
+  <ul>
+  <li><a href="#how-it-works">Comment ça marche</a></li>
+  <li><a href="#network">Notre réseau</a></li>
+  <li><a href="#benefits">Avantages</a></li>
+  <li><a href="#pricing">Tarifs</a></li>
+  <li><a href="#partners">Partenaires</a></li>
+  </ul>
+  <a href="#download" class="btn btn-primary">
+  <i class="fas fa-download"></i>
+  Télécharger l'App
+  </a>
+  <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+  <i class="fas fa-bars"></i>
+  </button>
+  </nav>
+  </div>
+  </div>
+  <div class="mobile-menu">
+  <ul>
+  <li style="--i:1"><a href="#how-it-works">Comment ça marche</a></li>
+  <li style="--i:2"><a href="#network">Notre réseau</a></li>
+  <li style="--i:3"><a href="#benefits">Avantages</a></li>
+  <li style="--i:4"><a href="#pricing">Tarifs</a></li>
+  <li style="--i:5"><a href="#partners">Partenaires</a></li>
+  <li style="--i:6"><a href="#download" class="btn btn-primary">Télécharger l'App</a></li>
+  </ul>
+  </div>
+ </header>
 
-  <section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
+  <section class="hero" id="hero">
   <div class="container">
     <div class="hero-container" style="position: relative; background: linear-gradient(135deg, var(--bg-alt), #E0F2FE); border-radius: var(--radius-xl); overflow: hidden; padding: 3rem 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
       <div class="hero-content">
@@ -539,73 +538,73 @@
 
 
   <footer id="footer">
-    <div class="footer-bg"></div>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo-area">
-            <a href="#" class="footer-logo">
-              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
-            </a>
-            <p class="footer-description">
-              La solution simple et rapide pour ne plus jamais être à court de batterie. Louez, utilisez, retournez.
-            </p>
-            <div class="footer-social">
-              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div>
-          <h4 class="footer-title">Liens rapides</h4>
-          <ul class="footer-links">
-            <li><a href="#how-it-works">Comment ça marche</a></li>
-            <li><a href="#network">Notre réseau</a></li>
-            <li><a href="#benefits">Avantages</a></li>
-            <li><a href="#pricing">Tarifs</a></li>
-              <li><a href="#partners">Devenir partenaire</a></li>
-          </ul>
-        </div>
-          <div>
-          <h4 class="footer-title">Légal</h4>
-          <ul class="footer-links">
-            <li><a href="#">Conditions générales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">Mentions légales</a></li>
-              <li><a href="#">Gestion des cookies</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Contactez-nous</h4>
-          <div class="footer-contact">
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
-            </div>
-              <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          © 2024 POW'AIR. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
-        </p>
-        <div class="footer-links-bottom">
-          <a href="#">Conditions</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">Plan du site</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div class="footer-bg"></div>
+  <div class="container">
+  <div class="footer-content">
+  <div class="footer-logo-area">
+  <a href="#" class="footer-logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <p class="footer-description">
+  La solution simple et rapide pour ne plus jamais être à court de batterie. Louez, utilisez, retournez.
+  </p>
+  <div class="footer-social">
+  <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+  <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  </div>
+  <div>
+  <h4 class="footer-title">Liens rapides</h4>
+  <ul class="footer-links">
+  <li><a href="#how-it-works">Comment ça marche</a></li>
+  <li><a href="#network">Notre réseau</a></li>
+  <li><a href="#benefits">Avantages</a></li>
+  <li><a href="#pricing">Tarifs</a></li>
+  <li><a href="#partners">Devenir partenaire</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Légal</h4>
+  <ul class="footer-links">
+  <li><a href="#">Conditions générales</a></li>
+  <li><a href="#">Politique de confidentialité</a></li>
+  <li><a href="#">Mentions légales</a></li>
+  <li><a href="#">Gestion des cookies</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Contactez-nous</h4>
+  <div class="footer-contact">
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+  <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+  <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-phone"></i></div>
+  <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+  <p class="footer-copyright">
+  © 2024 POW'AIR. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+  </p>
+  <div class="footer-links-bottom">
+  <a href="#">Conditions</a>
+  <a href="#">Confidentialité</a>
+  <a href="#">Plan du site</a>
+  </div>
+  </div>
+  </div>
+ </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
@@ -634,14 +633,6 @@
 
   <style>
     /* Ajustements spécifiques pour la landing page commerçants */
-
-    /* Ajout d'une règle spécifique pour la version mobile */
-    @media (max-width: 768px) {
-      .hero {
-        margin-top: 70px !important;
-        padding-top: 30px !important;
-      }
-    }
 
     .metric-card {
       padding: 2rem;
@@ -742,7 +733,7 @@
       border-radius: var(--radius-xl);
       overflow: hidden;
       padding: 3rem 2rem;
-      margin-top: 1rem;
+      margin-top: 1,5rem;
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--border-color);
     }
@@ -1001,17 +992,7 @@
     }
 
     /* Réduction de l'espace pour la section hero en version desktop */
-    @media (min-width: 992px) {
-      .hero {
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-      }
 
-      .hero-merchant {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-    }
 
     @media (max-width: 768px) {
       .hero-merchant {
@@ -1053,40 +1034,40 @@
   </div>
 
   <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
-        </a>
-        <nav>
-          <ul>
-            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-            <li><a href="#avantages">Vos avantages</a></li>
-            <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-          <a href="#contact" class="btn btn-primary">
-            <i class="fas fa-handshake"></i>
-            Devenir Partenaire
-          </a>
-          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </nav>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <ul>
-        <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-        <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
-        <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
-        <li style="--i:4"><a href="#faq">FAQ</a></li>
-        <li style="--i:5"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
-      </ul>
-    </div>
-  </header>
+  <div class="container">
+  <div class="header-content">
+  <a href="index.html" class="logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <nav>
+  <ul>
+  <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li><a href="#avantages">Vos avantages</a></li>
+  <li><a href="#fonctionnement">Fonctionnement</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-primary">
+  <i class="fas fa-handshake"></i>
+  Devenir Partenaire
+  </a>
+  <button class="mobile-menu-button" aria-label="Ouvrir le menu">
+  <i class="fas fa-bars"></i>
+  </button>
+  </nav>
+  </div>
+  </div>
+  <div class="mobile-menu">
+  <ul>
+  <li style="--i:1"><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li style="--i:2"><a href="#avantages">Vos avantages</a></li>
+  <li style="--i:3"><a href="#fonctionnement">Fonctionnement</a></li>
+  <li style="--i:4"><a href="#faq">FAQ</a></li>
+  <li style="--i:5"><a href="#contact" class="btn btn-primary">Devenir Partenaire</a></li>
+  </ul>
+  </div>
+ </header>
 
-  <section class="hero" id="hero" style="padding-top: 50px !important; padding-bottom: 10px; margin-top: 20px !important;">
+  <section class="hero" id="hero">
     <div class="container">
       <div class="hero-merchant" style="text-align: center; padding: 2.5rem 2rem;">
         <div style="max-width: 800px; margin: 0 auto;">
@@ -1387,74 +1368,74 @@
   </section>
 
   <footer id="footer">
-    <div class="footer-bg"></div>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo-area">
-          <a href="index.html" class="footer-logo">
-            <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
-          </a>
-          <p class="footer-description">
-            Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer-title">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
-            <li><a href="#avantages">Vos avantages</a></li>
-            <li><a href="#fonctionnement">Fonctionnement</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Ressources</h4>
-          <ul class="footer-links">
-            <li><a href="#">Kit marketing partenaires</a></li>
-            <li><a href="#">Guide d'installation</a></li>
-            <li><a href="#">Études de cas</a></li>
-            <li><a href="#">Support technique</a></li>
-            <li><a href="#">Blog partenaires</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Contactez-nous</h4>
-          <div class="footer-contact">
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <span class="contact-text"><a href="mailto:partenaires@powair.example.com">partenaires@powair.example.com</a></span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          © 2024 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
-        </p>
-        <div class="footer-links-bottom">
-          <a href="#">Conditions</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">Plan du site</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div class="footer-bg"></div>
+  <div class="container">
+  <div class="footer-content">
+  <div class="footer-logo-area">
+  <a href="index.html" class="footer-logo">
+  <img src="images/logo-powair.png" alt="Pow'air Logo Icon"> Pow<span>'air</span>
+  </a>
+  <p class="footer-description">
+  Rejoignez le réseau de recharge mobile #1 en France et faites partie de la révolution énergétique.
+  </p>
+  <div class="footer-social">
+  <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+  <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  </div>
+  <div>
+  <h4 class="footer-title">Navigation</h4>
+  <ul class="footer-links">
+  <li><a href="#pourquoi-partenaire">Pourquoi devenir partenaire</a></li>
+  <li><a href="#avantages">Vos avantages</a></li>
+  <li><a href="#fonctionnement">Fonctionnement</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="#contact">Contact</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Ressources</h4>
+  <ul class="footer-links">
+  <li><a href="#">Kit marketing partenaires</a></li>
+  <li><a href="#">Guide d'installation</a></li>
+  <li><a href="#">Études de cas</a></li>
+  <li><a href="#">Support technique</a></li>
+  <li><a href="#">Blog partenaires</a></li>
+  </ul>
+  </div>
+  <div>
+  <h4 class="footer-title">Contactez-nous</h4>
+  <div class="footer-contact">
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+  <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+  <span class="contact-text"><a href="mailto:partenaires@powair.example.com">partenaires@powair.example.com</a></span>
+  </div>
+  <div class="contact-item">
+  <div class="contact-icon"><i class="fas fa-phone"></i></div>
+  <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+  <p class="footer-copyright">
+  © 2024 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
+  </p>
+  <div class="footer-links-bottom">
+  <a href="#">Conditions</a>
+  <a href="#">Confidentialité</a>
+  <a href="#">Plan du site</a>
+  </div>
+  </div>
+  </div>
+ </footer>
 
   <script src="script.js"></script>
 
@@ -1690,8 +1671,8 @@ header.scrolled { background-color: rgba(var(--main-white-rgb), 0.95); box-shado
 .header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; transition: padding 0.3s ease; flex-wrap: nowrap; }
 header.scrolled .header-content { padding: 0.75rem 0; }
 .logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color); z-index: 1001; text-decoration: none; flex-shrink: 0; margin-right: auto; text-shadow: 0 1px 3px rgba(var(--gradient-start-color-rgb), 0.1); text-transform: uppercase; }
-.logo span { color: var(--accent-color); }
-.logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--accent-color); }
+/*.logo span { color: var(--accent-color); } */
+/*.logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--accent-color); }*/
 nav { display: flex; align-items: center; gap: 1rem; }
 nav ul { display: flex; list-style: none; gap: 1.5rem; }
 nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 700; font-size: 1rem; transition: color 0.2s ease; position: relative; padding-bottom: 4px; }
@@ -2186,8 +2167,8 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; margin-bottom: 4rem; position: relative; z-index: 1; }
 .footer-logo-area { grid-column: span 1 / span 2; max-width: 400px; }
 .footer-logo { display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; color: var(--text-color-dark); margin-bottom: 1rem; text-decoration: none; text-transform: uppercase; }
-.footer-logo span { color: var(--gradient-end-color); /* Cyan pour le span */ }
-.footer-logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--gradient-end-color); /* Cyan pour icone */ }
+/*.footer-logo span { color: var(--gradient-end-color); /* Cyan pour le span */
+/*.footer-logo-icon { margin-right: 0.5rem; font-size: 1.75rem; color: var(--gradient-end-color); /* Cyan pour icone */
 .footer-description { color: #9CA3AF; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: 1rem; }
 .social-icon { width: 2.25rem; height: 2.25rem; background-color: var(--dark-bg-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.9rem; text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--border-color-dark);}
@@ -2212,6 +2193,49 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 .footer-links-bottom { display: flex; gap: 1.5rem; }
 .footer-links-bottom a { color: #9CA3AF; text-decoration: none; font-size: 0.8rem; transition: all 0.3s ease; }
 .footer-links-bottom a:hover { color: var(--gradient-end-color); }
+
+.logo {
+  display: flex; /* Gardez ceci pour l'alignement vertical si nécessaire */
+  align-items: center; /* Gardez ceci */
+  text-decoration: none;
+  flex-shrink: 0;
+  /* margin-right: auto;  Peut-être encore utile */
+  /* z-index: 1001; */
+  /* Supprimez les styles spécifiques au texte comme font-weight, font-size, text-transform, text-shadow, color ici
+     sauf si vous voulez qu'ils s'appliquent à un texte qui serait *à côté* de l'image, ce qui n'est pas le cas. */
+}
+
+.footer-logo {
+  display: flex; /* Gardez ceci */
+  align-items: center; /* Gardez ceci */
+  text-decoration: none;
+  /* margin-bottom: 1rem; Peut-être encore utile */
+  /* Supprimez les styles de texte ici aussi */
+}
+
+/* NOUVEAUX STYLES pour l'image du logo */
+.logo img,
+.footer-logo img {
+  max-height: 70px; /* Ajustez cette valeur ! Hauteur maximale souhaitée pour votre logo. */
+  width: auto;     /* Permet à la largeur de s'ajuster pour conserver les proportions. */
+  display: block;  /* Bon pour éviter des espaces inattendus sous l'image. */
+  /* Vous pouvez ajouter d'autres styles si nécessaire, par exemple :
+     margin-right: 10px; // Si vous aviez du texte à côté.
+  */
+}
+
+/* Spécificité pour le footer si vous voulez une taille différente */
+.footer-logo img {
+  max-height: 70px; /* Par exemple, un peu plus grand dans le footer */
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+.footer-logo span {
+  color: var(--gradient-end-color);
+}
 
 /* Animations (inchangées) */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -2340,6 +2364,7 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
   padding: 3rem 2rem;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-color);
+  margin-top: 2rem;
 }
 
 /* Ajustement pour le mode sombre */
@@ -2377,6 +2402,7 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 @media (max-width: 768px) {
   .hero-container {
     padding: 2rem 1rem;
+    margin-top: 2rem;
   }
 }
 
@@ -2427,1750 +2453,3 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 
 
 --- Fin du fichier : style.css ---
-
---- Début du fichier : webinar.html ---
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Pow'air - Webinaire</title>
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Styles spécifiques à la page webinaire */
-    .webinar-section {
-      padding-top: 120px;
-      padding-bottom: 80px;
-      position: relative;
-      overflow: visible;
-    }
-
-    .webinar-container {
-      background: linear-gradient(135deg, var(--bg-alt), #E0F2FE);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      padding: 3rem 2rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
-      position: relative;
-    }
-
-    .dark-mode .webinar-container {
-      background: linear-gradient(135deg, var(--bg-alt-dark), var(--bg-color-dark));
-      border: 1px solid var(--border-color);
-    }
-
-    .webinar-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .webinar-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .webinar-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      background-color: var(--bg-alt);
-      border-radius: var(--radius-full);
-      box-shadow: var(--shadow);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: var(--accent-color);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    .webinar-badge i {
-      margin-right: 0.5rem;
-      color: var(--accent-color);
-    }
-
-    .dark-mode .webinar-badge {
-      background-color: var(--bg-alt-dark);
-    }
-
-    .webinar-stream-container {
-      margin-top: 2rem;
-      margin-bottom: 2.5rem;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-color);
-      position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    }
-
-    .webinar-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .webinar-content {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .webinar-main {
-      flex: 3;
-    }
-
-    .webinar-sidebar {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .webinar-info {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      margin-bottom: 2rem;
-    }
-
-    .webinar-info h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    .webinar-info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .webinar-info-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      background-color: var(--bg-alt);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      flex-shrink: 0;
-      border: 1px solid var(--border-color);
-    }
-
-    .webinar-info-text h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: var(--text-color);
-    }
-
-    .webinar-info-text p {
-      font-size: 0.95rem;
-      color: var(--text-light);
-      margin-bottom: 0;
-    }
-
-    .webinar-description {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      margin-bottom: 2rem;
-    }
-
-    .webinar-description h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-color);
-    }
-
-    .webinar-cta {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      text-align: center;
-    }
-
-    .webinar-cta h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    .webinar-cta p {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-    }
-
-    .webinar-placeholder {
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .webinar-placeholder i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-    }
-
-    /* States */
-    .webinar-state-container {
-      margin-bottom: 2rem;
-    }
-
-    .webinar-state {
-      display: none;
-    }
-
-    .webinar-state.active {
-      display: block;
-    }
-
-    .webinar-state-placeholder,
-    .webinar-state-live,
-    .webinar-state-ended,
-    .webinar-state-soon {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      text-align: center;
-    }
-
-    .webinar-state-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-    }
-
-    .webinar-state-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-      font-weight: 700;
-    }
-
-    .webinar-state-text {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-    }
-
-    .webinar-timer {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent-color);
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      padding: 1rem 2rem;
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--border-color);
-    }
-
-    /* Live badge */
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.3rem 0.75rem;
-      background-color: #E53E3E;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: white;
-      margin-left: 0.75rem;
-      position: relative;
-    }
-
-    .live-badge::before {
-      content: '';
-      width: 0.5rem;
-      height: 0.5rem;
-      background-color: white;
-      border-radius: 50%;
-      margin-right: 0.4rem;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 1; }
-    }
-
-    /* Actions */
-    .webinar-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: 1.5rem;
-      gap: 1rem;
-    }
-
-    .webinar-action {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: var(--bg-color);
-      border-radius: var(--radius-full);
-      padding: 0.5rem 1.25rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-color);
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .webinar-action:hover {
-      background-color: var(--bg-alt);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
-
-    .webinar-action i {
-      font-size: 1rem;
-      color: var(--accent-color);
-    }
-
-    /* Auth prompt */
-    #auth-prompt {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .auth-prompt-content {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-lg);
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-    }
-
-    .auth-prompt-icon {
-      font-size: 3.5rem;
-      color: var(--accent-color);
-      margin-bottom: 1.5rem;
-    }
-
-    .auth-prompt-title {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    .auth-prompt-text {
-      font-size: 1.1rem;
-      color: var(--text-light);
-      margin-bottom: 2rem;
-    }
-
-    .auth-prompt-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-    
-
-    /* Styles pour le formulaire de connexion dans la fenêtre modale */
-    #auth-prompt .login-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      width: 100%;
-    }
-
-    #auth-prompt .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: left;
-    }
-
-    #auth-prompt .form-group label {
-      font-weight: 600;
-      color: var(--text-color);
-      font-size: 1rem;
-    }
-
-    #auth-prompt .form-group input {
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      font-size: 1rem;
-      color: var(--text-color);
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-
-    #auth-prompt .form-group input:focus {
-      outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(var(--gradient-start-color-rgb), 0.2);
-    }
-
-    #auth-prompt .login-button {
-      margin-top: 0.5rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-    }
-
-    #auth-prompt .login-message {
-      text-align: center;
-      min-height: 1.5rem;
-      margin-top: 0.5rem;
-      color: #E53E3E;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    #auth-prompt .login-message.success {
-      color: #38A169;
-    }
-
-    #auth-prompt .login-help {
-      text-align: center;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-
-    #auth-prompt .auth-prompt-content {
-      max-width: 450px;
-      padding: 2rem;
-    }
-
-    #auth-prompt .auth-prompt-buttons {
-      margin-top: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      .webinar-content {
-        flex-direction: column;
-      }
-
-      .webinar-sidebar {
-        min-width: 100%;
-      }
-
-      .webinar-container {
-        padding: 2rem 1.5rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .webinar-section {
-        padding-top: 100px;
-      }
-
-      .webinar-header h1 {
-        font-size: 2rem;
-      }
-
-      .webinar-action {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-      }
-
-      .webinar-timer {
-        font-size: 2rem;
-        padding: 0.75rem 1.5rem;
-      }
-    }
-
-    /* Amélioration du responsive pour Pow'air Webinaire */
-
-/* Ajustements globaux pour mobile */
-@media (max-width: 768px) {
-  /* Réduction des marges et paddings généraux */
-  .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .webinar-container {
-    padding: 1.5rem 1rem;
-  }
-  
-  .webinar-section {
-    padding-top: 80px;
-    padding-bottom: 40px;
-  }
-  
-  /* Titre principal plus petit */
-  .webinar-header h1 {
-    font-size: 1.75rem;
-    line-height: 1.3;
-    margin-bottom: 0.75rem;
-  }
-  
-  .webinar-header p {
-    font-size: 0.95rem;
-  }
-  
-  /* Ajustement du badge webinaire */
-  .webinar-badge {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-  }
-  
-  .live-badge {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.7rem;
-  }
-  
-  /* Optimisation du compte à rebours */
-  .countdown-box {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .countdown-box h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .countdown-timer {
-    gap: 0.5rem;
-  }
-  
-  .countdown-value {
-    font-size: 1.5rem;
-    padding: 0.4rem 0.5rem;
-    min-width: 3rem;
-  }
-  
-  .countdown-label {
-    font-size: 0.7rem;
-  }
-  
-  /* Chat plus adapté */
-  .webinar-chat {
-    height: 300px;
-  }
-  
-  .webinar-chat-header {
-    padding: 0.75rem;
-  }
-  
-  .webinar-chat-messages {
-    padding: 1rem;
-  }
-  
-  .webinar-chat-message {
-    max-width: 85%;
-    padding: 0.6rem 0.8rem;
-    font-size: 0.9rem;
-  }
-  
-  .webinar-chat-input-container {
-    padding: 0.75rem;
-  }
-  
-  .webinar-chat-input {
-    padding: 0.6rem 0.8rem;
-  }
-  
-  .webinar-chat-send {
-    padding: 0.6rem 1rem;
-  }
-}
-
-/* Ajustements pour petit mobile */
-@media (max-width: 480px) {
-  /* Réorganisation des boutons d'action */
-  .webinar-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-  
-  .webinar-action {
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  /* Compte à rebours encore plus compact */
-  .countdown-timer {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .countdown-unit {
-    flex: 0 0 calc(50% - 0.5rem);
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Information blocs plus compacts */
-  .webinar-info, 
-  .webinar-description, 
-  .webinar-cta {
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .webinar-info h3,
-  .webinar-description h3,
-  .webinar-cta h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .webinar-info-item {
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-  
-  .webinar-info-icon {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-  }
-  
-  .webinar-info-text h4 {
-    font-size: 1rem;
-  }
-  
-  .webinar-info-text p {
-    font-size: 0.85rem;
-  }
-  
-  /* Ajustement du modal de connexion */
-  #auth-prompt .auth-prompt-content {
-    padding: 1.5rem;
-  }
-  
-  .auth-prompt-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .auth-prompt-title {
-    font-size: 1.5rem;
-  }
-  
-  .auth-prompt-text {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  #auth-prompt .form-group input {
-    padding: 0.6rem 0.8rem;
-  }
-  
-  /* Ajuster les états du webinaire */
-  .webinar-state-placeholder,
-  .webinar-state-live,
-  .webinar-state-ended,
-  .webinar-state-soon {
-    padding: 1.25rem;
-  }
-  
-  .webinar-state-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .webinar-state-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .webinar-state-text {
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .webinar-timer {
-    font-size: 1.75rem;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  /* Amélioration de la hauteur du container vidéo */
-  .webinar-stream-container {
-    margin-top: 1.25rem;
-    margin-bottom: 1.75rem;
-  }
-}
-
-/* Correction spécifique pour l'affichage sur très petits écrans */
-@media (max-width: 360px) {
-  .countdown-unit {
-    flex: 0 0 calc(50% - 0.5rem);
-  }
-  
-  .countdown-value {
-    font-size: 1.3rem;
-    padding: 0.3rem 0.4rem;
-    min-width: 2.5rem;
-  }
-  
-  .countdown-label {
-    font-size: 0.65rem;
-  }
-  
-  .webinar-header h1 {
-    font-size: 1.5rem;
-  }
-  
-  .webinar-badge {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.7rem;
-  }
-  
-  /* Réduire encore les padding pour gagner de l'espace */
-  .webinar-container {
-    padding: 1.25rem 0.75rem;
-  }
-  
-  .webinar-info, 
-  .webinar-description, 
-  .webinar-cta {
-    padding: 1rem;
-  }
-}
-
-/* Correction d'affichage pour le formulaire de connexion sur mobile */
-@media (max-width: 480px) {
-  #auth-prompt .login-form {
-    gap: 0.5rem;
-  }
-  
-  #auth-prompt .form-group {
-    gap: 0.25rem;
-  }
-  
-  #auth-prompt .form-group label {
-    font-size: 0.9rem;
-  }
-  
-  #auth-prompt .form-group input {
-    font-size: 0.95rem;
-  }
-  
-  #auth-prompt .login-button {
-    padding: 0.7rem;
-  }
-  
-  #auth-prompt .login-help {
-    font-size: 0.8rem;
-  }
-}
-
-/* Amélioration de la navigation mobile */
-@media (max-width: 768px) {
-  .mobile-menu-button {
-    margin-left: 0.5rem;
-  }
-  
-  .header-content {
-    padding: 0.75rem 0;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-  }
-  
-  .logo-icon {
-    font-size: 1.1rem;
-    margin-right: 0.25rem;
-  }
-}
-
-/* Optimisation du footer pour mobile */
-@media (max-width: 768px) {
-  .footer-content {
-    gap: 2rem;
-  }
-  
-  .footer-logo {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer-description {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .footer-links li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .footer-copyright {
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer-links-bottom {
-    justify-content: center;
-  }
-  
-  .footer-links-bottom a {
-    font-size: 0.85rem;
-    margin: 0 0.5rem;
-  }
-  
-  .contact-item {
-    margin-bottom: 0.75rem;
-  }
-  
-  .contact-text {
-    font-size: 0.9rem;
-  }
-}
-
-    
-    /* Chat */
-    .webinar-chat {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      height: 400px;
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .webinar-chat-header {
-      padding: 1rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .webinar-chat-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-color);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .webinar-chat-title i {
-      color: var(--accent-color);
-    }
-
-    .webinar-chat-status {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .webinar-chat-status-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      background-color: #22c55e;
-      border-radius: 50%;
-    }
-
-    .webinar-chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .webinar-chat-message {
-      max-width: 80%;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-lg);
-      font-size: 0.95rem;
-      line-height: 1.4;
-      position: relative;
-    }
-
-    .webinar-chat-message.user {
-      align-self: flex-end;
-      background-color: var(--accent-color);
-      color: white;
-      border-bottom-right-radius: 0;
-    }
-
-    .webinar-chat-message.moderator {
-      align-self: flex-start;
-      background-color: var(--bg-alt);
-      color: var(--text-color);
-      border-bottom-left-radius: 0;
-    }
-
-    .webinar-chat-message-info {
-      font-size: 0.75rem;
-      margin-bottom: 0.3rem;
-      font-weight: 600;
-    }
-
-    .webinar-chat-input-container {
-      padding: 1rem;
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .webinar-chat-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      font-size: 0.95rem;
-      outline: none;
-      font-family: inherit;
-    }
-
-    .webinar-chat-input:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1);
-    }
-
-    .webinar-chat-send {
-      border-radius: var(--radius-full);
-      margin: 0;
-      border: 1px solid var(--accent-color);
-      padding: 0.75rem 1.25rem;
-      background-color: var(--accent-color);
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .webinar-chat-send:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    .webinar-chat-send:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* Countdown Box (Always visible) */
-    .countdown-box {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .countdown-box h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .countdown-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .countdown-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent-color);
-      background: var(--bg-alt);
-      border-radius: var(--radius-md);
-      padding: 0.5rem 1rem;
-      min-width: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border-color);
-    }
-
-    .countdown-label {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-
-    /* Question Form */
-    .question-form {
-      background-color: var(--bg-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      margin-bottom: 2rem;
-    }
-
-    .question-form h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-color);
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-color);
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      font-size: 0.95rem;
-      color: var(--text-color);
-      font-family: inherit;
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1);
-    }
-
-    .form-submit {
-      text-align: center;
-    }
-
-    .form-message {
-      margin-top: 1rem;
-      padding: 0.75rem;
-      border-radius: var(--radius-lg);
-      font-size: 0.9rem;
-      text-align: center;
-      display: none;
-    }
-
-    .form-message.success {
-      background-color: rgba(34, 197, 94, 0.1);
-      color: #22c55e;
-      border: 1px solid rgba(34, 197, 94, 0.2);
-    }
-
-    .form-message.error {
-      background-color: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.2);
-    }
-    
-    /* User Account */
-    #user-account {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .user-info {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-color);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    
-    .user-info-icon {
-      width: 2rem;
-      height: 2rem;
-      background-color: var(--accent-color);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-    }
-    
-    @media (max-width: 992px) {
-      .user-info {
-        display: none !important;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="gradient-bg">
-    <div class="gradient-orb"></div>
-    <div class="gradient-orb"></div>
-    <div class="gradient-orb"></div>
-  </div>
-
-  <div class="mode-switch">
-    <i class="fas fa-moon"></i>
-  </div>
-
-  <!-- Auth Prompt (caché par défaut, affiché si non authentifié) -->
-  <div id="auth-prompt" style="display: none;">
-    <div class="auth-prompt-content">
-      <div class="auth-prompt-icon">
-        <i class="fas fa-lock"></i>
-      </div>
-      <h2 class="auth-prompt-title">Accès Webinaire</h2>
-      <p class="auth-prompt-text">Connectez-vous pour accéder au webinaire Pow'air en direct.</p>
-      
-      <form id="login-form" class="login-form">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Votre email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
-        </div>
-        <button type="submit" class="btn btn-primary login-button">
-          <i class="fas fa-sign-in-alt"></i>
-          Se connecter
-        </button>
-        <div id="login-message" class="login-message"></div>
-      </form>
-      
-      <div class="login-help">
-        <p>Problème de connexion ? <a href="mailto:contact@powair.example.com">Contactez notre support</a></p>
-      </div>
-    </div>
-  </div>
-
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-bolt logo-icon"></i>Pow<span>'air</span>
-        </a>
-        <nav>
-          <div id="user-account">
-            <div class="user-info" id="user-info">
-              <div class="user-info-icon" id="user-icon"></div>
-              <span id="user-name"></span>
-            </div>
-            <button id="logout-button" class="btn btn-secondary">
-              <i class="fas fa-sign-out-alt"></i>
-              Déconnexion
-            </button>
-          </div>
-          <button class="mobile-menu-button" aria-label="Ouvrir le menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </nav>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <ul>
-        <li style="--i:1"><a href="#" id="mobile-logout-button" class="btn btn-secondary">Déconnexion</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <section class="webinar-section">
-    <div class="container">
-      <div class="webinar-container">
-        <div class="webinar-header">
-          <div class="webinar-badge">
-            <i class="fas fa-video"></i>
-            Webinaire Exclusif
-            <span class="live-badge" id="webinar-status-badge">EN DIRECT</span>
-          </div>
-          <h1>L'innovation énergétique mobile avec Pow'air</h1>
-          <p>Découvrez les dernières innovations et projets à venir pour notre réseau de recharge mobile.</p>
-        </div>
-
-        <!-- Compte à rebours (toujours visible) -->
-        <div class="countdown-box">
-          <h3>Prochain webinaire dans</h3>
-          <div class="countdown-timer">
-            <div class="countdown-unit">
-              <div class="countdown-value" id="countdown-days">00</div>
-              <div class="countdown-label">Jours</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-value" id="countdown-hours">00</div>
-              <div class="countdown-label">Heures</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-value" id="countdown-minutes">00</div>
-              <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-unit">
-              <div class="countdown-value" id="countdown-seconds">00</div>
-              <div class="countdown-label">Secondes</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Conteneur d'états du webinaire -->
-        <div class="webinar-state-container">
-          <!-- État : Chargement -->
-          <div id="state-loading" class="webinar-state">
-            <div class="webinar-state-placeholder">
-              <div class="webinar-state-icon">
-                <i class="fas fa-spinner fa-spin"></i>
-              </div>
-              <h3 class="webinar-state-title">Chargement du webinaire...</h3>
-              <p class="webinar-state-text">Merci de patienter pendant que nous préparons le webinaire.</p>
-            </div>
-          </div>
-
-          <!-- État : Bientôt -->
-          <div id="state-soon" class="webinar-state">
-            <div class="webinar-state-soon">
-              <div class="webinar-state-icon">
-                <i class="fas fa-hourglass-half"></i>
-              </div>
-              <h3 class="webinar-state-title">Le webinaire commencera bientôt</h3>
-              <p class="webinar-state-text">Préparez-vous, le direct débutera prochainement. Inscrivez-vous ci-dessous pour être notifié lorsque nous commencerons.</p>
-            </div>
-          </div>
-
-          <!-- État : En direct -->
-          <div id="state-live" class="webinar-state active">
-            <div class="webinar-stream-container">
-              <div id="youtube-container" class="webinar-placeholder">
-                <i class="fas fa-lock"></i>
-                <p>Le lecteur vidéo sera disponible après connexion</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- État : Terminé -->
-          <div id="state-ended" class="webinar-state">
-            <div class="webinar-state-ended">
-              <div class="webinar-state-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-              <h3 class="webinar-state-title">Le webinaire est terminé</h3>
-              <p class="webinar-state-text">Merci d'avoir participé à notre webinaire. Le replay sera bientôt disponible.</p>
-              <a href="#" class="btn btn-primary" id="replay-button">
-                <i class="fas fa-play"></i>
-                Regarder le replay
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Actions du webinaire (partage, téléchargement, etc.) -->
-        <div class="webinar-actions">
-          <button class="webinar-action" id="share-button">
-            <i class="fas fa-share-alt"></i> Partager
-          </button>
-          <button class="webinar-action" id="download-button">
-            <i class="fas fa-file-pdf"></i> Télécharger la présentation
-          </button>
-          <button class="webinar-action" id="notify-button">
-            <i class="fas fa-bell"></i> Être notifié
-          </button>
-        </div>
-
-        <!-- Contenu principal du webinaire -->
-        <div class="webinar-content">
-          <div class="webinar-main">
-            <!-- Chat en direct (déplacé avant la description) -->
-            <div class="webinar-chat">
-              <div class="webinar-chat-header">
-                <div class="webinar-chat-title">
-                  <i class="fas fa-comments"></i> Chat en direct
-                </div>
-                <div class="webinar-chat-status">
-                  <div class="webinar-chat-status-dot"></div> En ligne
-                </div>
-              </div>
-              <div class="webinar-chat-messages" id="chat-messages">
-                <div class="webinar-chat-message moderator">
-                  <div class="webinar-chat-message-info">Modérateur</div>
-                  Bienvenue dans le chat du webinaire ! Posez vos questions ici, nous y répondrons pendant la session.
-                </div>
-                <div class="webinar-chat-message moderator">
-                  <div class="webinar-chat-message-info">Anne Dupont (PDG)</div>
-                  Ravi de vous accueillir pour ce webinaire sur les innovations Pow'air ! Nous commencerons dans quelques instants.
-                </div>
-              </div>
-              <div class="webinar-chat-input-container">
-                <input type="text" class="webinar-chat-input" id="chat-input" placeholder="Écrivez votre message..." aria-label="Message">
-                <button class="webinar-chat-send" id="chat-send">
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-              </div>
-            </div>
-            
-
-          <div class="webinar-sidebar">
-
-            <div class="webinar-info">
-              <h3>Informations</h3>
-              <div class="webinar-info-item">
-                <div class="webinar-info-icon">
-                  <i class="fas fa-calendar-alt"></i>
-                </div>
-                <div class="webinar-info-text">
-                  <h4>Date et heure</h4>
-                  <p id="webinar-date">10 Mai 2025, 14:00</p>
-                </div>
-              </div>
-              <div class="webinar-info-item">
-                <div class="webinar-info-icon">
-                  <i class="fas fa-clock"></i>
-                </div>
-                <div class="webinar-info-text">
-                  <h4>Durée</h4>
-                  <p>1 heure 30 minutes</p>
-                </div>
-              </div>
-              <div class="webinar-info-item">
-                <div class="webinar-info-icon">
-                  <i class="fas fa-user"></i>
-                </div>
-                <div class="webinar-info-text">
-                  <h4>Présentateurs</h4>
-                  <p>Anne Dupont, PDG<br>Marc Lambert, Directeur technique</p>
-                </div>
-              </div>
-              <div class="webinar-info-item">
-                <div class="webinar-info-icon">
-                  <i class="fas fa-language"></i>
-                </div>
-                <div class="webinar-info-text">
-                  <h4>Langue</h4>
-                  <p>Français</p>
-                </div>
-              </div>
-              
-              <!-- Ajout de la section "À propos de ce webinaire" -->
-              <div class="webinar-info-divider" style="height: 1px; background-color: var(--border-color); margin: 1.5rem 0;"></div>
-              
-              <h3>À propos de ce webinaire</h3>
-              <p>Rejoignez notre PDG et notre équipe de développement pour une présentation exclusive des innovations à venir pour Pow'air. Durant cette session, nous aborderons :</p>
-              <ul>
-                <li>Les nouvelles générations de batteries à haute capacité</li>
-                <li>L'extension de notre réseau dans de nouvelles villes</li>
-                <li>Notre engagement environnemental et économie circulaire</li>
-                <li>Les futures fonctionnalités de notre application mobile</li>
-                <li>Un aperçu de nos partenariats stratégiques pour 2025</li>
-              </ul>
-              <p>Une session de questions-réponses sera organisée à la fin de la présentation. Vous pourrez poser vos questions directement via le chat en direct.</p>
-            </div>
-
-            <div class="webinar-cta">
-              <h3>Besoin d'informations complémentaires ?</h3>
-              <p>Programmez un rendez-vous personnalisé avec l'un de nos conseillers Pow'air.</p>
-              <a href="#" class="btn btn-primary" id="appointment-button">
-                <i class="fas fa-calendar-check"></i>
-                Programmer un rendez-vous
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer id="footer">
-    <div class="footer-bg"></div>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo-area">
-            <a href="index.html" class="footer-logo">
-              <i class="fas fa-bolt footer-logo-icon"></i>Pow<span>'air</span>
-            </a>
-            <p class="footer-description">
-              La solution simple et rapide pour ne plus jamais être à court de batterie. Louez, utilisez, retournez.
-            </p>
-            <div class="footer-social">
-              <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div>
-          <h4 class="footer-title">Liens rapides</h4>
-          <ul class="footer-links">
-            <li><a href="index.html#how-it-works">Comment ça marche</a></li>
-            <li><a href="index.html#network">Notre réseau</a></li>
-            <li><a href="index.html#benefits">Avantages</a></li>
-            <li><a href="index.html#pricing">Tarifs</a></li>
-            <li><a href="index.html#partners">Devenir partenaire</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Légal</h4>
-          <ul class="footer-links">
-            <li><a href="#">Conditions générales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Gestion des cookies</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Contactez-nous</h4>
-          <div class="footer-contact">
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <span class="contact-text">123 Rue Fictive,<br>75000 Paris, France</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <span class="contact-text"><a href="mailto:contact@powair.example.com">contact@powair.example.com</a></span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <span class="contact-text"><a href="tel:+33123456789">+33 1 23 45 67 89</a></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          © 2025 Pow'air. Tous droits réservés. Développé avec <i class="fas fa-heart"></i>.
-        </p>
-        <div class="footer-links-bottom">
-          <a href="#">Conditions</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">Plan du site</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- Variables ---
-        const authPrompt = document.getElementById('auth-prompt');
-        const userInfo = document.getElementById('user-info');
-        const userName = document.getElementById('user-name');
-        const userIcon = document.getElementById('user-icon');
-        const loginForm = document.getElementById('login-form');
-        const loginMessage = document.getElementById('login-message');
-        const logoutButton = document.getElementById('logout-button');
-        const mobileLogoutButton = document.getElementById('mobile-logout-button');
-        const youtubeContainer = document.getElementById('youtube-container');
-        const initialYoutubePlaceholderHTML = youtubeContainer ? youtubeContainer.innerHTML : '<p>Chargement...</p>'; // Sauvegarde du placeholder initial
-    
-        // Configuration (gardée pour l'exemple - Utilisez vos propres valeurs si nécessaire)
-        const webinarConfig = {
-            title: "L'innovation énergétique mobile avec Pow'air",
-            date: "10 Mai, 2025, 14:00",
-            duration: "1 heure 30 minutes",
-            youtubeId: "dQw4w9WgXcQ", // ID YouTube d'exemple
-            state: "live", // 'loading', 'soon', 'live', 'ended'
-            startTime: new Date("2025-05-10T14:00:00").getTime(),
-            endTime: new Date("2025-05-10T15:30:00").getTime(),
-            presentationUrl: "presentation-powair-2025.pdf"
-        };
-    
-        // --- Fonctions d'aide pour l'UI ---
-        function displayUserInfo(user) {
-            if (user && user.name && userInfo && userName && userIcon) {
-                userInfo.style.display = 'flex';
-                userName.textContent = user.name;
-                const initials = user.name.split(' ').map(part => part.charAt(0)).join('').toUpperCase();
-                userIcon.textContent = initials;
-                if(logoutButton) logoutButton.style.display = 'inline-flex';
-            }
-        }
-    
-        function hideUserInfo() {
-            if (userInfo) userInfo.style.display = 'none';
-            if (userName) userName.textContent = '';
-            if (userIcon) userIcon.textContent = '';
-            if(logoutButton) logoutButton.style.display = 'none';
-        }
-    
-        function resetVideoPlayer() {
-            if (youtubeContainer) {
-                youtubeContainer.innerHTML = initialYoutubePlaceholderHTML;
-            }
-        }
-    
-        // --- Fonctions principales ---
-    
-        // Gestion du formulaire de connexion (avec votre fetch original)
-        async function handleLoginSubmit(event) {
-            event.preventDefault();
-    
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const email = emailInput ? emailInput.value : null;
-            const password = passwordInput ? passwordInput.value : null;
-    
-            if (!email || !password) {
-                loginMessage.textContent = 'Veuillez entrer email et mot de passe.';
-                loginMessage.classList.remove('success');
-                return;
-            }
-    
-            const submitButton = loginForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
-            loginMessage.textContent = ''; // Reset message
-    
-            try {
-                // Appel à l'API d'authentification (VOTRE LOGIQUE ORIGINALE)
-                const response = await fetch('/api/auth', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
-                });
-                const result = await response.json();
-    
-                if (response.ok) {
-                    loginMessage.textContent = 'Connexion réussie!';
-                    loginMessage.classList.add('success');
-                    localStorage.setItem('powairAuthToken', result.token);
-    
-                    setTimeout(() => {
-                        authPrompt.style.display = 'none';
-                        displayUserInfo(result.user); // Affiche infos user
-                        initWebinar(); // Initialise le contenu du webinaire
-                        // Pré-remplir form question (si existe et si besoin)
-                        // prefillQuestionForm(result.user);
-                        loginMessage.textContent = '';
-                        loginMessage.classList.remove('success');
-                    }, 500);
-    
-                } else {
-                    loginMessage.textContent = result.error || 'Identifiants incorrects. Veuillez réessayer.';
-                    loginMessage.classList.remove('success');
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = originalButtonText;
-                }
-            } catch (error) {
-                console.error('Erreur lors de la connexion:', error);
-                loginMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
-                loginMessage.classList.remove('success');
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        }
-    
-        // Vérification du token (avec votre fetch original)
-        async function verifyToken(token) {
-            try {
-                // Appel à l'API de vérification (VOTRE LOGIQUE ORIGINALE)
-                const response = await fetch('/api/verify-token', {
-                    method: 'POST', // Ou GET selon votre API
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                     }
-                 });
-                const result = await response.json();
-    
-                if (response.ok) {
-                    authPrompt.style.display = 'none';
-                    displayUserInfo(result.user);
-                    initWebinar(); // Initialise le contenu principal si token valide
-                } else {
-                    localStorage.removeItem('powairAuthToken');
-                    authPrompt.style.display = 'flex';
-                    hideUserInfo();
-                    resetVideoPlayer();
-                }
-            } catch (error) {
-                console.error('Erreur lors de la vérification du token:', error);
-                localStorage.removeItem('powairAuthToken');
-                authPrompt.style.display = 'flex';
-                hideUserInfo();
-                resetVideoPlayer();
-            }
-        }
-    
-        // Fonction de déconnexion (corrigée ET améliorée pour réinitialiser le formulaire)
-    function handleLogout(event) {
-        if (event) { event.preventDefault(); }
-
-        // 1. Actions de déconnexion standard
-        localStorage.removeItem('powairAuthToken');
-        hideUserInfo();
-        resetVideoPlayer();
-
-        // 2. Réinitialiser le formulaire de connexion dans la modale
-        if (loginForm) {
-            // Réinitialiser le message d'erreur/succès
-            if (loginMessage) {
-                loginMessage.textContent = '';
-                loginMessage.classList.remove('success'); // Enlève aussi la classe succès si elle y était
-            }
-
-            // Réinitialiser les champs (optionnel mais propre)
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            if (emailInput) emailInput.value = '';
-            if (passwordInput) passwordInput.value = '';
-
-            // Réinitialiser le bouton de soumission
-            const submitButton = loginForm.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = false; // Réactiver le bouton
-                // Remettre le texte/contenu HTML original du bouton
-                submitButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
-            }
-        }
-
-        // 3. Afficher la modale de connexion (maintenant réinitialisée)
-        authPrompt.style.display = 'flex';
-    }
-    
-        // --- Initialisation du webinaire (Structure conservée) ---
-        function initWebinar() {
-            // Vos fonctions existantes:
-            updateWebinarState(webinarConfig.state); // Met à jour l'état visuel principal
-            if (webinarConfig.state === 'soon') initStateCountdown(webinarConfig.startTime);
-            // Initialisation du lecteur seulement si l'état est 'live' ou pour un replay
-            if (webinarConfig.state === 'live' || (webinarConfig.state === 'ended' /* condition replay activé */)) {
-                 initYoutubePlayer(webinarConfig.youtubeId);
-            }
-            // ... autres initialisations (chat, actions, etc.) ...
-            initChat();
-            // initQuestionForm(); // Décommentez si vous avez cette fonction
-            initMainCountdown(webinarConfig.startTime);
-            setupActionButtons(); // Assurez-vous que les listeners des boutons sont (ré)attachés si nécessaire
-        }
-    
-        function initYoutubePlayer(videoId) {
-            // Fonction pour insérer l'iframe YouTube (URL corrigée)
-            if (youtubeContainer && videoId) {
-                youtubeContainer.innerHTML = ''; // Vide d'abord
-                const iframe = document.createElement('iframe');
-                iframe.id = 'youtube-iframe';
-                iframe.className = 'webinar-iframe';
-                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-                iframe.title = 'Webinaire Pow\'air';
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-                iframe.setAttribute('allowfullscreen', '');
-                youtubeContainer.appendChild(iframe);
-            } else if (!youtubeContainer) {
-                 console.error("YouTube container not found!");
-            }
-        }
-    
-        // --- Mettez ici les DÉFINITIONS de vos autres fonctions si elles étaient dans ce bloc ---
-        // (initChat, updateWebinarState, initStateCountdown, initMainCountdown, setupActionButtons, etc.)
-        // Assurez-vous qu'elles sont bien définies ici ou dans script.js
-        // Exemple (gardez vos définitions réelles):
-        function updateWebinarState(state) { console.log("Updating webinar state to:", state); /* ... votre logique ... */ }
-        function initStateCountdown(time) { console.log("Init state countdown"); /* ... */ }
-        function initChat() { console.log("Init chat"); /* ... */ }
-        // function initQuestionForm() { console.log("Init question form"); /* ... */ }
-        function initMainCountdown(time) { console.log("Init main countdown"); /* ... */ }
-        function setupActionButtons() { console.log("Setup action buttons"); /* ... attacher listeners ...*/ }
-    
-    
-        // --- Logique Principale au Chargement ---
-        const initialAuthToken = localStorage.getItem('powairAuthToken');
-    
-        // Attacher le listener au formulaire de connexion
-        if (loginForm) {
-            loginForm.addEventListener('submit', handleLoginSubmit);
-        } else {
-             console.error("Login form not found!");
-        }
-    
-        // Attacher les listeners aux boutons de déconnexion
-        if (logoutButton) {
-            logoutButton.addEventListener('click', handleLogout);
-        }
-         if (mobileLogoutButton) {
-            mobileLogoutButton.addEventListener('click', function(event) { handleLogout(event); });
-        }
-    
-        // Décider quoi faire au chargement basé sur le token
-        if (!initialAuthToken) {
-            authPrompt.style.display = 'flex';
-            hideUserInfo(); // Assure que user info est caché
-            resetVideoPlayer(); // Assure que la vidéo est le placeholder
-        } else {
-            authPrompt.style.display = 'none'; // Cache la modale en attendant la vérification
-            verifyToken(initialAuthToken); // Vérifie le token existant
-        }
-    
-    });
-    </script>
-</body>
-</html>
-
---- Fin du fichier : webinar.html ---
