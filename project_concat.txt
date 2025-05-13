@@ -1,5 +1,5 @@
 --- Concatenation du projet : C:\Users\aurel\Documents\full of doc\POW'AIR\html version\toufff one ---
---- Généré le : 2025-05-13 23:18:22.517195 ---
+--- Généré le : 2025-05-14 00:46:05.227097 ---
 
 --- Fichiers Inclus (2) ---
 - index.html
@@ -72,40 +72,43 @@
  </header>
 
   <section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-container">
-       <div class="hero-content">
-         <div class="hero-text">
-           <div class="hero-badge">
-             <i class="fas fa-check-circle"></i>
-             #1 en France pour la recharge mobile
+    <div class="container">
+      <div class="hero-container">
+         <div class="hero-content">
+           <div class="hero-text">
+             <div class="hero-badge">
+               <i class="fas fa-check-circle"></i>
+               #1 en France pour la recharge mobile
+             </div>
+             <h1>Louez, <span>Chargez, </span>Retournez ! </h1>
+             <p>
+               Louez une batterie externe dans l’une de nos bornes, utilisez-la aussi longtemps que nécessaire, et retournez la dans la borne la plus proche !
+             </p>
            </div>
-           <h1>Louez, <span>Chargez, </span>Retournez ! </h1>
-           <p>
-             Louez une batterie externe dans l’une de nos bornes, utilisez-la aussi longtemps que nécessaire, et retournez la dans la borne la plus proche !
-           </p>
+           <!-- L'élément .hero-image a été supprimé ici -->
+           <div class="hero-buttons">
+             <a href="#download" class="btn btn-primary">
+               <i class="fas fa-download"></i>
+               Télécharger l'App
+             </a>
+             <a href="#network" class="btn btn-secondary">
+               <i class="fas fa-map-marker-alt"></i>
+               Trouver une borne
+             </a>
+           </div>
          </div>
-         <!-- L'élément .hero-image a été supprimé ici -->
-         <div class="hero-buttons">
-           <a href="#download" class="btn btn-primary">
-             <i class="fas fa-download"></i>
-             Télécharger l'App
-           </a>
-           <a href="#network" class="btn btn-secondary">
-             <i class="fas fa-map-marker-alt"></i>
-             Trouver une borne
-           </a>
-         </div>
+         <!-- L'élément .scroll-down a été déplacé d'ici -->
+       </div> <!-- Fin de hero-container -->
+    </div> <!-- Fin de container -->
+
+    <!-- L'élément .scroll-down est maintenant ici, en dehors de .container et .hero-container, mais toujours dans .hero -->
+    <div class="scroll-down">
+       <div class="scroll-down-text">Découvrir</div>
+       <div class="scroll-down-arrow">
+         <i class="fas fa-chevron-down"></i>
        </div>
-       <div class="scroll-down">
-         <div class="scroll-down-text">Découvrir</div>
-         <div class="scroll-down-arrow">
-           <i class="fas fa-chevron-down"></i>
-         </div>
-       </div>
-     </div>
-  </div>
-</section>
+    </div>
+  </section>
 
   <section class="how-it-works" id="how-it-works">
     <div class="section-bg">
@@ -689,7 +692,7 @@
   --header-height: 80px; /* Estimation pour les grands écrans */
   /* Variables pour les marges du hero-container */
   --hero-container-margin-top: 5rem;
-  --hero-container-margin-bottom: 3rem;
+  --hero-container-margin-bottom: 0rem;
 }
 
 /* Mode "Sombre" */
@@ -1165,9 +1168,9 @@ nav ul li a:hover::after {
   display: flex;
   align-items: center; /* Changed to flex-start in media queries */
   padding-top: 120px; /* Adjusted in media queries */
-  padding-bottom: 100px; /* Adjusted in media queries */
+  padding-bottom: 170px; /* MODIFIÉ: Augmenté pour >= 993px */
   position: relative;
-  overflow: visible;
+  overflow: visible; /* Important pour que .scroll-down puisse sortir visuellement */
 }
 
 .hero-content {
@@ -1320,21 +1323,24 @@ nav ul li a:hover::after {
 }
 
 /* Scroll Down */
-/* Positioned relative to the closest positioned ancestor (.hero or .hero-container) */
+/* Positioned relative to the closest positioned ancestor (now section.hero) */
 .scroll-down {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 1.5rem; /* Valeur par défaut pour les petits écrans, sera ajustée par media query */
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 1s ease 1.5s, transform 1s ease 1.5s;
   z-index: 5;
   cursor: default;
+  display: flex; /* Ajouté pour l'alignement interne */
+  flex-direction: column; /* Ajouté pour l'alignement interne */
+  align-items: center; /* Ajouté pour centrer le texte et la flèche horizontalement */
 }
 
 .scroll-down.active {
   opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
+  transform: translateX(-50%) translateY(-10px); /* translateY est relatif à sa nouvelle position */
 }
 
 .scroll-down-text {
@@ -1342,6 +1348,7 @@ nav ul li a:hover::after {
   font-weight: 500;
   color: var(--text-light);
   margin-bottom: 0.5rem;
+  /* text-align: center; n'est plus nécessaire grâce à align-items: center sur le parent flex */
 }
 
 .scroll-down-arrow {
@@ -1355,6 +1362,7 @@ nav ul li a:hover::after {
   box-shadow: var(--shadow);
   animation: bounce 2s infinite;
   border: 1px solid var(--border-color);
+  /* margin: 0 auto; n'est plus nécessaire grâce à align-items: center sur le parent flex */
 }
 
 .scroll-down-arrow i {
@@ -3277,7 +3285,7 @@ footer {
   }
   .hero {
     padding-top: 80px;
-    padding-bottom: 60px;
+    padding-bottom: 150px; /* MODIFIÉ: Augmenté pour < 993px */
     min-height: auto;
     text-align: center;
     display: flex; /* Keep flex */
@@ -3407,7 +3415,7 @@ footer {
     padding: 0 1.5rem;
   }
   section {
-    padding: 60px 0;
+    padding: 60px 0; /* La section hero a son propre padding-bottom ajusté */
   }
   .how-it-works {
     padding-top: 60px;
@@ -3736,7 +3744,6 @@ footer {
   }
 }
 
-/* Ajout de médias queries pour très petits écrans */
 @media (max-width: 350px) {
   :root {
     --hero-container-margin-top: 1rem;
@@ -3772,10 +3779,10 @@ footer {
     /* Revert transform for larger screens if it was scaled down */
     transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg);
   }
-  /* Scroll down position relative to its parent (.hero or .hero-container) */
+  /* Scroll down position relative to its parent (section.hero) */
   .scroll-down {
-    bottom: 2rem;
-    transform: translateX(-50%);
+    bottom: 2rem; /* Cette valeur est déjà adaptée pour les grands écrans */
+    /* transform: translateX(-50%); est hérité */
   }
   .scroll-down.active {
     opacity: 1;
@@ -5253,14 +5260,7 @@ footer {
     /* Revert transform for larger screens if it was scaled down */
     transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg);
   }
-  .scroll-down {
-    bottom: 2rem;
-    transform: translateX(-50%);
-  }
-  .scroll-down.active {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-10px);
-  }
+  /* .scroll-down est déjà géré par la media query précédente */
 }
 
 @media (max-width: 992px) {
