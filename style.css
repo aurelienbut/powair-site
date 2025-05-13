@@ -2976,8 +2976,8 @@ footer {
   }
   /* Adjust hero-container margins and padding */
   :root {
-    --hero-container-margin-top: 1.5rem;
-    --hero-container-margin-bottom: 1.5rem;
+    --hero-container-margin-top: 1.2rem;
+    --hero-container-margin-bottom: 1.2rem;
   }
   h1 {
     font-size: 2rem;
