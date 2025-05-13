@@ -247,14 +247,14 @@ header.scrolled {
 }
 
 header.scrolled .header-content {
-  padding: 0.70rem 0;
+  padding: 0.7rem 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   z-index: 1001;
   text-decoration: none;
@@ -2569,7 +2569,7 @@ footer {
 }
 
 .logo img, .footer-logo img {
-  max-height: 60px;
+  max-height: 70px;
   width: auto;
   display: block;
 }
@@ -2915,7 +2915,7 @@ footer {
     gap: 0.5rem;
   }
   header .container .header-content .logo {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     flex-shrink: 1;
   }
   header .container .header-content {
@@ -2997,8 +2997,11 @@ footer {
     width: 100%;
   }
   header .container .header-content .logo {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-right: 0.5rem;
+  }
+   header .logo img { /* Cible l'image du logo dans le header */
+    max-height: 55px; /* Était 70px par défaut. Ajustez cette valeur. */
   }
   header .container .header-content nav .btn.btn-primary {
     padding: 0.6rem 0.8rem;
@@ -4442,9 +4445,7 @@ footer {
   .header-content {
     padding: 0.75rem 0;
   }
-  .logo {
-    font-size: 1.5rem;
-  }
+  
   /* .logo-icon est dans le HTML, mais pas stylé explicitement ici, peut être une image */
 }
 
