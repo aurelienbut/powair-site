@@ -828,6 +828,7 @@ footer { background-color: var(--dark-bg-base); color: #9CA3AF; /* Gris clair po
 @media (max-width: 768px) {
   .hero-container {
     padding: 2rem 1rem;
+    margin-top: 2rem;
   }
 }
 
