@@ -3188,7 +3188,7 @@ footer {
     }
     .carousel-slide img {
         max-height: 65%;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
     .carousel-slide-title {
         font-size: 1,8rem;
@@ -3203,7 +3203,7 @@ footer {
     gap: 1.5rem; /* Reduced gap */
   }
   .hero-container .hero-image {
-    max-height: 30vh; /* Further limit image height */
+    max-height: 10vh; /* Further limit image height */
   }
   .hero-container .hero-buttons {
     gap: 0.8rem; /* Reduce gap between stacked buttons */
@@ -3232,7 +3232,7 @@ footer {
   }
   .hero-container .hero-image {
     margin-top: 0.5rem;
-    max-height: 25vh; /* Reduce image height further */
+    max-height: 10vh; /* Reduce image height further */
   }
   .hero-container .hero-buttons {
     margin-top: 0.5rem;
