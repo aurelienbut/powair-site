@@ -3181,22 +3181,24 @@ footer {
         max-width: 320px;
         margin-top: 0rem;
         margin-bottom: 0rem;
-        min-height: 280px; /* Réduire encore un peu */
+        min-height: 250px; /* Réduire encore un peu */
     }
      .hero-text {
-        margin-bottom: 1rem;
+        margin-bottom: 0rem;
     }
     .carousel-slide img {
         max-height: 65%;
         margin-bottom: 0.5rem;
+        margin-top: -7rem;
     }
     .carousel-slide-title {
         font-size: 1,8rem;
+        margin-bottom: -7rem;
     }
 
   /* Adjust hero-container internal padding and gap */
   .hero-container {
-    padding: 1.5rem; /* Adjusted padding */
+    padding: 1rem; /* Adjusted padding */
     /* min-height calc relies on margins which are updated above */
   }
   .hero-container .hero-content {
@@ -3207,7 +3209,7 @@ footer {
   }
   .hero-container .hero-buttons {
     gap: 0.8rem; /* Reduce gap between stacked buttons */
-    margin-top: 0rem; /* Keep margin-top */
+    margin-top: -7rem; /* Keep margin-top */
   }
   .hero-container .hero-buttons .btn {
     padding: 0.75rem 1rem; /* Reduce button padding */
