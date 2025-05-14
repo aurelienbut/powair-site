@@ -689,21 +689,31 @@ nav ul li a:hover::after {
   color: var(--accent-color);
 }
 
+/* MODIFIED .hero-image rule */
 .hero-image {
   grid-column: 2 / 3;
-  grid-row: 1 / 3;
+  grid-row: 1 / 3; /* S'étend sur la hauteur du texte + boutons */
   position: relative;
-  height: auto;
-  max-width: 600px;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
-  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%; /* Utiliser toute la largeur de la colonne de grille allouée */
+  height: 100%; /* Essayer de prendre toute la hauteur disponible dans sa zone de grille */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
 }
+
+/* ADDED/MODIFIED rule for img inside .hero-image */
+.hero-image img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Affiche l'image entière, en la réduisant au besoin */
+}
+
 
 .hero-image.active {
   opacity: 1;
@@ -2761,7 +2771,7 @@ footer {
         margin-bottom: 1.5rem; /* Espace avant le carrousel */
     }
 
-  .hero-carousel {
+  .hero-carousel { /* This rule might be for an older structure, ensure .hero-image is styled if this is not it */
         grid-column: auto;
         grid-row: auto;
         order: 2;
@@ -2769,7 +2779,6 @@ footer {
         max-width: 380px;
         margin-top: 0;
         margin-bottom: 1.5rem;
-        /* aspect-ratio: 4/3; Peut être réactivé si besoin mais min-height est plus flexible */
         min-height: 300px; /* Hauteur min pour mobile */
     }
     .hero-buttons {
@@ -2797,11 +2806,11 @@ footer {
   .hero-text p {
     margin-bottom: 0;
   }
-  .hero-image {
-    max-width: 450px;
+  .hero-image { /* Styles for .hero-image on this breakpoint */
+    max-width: 450px; /* This might be overridden by .hero-carousel rule if it's the same element */
     margin-top: 0;
     order: 2;
-    height: auto;
+    height: auto; /* Ensure height is auto if not set by min-height */
   }
   .hero-buttons {
     justify-content: center;
@@ -2908,9 +2917,9 @@ footer {
     font-size: 1.1rem;
     margin-bottom: 0;
   }
-  .hero-image {
+  .hero-image { /* Styles for .hero-image on this breakpoint */
     max-width: 90%;
-    max-height: 40vh; /* Limiter la hauteur de l'image sur les petits écrans pour aider à l'adaptation */
+    /* max-height: 40vh; */ /* REMOVED to allow natural sizing by content and min-height */
   }
   .hero-phone-container {
     max-width: 300px;
@@ -3044,7 +3053,7 @@ footer {
     justify-content: space-around;
   }
   .partner-logo {
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
   }
   .partner-logo i {
@@ -3176,36 +3185,38 @@ footer {
     font-size: 1rem;
   }
 
+  .hero-image { /* Styles for .hero-image on this breakpoint, may override .hero-carousel if it's the same */
+     /* max-height: 10vh; */ /* REMOVED to allow natural sizing by content and min-height */
+  }
 
-.hero-carousel {
+  .hero-carousel { /* This is an old class name, ensure .hero-image is styled instead if this is a leftover */
         max-width: 320px;
         margin-top: 0rem;
         margin-bottom: 0rem;
-        min-height: 250px; /* Réduire encore un peu */
+        min-height: 250px; /* This will give .hero-image (if it's the same element) a good base height */
     }
      .hero-text {
         margin-bottom: 0rem;
     }
-    .carousel-slide img {
+    .carousel-slide img { /* This rule would apply if the old structure was active */
         max-height: 65%;
         margin-bottom: 0.5rem;
         margin-top: -7rem;
     }
     .carousel-slide-title {
-        font-size: 1,8rem;
+        font-size: 1.8rem; /* Corrected comma to period */
         margin-bottom: -7rem;
     }
 
   /* Adjust hero-container internal padding and gap */
   .hero-container {
     padding: 1rem; /* Adjusted padding */
-    /* min-height calc relies on margins which are updated above */
   }
   .hero-container .hero-content {
     gap: 1.5rem; /* Reduced gap */
   }
-  .hero-container .hero-image {
-    max-height: 10vh; /* Further limit image height */
+  .hero-container .hero-image { /* Ensuring specific styles for .hero-image */
+    /* max-height: 10vh; */ /* This line was problematic and is now removed. min-height from .hero-carousel rule will apply if structure matches */
   }
   .hero-container .hero-buttons {
     gap: 0.8rem; /* Reduce gap between stacked buttons */
@@ -3226,15 +3237,14 @@ footer {
   }
   /* May need smaller margins */
   .hero-container {
-    /* padding: 1rem; /* Ancien */
-    padding: 1.5rem 1rem; /* <-- MODIFIÉ: Assure un padding vertical d'au moins 1.5rem */
+    padding: 1.5rem 1rem; 
   }
   .hero-container .hero-content {
     gap: 0.75rem;
   }
   .hero-container .hero-image {
     margin-top: 0.5rem;
-    max-height: 10vh; /* Reduce image height further */
+    /* max-height: 25vh; */ /* REMOVED - min-height from .hero-carousel rule (250px) should still be effective */
   }
   .hero-container .hero-buttons {
     margin-top: 0.5rem;
@@ -3247,8 +3257,8 @@ footer {
     margin-bottom: 0rem;
   }
   .hero-container .hero-buttons .btn {
-    padding: 0.6rem 0.8rem; /* Reduce button padding more */
-    font-size: 0.8rem; /* Reduce button font size more */
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -3269,7 +3279,7 @@ footer {
     margin-bottom: 0.3rem;
   }
   .hero-container .hero-image {
-    max-height: 20vh; /* Encore plus petit pour les écrans minuscules */
+    /* max-height: 20vh; */ /* REMOVED - min-height from .hero-carousel rule (250px) should still be effective */
   }
   .hero-container .hero-buttons .btn {
     padding: 0.5rem 0.7rem;
@@ -3284,13 +3294,10 @@ footer {
 
 @media (min-width: 993px) {
   .hero-phone {
-    /* Revert transform for larger screens if it was scaled down */
     transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg);
   }
-  /* Scroll down position relative to its parent (section.hero) */
   .scroll-down {
-    bottom: 2rem; /* Cette valeur est déjà adaptée pour les grands écrans */
-    /* transform: translateX(-50%); est hérité */
+    bottom: 2rem; 
   }
   .scroll-down.active {
     opacity: 1;
@@ -3302,25 +3309,23 @@ footer {
   .hero-phone {
     transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg) scale(0.8);
   }
+  /* Styles from hero-container media queries specific to .hero-image were already problematic */
+  /* .hero-container .hero-image { max-height: 40vh; } <-- REMOVED from here too if it was duplicated */
 }
 
 /* --- STYLES AJOUTÉS/DÉPLACÉS POUR CENTRALISATION DES COULEURS --- */
 /* Classes utilitaires pour le texte */
 /* text-accent-color uses accent color (now Cyan in light, Blue in dark) */
 .text-accent-color {
-  /* Pour remplacer style="color: #4C86F9;" */
   color: var(--accent-color);
 }
 
 .text-danger {
-  /* Pour remplacer style="color: red;" ou les JS modifiant la couleur en rouge */
   color: var(--color-error);
 }
 
 /* Styles pour les messages de formulaire (utilisés par JS) */
 #partner-form-message.form-message {
-  /* ID est déjà utilisé, on ajoute la classe de base */
-  /* Les styles de base (padding, text-align, etc.) peuvent être dans .form-message */
 }
 
 .form-message {
@@ -3329,21 +3334,19 @@ footer {
   font-size: 0.9rem;
   text-align: center;
   margin-top: 1rem;
-  min-height: 1.5em; /* de l'ancien style en ligne */
-  color: inherit; /* de l'ancien style en ligne, sera surchargé */
+  min-height: 1.5em; 
+  color: inherit; 
   border-width: 1px;
   border-style: solid;
 }
 
 .form-message-success {
-  /* Classe à ajouter par JS */
   color: var(--color-success);
   background-color: var(--color-success-bg-transparent);
   border-color: var(--color-success-border-transparent);
 }
 
 .form-message-error {
-  /* Classe à ajouter par JS */
   color: var(--color-error);
   background-color: var(--color-error-bg-transparent);
   border-color: var(--color-error-border-transparent);
@@ -3366,14 +3369,12 @@ footer {
   border-color: var(--accent-color);
 }
 
-/* Metric icon uses accent color (now Cyan in light) */
 .metric-icon {
   font-size: 2.5rem;
   color: var(--accent-color);
   margin-bottom: 1rem;
 }
 
-/* Metric number uses accent color (now Cyan in light) */
 .metric-number {
   font-size: 3rem;
   font-weight: 800;
@@ -3420,13 +3421,12 @@ footer {
   border-color: var(--accent-color);
 }
 
-/* Feature icon uses main gradient (now Cyan->Bleu) as text fill */
 .feature-icon {
   font-size: 2rem;
-  color: var(--accent-color); /* Fallback or default */
+  color: var(--accent-color); 
   margin-bottom: 1rem;
   background-image: var(--gradient-primary);
-  background-color: var(--gradient-start-color); /* Fallback (nouveau cyan) */
+  background-color: var(--gradient-start-color); 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -3446,21 +3446,19 @@ footer {
   flex-grow: 1;
 }
 
-/* hero-merchant gradient unchanged as it uses other variables */
 .hero-merchant {
-  /* Utilisé dans lading_partner.html */
   position: relative;
-  background: var(--hero-background-gradient); /* Utilisation de la variable */
+  background: var(--hero-background-gradient); 
   border-radius: var(--radius-xl);
   overflow: hidden;
   padding: 3rem 2rem;
-  margin-top: 1.5rem; /* Correction de la virgule en point */
+  margin-top: 1.5rem; 
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-color);
 }
 
 .dark-mode .hero-merchant {
-  background: var(--hero-merchant-background-gradient-dark); /* Variable pour dark mode */
+  background: var(--hero-merchant-background-gradient-dark); 
 }
 
 .testimonial-grid {
@@ -3471,7 +3469,6 @@ footer {
 }
 
 .testimonial-card {
-  /* Ce sélecteur est différent de .partners .testimonial-slider */
   padding: 2rem;
   border-radius: var(--radius-lg);
   background-color: var(--bg-color);
@@ -3495,7 +3492,6 @@ footer {
   margin-bottom: 1.5rem;
 }
 
-/* Testimonial quotes uses accent color (now Cyan in light) */
 .testimonial-quote::before, .testimonial-quote::after {
   content: '"';
   font-size: 2rem;
@@ -3521,13 +3517,11 @@ footer {
   align-items: center;
 }
 
-/* Testimonial card avatar uses main gradient (now Cyan->Bleu) */
 .testimonial-card .testimonial-avatar {
-  /* Spécificité pour éviter conflit avec celui de .partners */
   width: 3rem;
   height: 3rem;
   background-image: var(--gradient-primary);
-  background-color: var(--gradient-start-color); /* Fallback (nouveau cyan) */
+  background-color: var(--gradient-start-color); 
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3568,7 +3562,6 @@ footer {
   border-color: var(--accent-color);
 }
 
-/* FAQ question icon uses accent color (now Cyan in light) */
 .faq-question {
   padding: 1.5rem;
   font-weight: 700;
@@ -3580,7 +3573,6 @@ footer {
   cursor: pointer;
 }
 
-/* FAQ question icon uses accent color (now Cyan in light) */
 .faq-question i {
   color: var(--accent-color);
   transition: transform 0.3s ease;
@@ -3619,7 +3611,6 @@ footer {
   box-shadow: var(--shadow-lg);
 }
 
-/* Comparison table header uses accent color (now Cyan in light) */
 .comparison-table th, .comparison-table td {
   padding: 1.2rem;
   text-align: center;
@@ -3666,7 +3657,6 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Si cette classe est réactivée */
 .step-merchant {
   padding: 1.5rem;
   background-color: var(--bg-color);
@@ -3686,12 +3676,11 @@ footer {
   border-color: var(--accent-color);
 }
 
-/* Step merchant number uses main gradient (now Cyan->Bleu) */
 .step-number-merchant {
   min-width: 3rem;
   height: 3rem;
   background-image: var(--gradient-primary);
-  background-color: var(--gradient-start-color); /* Fallback (nouveau cyan) */
+  background-color: var(--gradient-start-color); 
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3721,10 +3710,8 @@ footer {
   overflow: visible;
 }
 
-/* webinar-container gradient unchanged as it uses other variables */
 .webinar-container {
-  /* classe .webinar-container-gradiented peut être utilisée si le fond est identique au hero */
-  background: var(--hero-background-gradient); /* Utilisation de la variable */
+  background: var(--hero-background-gradient); 
   border-radius: var(--radius-xl);
   overflow: hidden;
   padding: 3rem 2rem;
@@ -3734,7 +3721,7 @@ footer {
 }
 
 .dark-mode .webinar-container {
-  background: var(--webinar-container-background-gradient-dark); /* Variable pour dark mode */
+  background: var(--webinar-container-background-gradient-dark); 
 }
 
 .webinar-header {
@@ -3747,7 +3734,6 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Webinar badge uses accent color (now Cyan in light) */
 .webinar-badge {
   display: inline-flex;
   align-items: center;
@@ -3763,7 +3749,6 @@ footer {
   transition: all 0.3s ease;
 }
 
-/* Webinar badge icon uses accent color (now Cyan in light) */
 .webinar-badge i {
   margin-right: 0.5rem;
   color: var(--accent-color);
@@ -3782,7 +3767,7 @@ footer {
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   position: relative;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  padding-top: 56.25%; 
 }
 
 .webinar-iframe {
@@ -3831,7 +3816,6 @@ footer {
   margin-bottom: 1.2rem;
 }
 
-/* Webinar info icon uses accent color (now Cyan in light) */
 .webinar-info-icon {
   width: 2.5rem;
   height: 2.5rem;
@@ -3894,9 +3878,7 @@ footer {
   margin-bottom: 1.5rem;
 }
 
-/* Webinar placeholder icon uses accent color (now Cyan in light) */
 .webinar-placeholder {
-  /* Pour le conteneur youtube avant chargement ou si erreur */
   width: 100%;
   height: 100%;
   background-color: var(--webinar-placeholder-bg);
@@ -3926,7 +3908,7 @@ footer {
   display: block;
 }
 
-.webinar-state-placeholder, .webinar-state-live, /* Ce conteneur existe-t-il toujours en dehors du stream? */
+.webinar-state-placeholder, .webinar-state-live, 
 .webinar-state-ended, .webinar-state-soon {
   background-color: var(--bg-color);
   border-radius: var(--radius-lg);
@@ -3936,7 +3918,6 @@ footer {
   text-align: center;
 }
 
-/* Webinar state icon uses accent color (now Cyan in light) */
 .webinar-state-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -3956,9 +3937,7 @@ footer {
   margin-bottom: 1.5rem;
 }
 
-/* Webinar timer uses accent color (now Cyan in light) */
 .webinar-timer {
-  /* Ceci semble être le compteur dans l'état "soon" */
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--accent-color);
@@ -4013,7 +3992,6 @@ footer {
   gap: 1rem;
 }
 
-/* Webinar action icon uses accent color (now Cyan in light) */
 .webinar-action {
   display: flex;
   align-items: center;
@@ -4040,7 +4018,6 @@ footer {
   color: var(--accent-color);
 }
 
-/* auth-prompt backdrop unchanged */
 #auth-prompt {
   position: fixed;
   top: 0;
@@ -4049,7 +4026,7 @@ footer {
   height: 100%;
   background-color: var(--backdrop-color);
   backdrop-filter: blur(5px);
-  display: flex; /* Géré par JS pour l'affichage */
+  display: flex; 
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -4065,7 +4042,6 @@ footer {
   text-align: center;
 }
 
-/* auth-prompt icon uses accent color (now Cyan in light) */
 .auth-prompt-icon {
   font-size: 3.5rem;
   color: var(--accent-color);
@@ -4098,7 +4074,6 @@ footer {
   width: 100%;
 }
 
-/* auth-prompt form group label color unchanged */
 #auth-prompt .form-group {
   display: flex;
   flex-direction: column;
@@ -4112,7 +4087,6 @@ footer {
   font-size: 1rem;
 }
 
-/* auth-prompt form group input focus uses accent color (now Cyan in light) and shadow based on new start RGB */
 #auth-prompt .form-group input {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-lg);
@@ -4130,7 +4104,6 @@ footer {
   box-shadow: 0 0 0 3px rgba(var(--gradient-start-color-rgb), 0.2);
 }
 
-/* Shadow based on new start color (cyan) */
 #auth-prompt .login-button {
   margin-top: 0.5rem;
   padding: 0.75rem;
@@ -4138,7 +4111,6 @@ footer {
 }
 
 #auth-prompt .login-message {
-  /* Classe de base pour le message */
   text-align: center;
   min-height: 1.5rem;
   margin-top: 0.5rem;
@@ -4147,12 +4119,10 @@ footer {
 }
 
 #auth-prompt .login-message.error-text {
-  /* Classe à ajouter par JS pour erreur */
   color: var(--color-error);
 }
 
 #auth-prompt .login-message.success-text {
-  /* Classe à ajouter par JS pour succès */
   color: var(--color-success-alt);
 }
 
@@ -4183,7 +4153,6 @@ footer {
   flex-direction: column;
 }
 
-/* Webinar chat title icon uses accent color (now Cyan in light) */
 .webinar-chat-header {
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
@@ -4238,7 +4207,6 @@ footer {
   position: relative;
 }
 
-/* Webinar chat message user uses accent color (now Cyan in light) */
 .webinar-chat-message.user {
   align-self: flex-end;
   background-color: var(--accent-color);
@@ -4266,7 +4234,6 @@ footer {
   gap: 0.5rem;
 }
 
-/* Webinar chat input focus uses accent color (now Cyan in light) and shadow based on new start RGB */
 .webinar-chat-input {
   flex: 1;
   padding: 0.75rem 1rem;
@@ -4283,7 +4250,6 @@ footer {
   box-shadow: 0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.1);
 }
 
-/* Webinar chat send uses accent color (now Cyan in light) */
 .webinar-chat-send {
   border-radius: var(--radius-full);
   margin: 0;
@@ -4334,7 +4300,6 @@ footer {
   align-items: center;
 }
 
-/* Countdown value uses accent color (now Cyan in light) */
 .countdown-value {
   font-size: 2rem;
   font-weight: 800;
@@ -4376,7 +4341,6 @@ footer {
   margin-bottom: 1.5rem;
 }
 
-/* Peut être commun avec #auth-prompt .form-group */
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
@@ -4385,7 +4349,6 @@ footer {
   color: var(--text-color);
 }
 
-/* Question form group inputs focus use accent color (now Cyan in light) and shadow based on new start RGB */
 .form-group input, .form-group textarea, .form-group select {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -4412,7 +4375,6 @@ footer {
   text-align: center;
 }
 
-/* .form-message est déjà défini plus haut et peut être réutilisé ici */
 #user-account {
   display: flex;
   align-items: center;
@@ -4428,9 +4390,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* User info icon uses accent color (now Cyan in light) */
 .user-info-icon {
-  /* S'il est différent de .webinar-info-icon */
   width: 2rem;
   height: 2rem;
   background-color: var(--accent-color);
@@ -4470,7 +4430,6 @@ footer {
     font-size: 2rem;
     padding: 0.75rem 1.5rem;
   }
-  /* Ajustements pour lading_partner.html sur mobile */
   .hero-merchant {
     padding: 3rem 1.5rem;
   }
@@ -4489,7 +4448,6 @@ footer {
   .step-content-merchant {
     width: 100%;
   }
-  /* Ajustements pour webinar.html sur mobile */
   .container {
     padding-left: 15px;
     padding-right: 15px;
@@ -4566,8 +4524,6 @@ footer {
   .header-content {
     padding: 0.75rem 0;
   }
-  
-  /* .logo-icon est dans le HTML, mais pas stylé explicitement ici, peut être une image */
 }
 
 @media (max-width: 480px) {
@@ -4653,7 +4609,6 @@ footer {
     margin-top: 1.25rem;
     margin-bottom: 1.75rem;
   }
-  /* Responsive pour login-form dans auth-prompt */
   #auth-prompt .login-form {
     gap: 0.5rem;
   }
@@ -4702,13 +4657,11 @@ footer {
 }
 
 @media (max-width: 992px) {
-  /* Cache les infos utilisateur textes sur mobile pour le header webinar */
   #user-account .user-info {
     display: none !important;
   }
 }
 
-/* Ajout de l'animation shake manquante */
 @keyframes shake {
   0%, 100% {
     transform: translateX(0);
@@ -4724,7 +4677,6 @@ footer {
   }
 }
 
-/* Styles pour le hero container */
 .hero-container {
   position: relative;
   background: var(--hero-background-gradient);
@@ -4735,12 +4687,11 @@ footer {
   border: 1px solid var(--border-color);
   margin-top: var(--hero-container-margin-top);
   margin-bottom: var(--hero-container-margin-bottom);
-  /* Utilise min-height:auto au lieu de min-height:0 pour permettre le contenu naturel */
   min-height: auto;
   max-height: none;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Commencer par le haut pour les petits écrans */
+  justify-content: flex-start; 
 }
 
 .dark-mode .hero-container {
@@ -4760,13 +4711,10 @@ footer {
   padding-left: 1rem;
 }
 
-/* Media queries pour responsive */
 @media (min-width: 993px) {
   .hero-phone {
-    /* Revert transform for larger screens if it was scaled down */
     transform: translate(-50%, -50%) rotateY(-15deg) rotateX(10deg);
   }
-  /* .scroll-down est déjà géré par la media query précédente */
 }
 
 @media (max-width: 992px) {
@@ -4794,10 +4742,10 @@ footer {
     margin-left: auto;
     margin-right: auto;
   }
-  .hero-container .hero-image {
+  .hero-container .hero-image { /* This ensures .hero-image inherits min-height from .hero-carousel if they are the same element */
     order: 2;
     margin-top: 1.5rem;
-    max-width: 350px;
+    /* max-width: 350px; */ /* This is covered by .hero-carousel's max-width: 380px at this breakpoint */
   }
   .hero-container .hero-buttons {
     order: 3;
@@ -4817,8 +4765,8 @@ footer {
   .hero-container .hero-content {
     gap: 1.5rem;
   }
+  /* REMOVED max-height from .hero-container .hero-image here to let min-height from 992px or 576px rule and object-fit work */
   .hero-container .hero-image {
-    max-height: 35vh;
     margin-top: 1rem;
   }
   .hero-container .hero-buttons {
@@ -4837,9 +4785,7 @@ footer {
   .hero-container {
     padding: 1.5rem;
   }
-  .hero-container .hero-image {
-    max-height: 10vh;
-  }
+  /* REMOVED max-height from .hero-container .hero-image here to let min-height from .hero-carousel rule (250px) and object-fit work */
   .hero-container .hero-content {
     gap: 1rem;
   }
@@ -4873,7 +4819,7 @@ footer {
   }
   .hero-container .hero-image {
     margin-top: 0.5rem;
-    max-height: 25vh;
+    /* max-height: 25vh; */ /* REMOVED */
   }
   .hero-container .hero-buttons {
     margin-top: 0.5rem;
@@ -4908,7 +4854,7 @@ footer {
     margin-bottom: 0.3rem;
   }
   .hero-container .hero-image {
-    max-height: 20vh;
+    /* max-height: 20vh; */ /* REMOVED */
   }
   .hero-container .hero-buttons .btn {
     padding: 0.5rem 0.7rem;

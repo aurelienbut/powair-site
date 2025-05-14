@@ -70,22 +70,11 @@
                Louez une batterie externe dans l’une de nos bornes, utilisez-la aussi longtemps que nécessaire, et retournez la dans la borne la plus proche !
              </p>
            </div>
-           <!-- NOUVEAU CAROUSEL ICI -->
-           <div class="hero-carousel">
-             <div class="carousel-slide active">
-               <img src="https://i.imgur.com/OxDKSEW.png" alt="Illustration Étape 1: Scanner le QR code sur la borne Pow'air">
-               <div class="carousel-slide-title">Scannez</div>
-             </div>
-             <div class="carousel-slide">
-               <img src="https://i.imgur.com/I7pNgA5.png" alt="Illustration Étape 2: Utiliser la batterie Pow'air pour charger un téléphone">
-               <div class="carousel-slide-title">Chargez</div>
-             </div>
-             <div class="carousel-slide">
-               <img src="https://i.imgur.com/1zPlHgH.png" alt="Illustration Étape 3: Retourner la batterie Pow'air dans une borne">
-               <div class="carousel-slide-title">Retournez</div>
-             </div>
-           </div>
-           <!-- FIN NOUVEAU CAROUSEL -->
+           <!-- NOUVELLE SECTION POUR L'IMAGE STATIQUE -->
+         <div class="hero-image"> <!-- Utilisation de la classe .hero-image pour que l'animation JS s'applique -->
+           <img src="images/external_battery.png" alt="Batterie externe Pow'air">
+         </div>
+         <!-- FIN NOUVELLE SECTION POUR L'IMAGE STATIQUE -->
            <div class="hero-buttons">
              <a href="#download" class="btn btn-primary">
                <i class="fas fa-download"></i>
@@ -107,6 +96,49 @@
        <div class="scroll-down-arrow">
          <i class="fas fa-chevron-down"></i>
        </div>
+    </div>
+  </section>
+
+   <section class="how-it-works" id="how-it-works">
+    <div class="section-bg">
+      <div class="section-bg-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="section-inner">
+        <div class="section-title-container">
+          <div class="section-tag">
+            <i class="fas fa-info-circle"></i> Simple et rapide
+          </div>
+          <h2>Comment ça marche</h2>
+          <p class="subtitle">Un service qui vous libère de toutes contraintes de batterie.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-illustration">
+                <img src="https://i.imgur.com/OxDKSEW.png" alt="Illustration Étape 1: Scanner le QR code sur la borne Pow'air">
+            </div>
+            <h3 class="step-title">Scannez</h3>
+            <p class="step-description">Localisez une borne via l’application et scannez le QR code pour déverrouiller votre batterie.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-illustration">
+              <img src="https://i.imgur.com/I7pNgA5.png" alt="Illustration Étape 2: Utiliser la batterie Pow'air pour charger un téléphone">
+            </div>
+            <h3 class="step-title">Utilisez</h3>
+            <p class="step-description">Emportez votre batterie partout avec vous et rechargez vos appareils à volonté, aussi longtemps que nécessaire.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+              <div class="step-illustration">
+                <img src="https://i.imgur.com/1zPlHgH.png" alt="Illustration Étape 3: Retourner la batterie Pow'air dans une borne">
+            </div>
+            <h3 class="step-title">Retournez</h3>
+            <p class="step-description">Retournez la batterie dans la borne la plus proche !</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -134,7 +166,7 @@
                 <div id="search-suggestions" class="search-suggestions"></div>
               </div>
             </div>
-            <id="map"></id>
+            <div id="map"></div>
           </div>
         </div>
       </div>
