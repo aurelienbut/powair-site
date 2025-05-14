@@ -56,6 +56,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- HERO CAROUSEL ---
+    const heroCarouselElement = document.querySelector('.hero-carousel');
+    if (heroCarouselElement) {
+        const slides = heroCarouselElement.querySelectorAll('.carousel-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        const slideInterval = 1500; // Temps en ms entre chaque slide (3.5 secondes)
+
+        function showSlide(index) {
+            if (totalSlides === 0) return;
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        if (totalSlides > 0) {
+            showSlide(currentIndex); // Afficher la première slide immédiatement
+            setInterval(nextSlide, slideInterval);
+             // Activer l'animation d'apparition du carrousel lui-même
+            setTimeout(() => {
+                heroCarouselElement.classList.add('active');
+            }, 200); // Léger délai pour que ça s'anime après le texte
+        }
+    }
+
+    // S'assurer que le code d'animation d'apparition pour .hero-text et .hero-buttons est toujours là.
+    // Si vous avez déplacé .hero-image, assurez-vous que la classe .active est ajoutée au .hero-carousel
+    // au bon moment pour l'animation d'entrée.
+
+    const heroText = document.querySelector('.hero-text');
+    const heroButtons = document.querySelector('.hero-buttons');
+    // const heroImage = document.querySelector('.hero-image'); // L'ancien est supprimé
+
+    if (heroText) heroText.classList.add('active');
+    if (heroButtons) heroButtons.classList.add('active');
+
     // --- Gestion du Mode Sombre / Clair ---
     const modeSwitch = document.querySelector('.mode-switch');
     const bodyForTheme = document.body;

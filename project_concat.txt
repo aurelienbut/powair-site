@@ -1,5 +1,5 @@
 --- Concatenation du projet : C:\Users\aurel\Documents\full of doc\POW'AIR\html version\toufff one ---
---- Généré le : 2025-05-14 00:46:05.227097 ---
+--- Généré le : 2025-05-14 02:02:01.000093 ---
 
 --- Fichiers Inclus (2) ---
 - index.html
@@ -76,16 +76,27 @@
       <div class="hero-container">
          <div class="hero-content">
            <div class="hero-text">
-             <div class="hero-badge">
-               <i class="fas fa-check-circle"></i>
-               #1 en France pour la recharge mobile
-             </div>
              <h1>Louez, <span>Chargez, </span>Retournez ! </h1>
              <p>
                Louez une batterie externe dans l’une de nos bornes, utilisez-la aussi longtemps que nécessaire, et retournez la dans la borne la plus proche !
              </p>
            </div>
-           <!-- L'élément .hero-image a été supprimé ici -->
+           <!-- NOUVEAU CAROUSEL ICI -->
+           <div class="hero-carousel">
+             <div class="carousel-slide active">
+               <img src="https://i.imgur.com/OxDKSEW.png" alt="Illustration Étape 1: Scanner le QR code sur la borne Pow'air">
+               <div class="carousel-slide-title">Scannez</div>
+             </div>
+             <div class="carousel-slide">
+               <img src="https://i.imgur.com/I7pNgA5.png" alt="Illustration Étape 2: Utiliser la batterie Pow'air pour charger un téléphone">
+               <div class="carousel-slide-title">Utilisez</div>
+             </div>
+             <div class="carousel-slide">
+               <img src="https://i.imgur.com/1zPlHgH.png" alt="Illustration Étape 3: Retourner la batterie Pow'air dans une borne">
+               <div class="carousel-slide-title">Retournez</div>
+             </div>
+           </div>
+           <!-- FIN NOUVEAU CAROUSEL -->
            <div class="hero-buttons">
              <a href="#download" class="btn btn-primary">
                <i class="fas fa-download"></i>
@@ -107,49 +118,6 @@
        <div class="scroll-down-arrow">
          <i class="fas fa-chevron-down"></i>
        </div>
-    </div>
-  </section>
-
-  <section class="how-it-works" id="how-it-works">
-    <div class="section-bg">
-      <div class="section-bg-pattern"></div>
-    </div>
-    <div class="container">
-      <div class="section-inner">
-        <div class="section-title-container">
-          <div class="section-tag">
-            <i class="fas fa-info-circle"></i> Simple et rapide
-          </div>
-          <h2>Comment ça marche</h2>
-          <p class="subtitle">Un service qui vous libère de toutes contraintes de batterie.</p>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-illustration">
-                <img src="https://i.imgur.com/OxDKSEW.png" alt="Illustration Étape 1: Scanner le QR code sur la borne Pow'air">
-            </div>
-            <h3 class="step-title">Scannez</h3>
-            <p class="step-description">Localisez une borne via l’application et scannez le QR code pour déverrouiller votre batterie.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-illustration">
-              <img src="https://i.imgur.com/I7pNgA5.png" alt="Illustration Étape 2: Utiliser la batterie Pow'air pour charger un téléphone">
-            </div>
-            <h3 class="step-title">Utilisez</h3>
-            <p class="step-description">Emportez votre batterie partout avec vous et rechargez vos appareils à volonté, aussi longtemps que nécessaire.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-              <div class="step-illustration">
-                <img src="https://i.imgur.com/1zPlHgH.png" alt="Illustration Étape 3: Retourner la batterie Pow'air dans une borne">
-            </div>
-            <h3 class="step-title">Retournez</h3>
-            <p class="step-description">Retournez la batterie dans la borne la plus proche !</p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -177,7 +145,7 @@
                 <div id="search-suggestions" class="search-suggestions"></div>
               </div>
             </div>
-            <div id="map"></div>
+            <id="map"></id>
           </div>
         </div>
       </div>
@@ -857,13 +825,13 @@ header.scrolled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.7rem 0;
   transition: padding 0.3s ease;
   flex-wrap: nowrap;
 }
 
 header.scrolled .header-content {
-  padding: 0.75rem 0;
+  padding: 0.7rem 0;
 }
 
 .logo {
@@ -961,6 +929,78 @@ nav ul li a:hover::after {
 
 .btn:hover::before {
   transform: translateY(0);
+}
+
+.hero-carousel {
+    grid-column: 2 / 3; /* Desktop: occupe la 2ème colonne de hero-content */
+    grid-row: 1 / 2;    /* Desktop: sur la même ligne que hero-text */
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ajustez selon le design souhaité */
+    /* aspect-ratio: 1 / 1; Suppression pour s'adapter au contenu img + titre */
+    overflow: visible; /* Permettre au titre d'être en dessous sans être coupé si besoin */
+    border-radius: var(--radius-xl); /* Peut être utile si on remet un fond/ombre */
+    /* background-color: transparent; */ /* Supprimé pour enlever le cadre blanc */
+    /* border: none; */ /* Supprimé pour enlever le cadre blanc */
+    /* box-shadow: none; */ /* Supprimé pour enlever le cadre blanc */
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+    display: flex; /* Pour gérer les slides enfants */
+    align-items: center; /* Centrer verticalement la slide active */
+    justify-content: center; /* Centrer horizontalement la slide active */
+    min-height: 350px; /* Donnez une hauteur minimale pour éviter les sauts de page, à ajuster */
+}
+.hero-carousel.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease-in-out, visibility 0s 0.7s;
+    display: flex;
+    flex-direction: column; /* Pour que le titre soit sous l'image */
+    align-items: center;
+    justify-content: center; /* Centre l'image et le titre */
+    /* padding: 0; */ /* Supprimé pour enlever l'effet de cadre */
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 80%; /* Laisse de la place pour le titre en dessous */
+    object-fit: contain;
+    border-radius: var(--radius-md); /* Garder un léger arrondi pour les images elles-mêmes */
+    user-select: none;
+    margin-bottom: 1rem; /* Espace entre l'image et le titre */
+}
+
+.carousel-slide-title {
+    font-size: 1.2rem; /* Taille du titre */
+    font-weight: 700;  /* Graisse du titre */
+    color: var(--text-color-light); /* Couleur noire pour le mode clair, s'adapte au texte secondaire du mode sombre */
+    text-align: center;
+    width: 100%;
+    padding: 0 0.5rem; /* Un peu de padding si le texte est long */
+    line-height: 1.3;
+}
+
+/* Pour le mode sombre, si vous voulez que le titre soit blanc */
+.dark-mode .carousel-slide-title {
+    color: var(--text-color-dark); /* Ou une couleur spécifique si besoin */
 }
 
 /* btn-primary utilise le dégradé principal (maintenant Cyan->Bleu) */
@@ -3298,6 +3338,33 @@ footer {
     gap: 0rem;
     align-items: center;
   }
+
+  .hero-text {
+        order: 1; /* Texte en premier */
+        margin-bottom: 1.5rem; /* Espace avant le carrousel */
+    }
+
+  .hero-carousel {
+        grid-column: auto;
+        grid-row: auto;
+        order: 2;
+        width: 90%;
+        max-width: 380px;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        /* aspect-ratio: 4/3; Peut être réactivé si besoin mais min-height est plus flexible */
+        min-height: 300px; /* Hauteur min pour mobile */
+    }
+    .hero-buttons {
+        order: 3;
+    }
+     .carousel-slide img {
+        max-height: 75%; /* Un peu plus de place pour l'image sur mobile */
+    }
+    .carousel-slide-title {
+        font-size: 1.1rem;
+    }
+    
   .hero-text, .hero-image, .hero-buttons {
     grid-column: auto;
     grid-row: auto;
@@ -3531,7 +3598,7 @@ footer {
     gap: 0.5rem;
   }
   header .container .header-content .logo {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     flex-shrink: 1;
   }
   header .container .header-content {
@@ -3588,12 +3655,12 @@ footer {
 @media (max-width: 576px) {
   /* Ajustement de la hauteur du header pour cette résolution */
   :root {
-    --header-height: 60px;
+    --header-height: 50px;
   }
   /* Adjust hero-container margins and padding */
   :root {
-    --hero-container-margin-top: 1.5rem;
-    --hero-container-margin-bottom: 1.5rem;
+    --hero-container-margin-top: 1.3rem;
+    --hero-container-margin-bottom: 1.3rem;
   }
   h1 {
     font-size: 2rem;
@@ -3613,12 +3680,15 @@ footer {
     width: 100%;
   }
   header .container .header-content .logo {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-right: 0.5rem;
   }
+   header .logo img { /* Cible l'image du logo dans le header */
+    max-height: 55px; /* Était 70px par défaut. Ajustez cette valeur. */
+  }
   header .container .header-content nav .btn.btn-primary {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.7rem 0.6rem;
+    font-size: 0.7rem;
   }
   header .container .header-content nav .mobile-menu-button {
     font-size: 1.5rem;
@@ -3688,6 +3758,25 @@ footer {
     height: 2rem;
     font-size: 1rem;
   }
+
+
+.hero-carousel {
+        max-width: 320px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        min-height: 280px; /* Réduire encore un peu */
+    }
+     .hero-text {
+        margin-bottom: 1rem;
+    }
+    .carousel-slide img {
+        max-height: 70%;
+        margin-bottom: 0.75rem;
+    }
+    .carousel-slide-title {
+        font-size: 1rem;
+    }
+
   /* Adjust hero-container internal padding and gap */
   .hero-container {
     padding: 1.5rem; /* Adjusted padding */
@@ -5058,9 +5147,7 @@ footer {
   .header-content {
     padding: 0.75rem 0;
   }
-  .logo {
-    font-size: 1.5rem;
-  }
+  
   /* .logo-icon est dans le HTML, mais pas stylé explicitement ici, peut être une image */
 }
 

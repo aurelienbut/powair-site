@@ -347,6 +347,79 @@ nav ul li a:hover::after {
   transform: translateY(0);
 }
 
+.hero-carousel {
+    grid-column: 2 / 3; /* Desktop: occupe la 2ème colonne de hero-content */
+    grid-row: 1 / 3;    /* MODIFIÉ: Desktop: s'étend sur les lignes de hero-text et hero-buttons pour un meilleur centrage vertical */
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ajustez selon le design souhaité */
+    /* aspect-ratio: 1 / 1; Suppression pour s'adapter au contenu img + titre */
+    overflow: visible; /* Permettre au titre d'être en dessous sans être coupé si besoin */
+    border-radius: var(--radius-xl); /* Peut être utile si on remet un fond/ombre */
+    /* background-color: transparent; */ /* Supprimé pour enlever le cadre blanc */
+    /* border: none; */ /* Supprimé pour enlever le cadre blanc */
+    /* box-shadow: none; */ /* Supprimé pour enlever le cadre blanc */
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+    display: flex; /* Pour gérer les slides enfants */
+    align-items: center; /* Centrer verticalement la slide active */
+    justify-content: center; /* Centrer horizontalement la slide active */
+    min-height: 350px; /* Donnez une hauteur minimale pour éviter les sauts de page, à ajuster */
+}
+
+.hero-carousel.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease-in-out, visibility 0s 0.7s;
+    display: flex;
+    flex-direction: column; /* Pour que le titre soit sous l'image */
+    align-items: center;
+    justify-content: center; /* Centre l'image et le titre */
+    /* padding: 0; */ /* Supprimé pour enlever l'effet de cadre */
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 80%; /* Laisse de la place pour le titre en dessous */
+    object-fit: contain;
+    border-radius: var(--radius-md); /* Garder un léger arrondi pour les images elles-mêmes */
+    user-select: none;
+    margin-bottom: 1rem; /* Espace entre l'image et le titre */
+}
+
+.carousel-slide-title {
+    font-size: 1.2rem; /* Taille du titre */
+    font-weight: 700;  /* Graisse du titre */
+    color: var(--text-color-light); /* Couleur noire pour le mode clair, s'adapte au texte secondaire du mode sombre */
+    text-align: center;
+    width: 100%;
+    padding: 0 0.5rem; /* Un peu de padding si le texte est long */
+    line-height: 1.3;
+}
+
+/* Pour le mode sombre, si vous voulez que le titre soit blanc */
+.dark-mode .carousel-slide-title {
+    color: var(--text-color-dark); /* Ou une couleur spécifique si besoin */
+}
+
 /* btn-primary utilise le dégradé principal (maintenant Cyan->Bleu) */
 .btn.btn-primary {
   background-image: var(--gradient-primary);
@@ -2682,6 +2755,33 @@ footer {
     gap: 0rem;
     align-items: center;
   }
+
+  .hero-text {
+        order: 1; /* Texte en premier */
+        margin-bottom: 1.5rem; /* Espace avant le carrousel */
+    }
+
+  .hero-carousel {
+        grid-column: auto;
+        grid-row: auto;
+        order: 2;
+        width: 90%;
+        max-width: 380px;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        /* aspect-ratio: 4/3; Peut être réactivé si besoin mais min-height est plus flexible */
+        min-height: 300px; /* Hauteur min pour mobile */
+    }
+    .hero-buttons {
+        order: 3;
+    }
+     .carousel-slide img {
+        max-height: 75%; /* Un peu plus de place pour l'image sur mobile */
+    }
+    .carousel-slide-title {
+        font-size: 1.1rem;
+    }
+    
   .hero-text, .hero-image, .hero-buttons {
     grid-column: auto;
     grid-row: auto;
@@ -2692,7 +2792,7 @@ footer {
   }
   .hero-text {
     order: 1;
-    margin-bottom: 0;
+    margin-bottom: -1rem;
   }
   .hero-text p {
     margin-bottom: 0;
@@ -2972,12 +3072,12 @@ footer {
 @media (max-width: 576px) {
   /* Ajustement de la hauteur du header pour cette résolution */
   :root {
-    --header-height: 60px;
+    --header-height: 50px;
   }
   /* Adjust hero-container margins and padding */
   :root {
-    --hero-container-margin-top: 1.2rem;
-    --hero-container-margin-bottom: 1.2rem;
+    --hero-container-margin-top: 1.3rem;
+    --hero-container-margin-bottom: 1.3rem;
   }
   h1 {
     font-size: 2rem;
@@ -3075,6 +3175,25 @@ footer {
     height: 2rem;
     font-size: 1rem;
   }
+
+
+.hero-carousel {
+        max-width: 320px;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        min-height: 280px; /* Réduire encore un peu */
+    }
+     .hero-text {
+        margin-bottom: 1rem;
+    }
+    .carousel-slide img {
+        max-height: 65%;
+        margin-bottom: 0.75rem;
+    }
+    .carousel-slide-title {
+        font-size: 1,8rem;
+    }
+
   /* Adjust hero-container internal padding and gap */
   .hero-container {
     padding: 1.5rem; /* Adjusted padding */
@@ -3088,7 +3207,7 @@ footer {
   }
   .hero-container .hero-buttons {
     gap: 0.8rem; /* Reduce gap between stacked buttons */
-    margin-top: 1.5rem; /* Keep margin-top */
+    margin-top: 0rem; /* Keep margin-top */
   }
   .hero-container .hero-buttons .btn {
     padding: 0.75rem 1rem; /* Reduce button padding */
@@ -3123,7 +3242,7 @@ footer {
     margin-bottom: 0.5rem;
   }
   .hero-container .hero-text p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
   }
   .hero-container .hero-buttons .btn {
     padding: 0.6rem 0.8rem; /* Reduce button padding more */
@@ -4717,23 +4836,24 @@ footer {
     padding: 1.5rem;
   }
   .hero-container .hero-image {
-    max-height: 30vh;
+    max-height: 10vh;
   }
   .hero-container .hero-content {
     gap: 1rem;
   }
   .hero-container .hero-image {
-    margin-top: 0.75rem;
+    margin-top: 0rem;
   }
   .hero-container .hero-buttons {
-    margin-top: 0.75rem;
+    margin-top: 0rem;
     gap: 0.5rem;
   }
   .hero-container .hero-text h1 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.9rem;
   }
   .hero-container .hero-text p {
-    margin-bottom: 0.75rem;
+    margin-bottom: -2rem;
   }
   .hero-container .hero-buttons .btn {
     padding: 0.75rem 1rem;
@@ -4761,7 +4881,7 @@ footer {
     margin-bottom: 0.5rem;
   }
   .hero-container .hero-text p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
   }
   .hero-container .hero-buttons .btn {
     padding: 0.6rem 0.8rem;
