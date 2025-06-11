@@ -1089,6 +1089,7 @@ nav ul li a:hover::after {
   opacity: 0;
   transform: translateY(30px);
   background-color: var(--bg-color);
+  padding: 2.5rem 2rem; /* Augmentation du padding global de la carte */
 }
 
 .benefit-card.active {
