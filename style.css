@@ -107,11 +107,6 @@ section {
   overflow: hidden;
 }
 
-.section-inner {
-  position: relative;
-  z-index: 2;
-}
-
 /* Typographie */
 h1, h2, h3, h4 {
   line-height: 1.1;
@@ -906,7 +901,7 @@ nav ul li a:hover::after {
 }
 
 /* ===============================
-   SECTION PROCESSUS AMÉLIORÉE
+   SECTION PROCESSUS EN ZIGZAG - NOUVELLE VERSION
    =============================== */
 .process-section {
   background: 
@@ -914,6 +909,7 @@ nav ul li a:hover::after {
       radial-gradient(circle at 80% 70%, rgba(var(--gradient-end-color), 0.1) 0%, transparent 50%),
       var(--bg-color);
   position: relative;
+  overflow: hidden;
 }
 
 .process-section::before {
@@ -938,15 +934,16 @@ nav ul li a:hover::after {
 
 .process-timeline {
   position: relative;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 4rem 0;
 }
 
+/* Ligne centrale verticale */
 .process-timeline::before {
   content: '';
   position: absolute;
-  left: 3rem;
+  left: 50%;
   top: 0;
   bottom: 0;
   width: 4px;
@@ -954,7 +951,7 @@ nav ul li a:hover::after {
       var(--gradient-start-color) 0%, 
       var(--gradient-end-color) 50%, 
       var(--gradient-start-color) 100%);
-  transform: translateX(50%);
+  transform: translateX(-50%);
   border-radius: var(--radius-full);
   box-shadow: 0 0 20px rgba(var(--gradient-start-color-rgb), 0.3);
   animation: timelineGlow 3s ease-in-out infinite alternate;
@@ -965,12 +962,16 @@ nav ul li a:hover::after {
   to { box-shadow: 0 0 30px rgba(var(--gradient-start-color-rgb), 0.6); }
 }
 
+/* Structure générale des étapes */
 .process-step-enhanced {
   position: relative;
-  margin: 3rem 0;
+  margin: 4rem 0;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  min-height: 200px;
 }
 
 .process-step-enhanced.active {
@@ -978,37 +979,79 @@ nav ul li a:hover::after {
   transform: translateY(0);
 }
 
-.process-step-enhanced:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.process-step-content {
-  background: var(--bg-color);
-  border-radius: var(--radius-2xl);
-  padding: 2.5rem;
-  box-shadow: 
-      0 20px 40px rgba(var(--gradient-start-color-rgb), 0.1),
-      0 0 0 1px rgba(var(--gradient-start-color-rgb), 0.05);
-  width: calc(100% - 6.5rem);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-left: 6.5rem !important;
-  margin-right: 0 !important;
+/* ÉTAPES IMPAIRES (1, 3, 5...) - À GAUCHE */
+.process-step-enhanced:nth-child(odd) {
+  justify-content: flex-end;
 }
 
 .process-step-enhanced:nth-child(odd) .process-step-content {
-  margin-left: 0;
-  margin-right: auto;
+  background: rgba(var(--main-white-rgb), 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-2xl);
+  padding: 3rem 2.5rem;
+  box-shadow: 
+      0 20px 60px rgba(var(--gradient-start-color-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 0 0 1px rgba(var(--gradient-start-color-rgb), 0.08);
+  width: calc(45% - 60px);
+  margin-right: 80px;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(var(--gradient-start-color-rgb), 0.1);
+}
+
+.process-step-enhanced:nth-child(odd) .process-step-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.8s ease;
+}
+
+.process-step-enhanced:nth-child(odd) .process-step-content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid rgba(var(--gradient-start-color-rgb), 0.1);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+/* ÉTAPES PAIRES (2, 4, 6...) - À DROITE */
+.process-step-enhanced:nth-child(even) {
+  justify-content: flex-start;
 }
 
 .process-step-enhanced:nth-child(even) .process-step-content {
-  margin-right: 0;
-  margin-left: auto;
+  background: rgba(var(--main-white-rgb), 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-2xl);
+  padding: 3rem 2.5rem;
+  box-shadow: 
+      0 20px 60px rgba(var(--gradient-start-color-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 0 0 1px rgba(var(--gradient-start-color-rgb), 0.08);
+  width: calc(45% - 60px);
+  margin-left: 80px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(var(--gradient-start-color-rgb), 0.1);
 }
 
-.process-step-content::before {
+.process-step-enhanced:nth-child(even) .process-step-content::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1018,46 +1061,50 @@ nav ul li a:hover::after {
   background: var(--gradient-primary);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
 }
 
-.process-step-enhanced.active .process-step-content::before {
-  transform: scaleX(1);
+.process-step-enhanced:nth-child(even) .process-step-content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-right: 20px solid rgba(var(--gradient-start-color-rgb), 0.1);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
 }
 
-.process-step-content:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 
-      0 30px 60px rgba(var(--gradient-start-color-rgb), 0.15),
-      0 0 0 1px rgba(var(--gradient-start-color-rgb), 0.1);
-}
-
+/* Icônes centrales sur la timeline */
 .process-step-icon {
   position: absolute;
-  left: 3rem;
+  left: 50%;
   top: 50%;
-  transform: translate(0, -50%); /* ← Changer ça : enlever le -50% horizontal */
-  width: 80px;
-  height: 80px;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
   background: linear-gradient(135deg, var(--gradient-start-color), var(--gradient-end-color));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--main-white);
-  font-size: 2rem;
+  font-size: 2.5rem;
   box-shadow: 
-      0 10px 30px rgba(var(--gradient-start-color-rgb), 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 15px 40px rgba(var(--gradient-start-color-rgb), 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.2),
+      0 0 0 6px var(--bg-color),
+      0 0 0 8px rgba(var(--gradient-start-color-rgb), 0.1);
   z-index: 10;
-  border: 4px solid var(--bg-color);
-  transition: none; /* ← Changer ça : supprimer les animations */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .process-step-icon::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
   background: conic-gradient(from 0deg, 
       var(--gradient-start-color), 
@@ -1066,6 +1113,97 @@ nav ul li a:hover::after {
   z-index: -1;
   opacity: 0;
   transition: opacity 0.4s ease;
+}
+
+/* Contenu des étapes */
+.process-step-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  position: relative;
+}
+
+.process-step-enhanced:nth-child(odd) .process-step-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: width 0.6s ease;
+}
+
+.process-step-enhanced:nth-child(even) .process-step-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: width 0.6s ease;
+}
+
+.process-step-description {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.process-step-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.process-step-enhanced:nth-child(odd) .process-step-features {
+  justify-content: flex-end;
+}
+
+.process-step-enhanced:nth-child(even) .process-step-features {
+  justify-content: flex-start;
+}
+
+.process-feature-tag {
+  background: linear-gradient(135deg, 
+      rgba(var(--gradient-start-color-rgb), 0.1), 
+      rgba(var(--gradient-end-color), 0.1));
+  color: var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(var(--gradient-start-color-rgb), 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.process-feature-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.process-feature-tag:hover::before {
+  left: 100%;
+}
+
+/* États actifs et animations */
+.process-step-enhanced.active .process-step-content::before {
+  transform: scaleX(1);
+}
+
+.process-step-enhanced.active .process-step-title::after {
+  width: 80px;
 }
 
 .process-step-enhanced.active .process-step-icon::before {
@@ -1078,58 +1216,35 @@ nav ul li a:hover::after {
   to { transform: rotate(360deg); }
 }
 
-.process-step-enhanced:hover .process-step-icon {
-  transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+/* Effets hover */
+.process-step-content:hover {
+  transform: translateY(-15px) scale(1.02);
   box-shadow: 
-      0 15px 40px rgba(var(--gradient-start-color-rgb), 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 35px 80px rgba(var(--gradient-start-color-rgb), 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 0 0 2px rgba(var(--gradient-start-color-rgb), 0.15);
 }
 
-.process-step-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-color);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.process-step-enhanced:hover .process-step-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 
+      0 20px 50px rgba(var(--gradient-start-color-rgb), 0.4),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3),
+      0 0 0 6px var(--bg-color),
+      0 0 0 8px rgba(var(--gradient-start-color-rgb), 0.2);
 }
 
-.process-step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: var(--gradient-primary);
-  color: var(--main-white);
-  border-radius: 50%;
-  font-size: 0.9rem;
-  font-weight: 800;
-  flex-shrink: 0;
+/* Animations échelonnées */
+.process-step-enhanced:nth-child(1).active {
+  transition-delay: 0s;
 }
 
-.process-step-description {
-  color: var(--text-light);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+.process-step-enhanced:nth-child(2).active {
+  transition-delay: 0.2s;
 }
 
-.process-step-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.process-feature-tag {
-  background: rgba(var(--gradient-start-color-rgb), 0.1);
-  color: var(--accent-color);
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid rgba(var(--gradient-start-color-rgb), 0.2);
+.process-step-enhanced:nth-child(3).active {
+  transition-delay: 0.4s;
 }
 
 /* ===============================
@@ -5053,25 +5168,46 @@ footer {
     padding: 2rem 1.5rem;
   }
 
+  /* Responsive pour la nouvelle section processus en zigzag */
   .process-timeline::before {
     left: 2rem;
   }
 
-.process-step-content {
-    width: calc(100% - 6.5rem);
-    margin-left: 6.5rem !important; /* ← Augmenter de 5rem à 6.5rem */
-    margin-right: 0 !important;
-}
+  .process-step-enhanced:nth-child(odd),
+  .process-step-enhanced:nth-child(even) {
+    justify-content: flex-start;
+  }
+
+  .process-step-enhanced:nth-child(odd) .process-step-content,
+  .process-step-enhanced:nth-child(even) .process-step-content {
+    width: calc(100% - 7rem);
+    margin-left: 7rem;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .process-step-enhanced:nth-child(odd) .process-step-content::after,
+  .process-step-enhanced:nth-child(even) .process-step-content::after {
+    display: none;
+  }
+
+  .process-step-enhanced:nth-child(odd) .process-step-features,
+  .process-step-enhanced:nth-child(even) .process-step-features {
+    justify-content: flex-start;
+  }
+
+  .process-step-enhanced:nth-child(odd) .process-step-title::after,
+  .process-step-enhanced:nth-child(even) .process-step-title::after {
+    left: 0;
+    right: auto;
+  }
 
   .process-step-icon {
     left: 2rem;
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
-
-  .process-step-title {
-    font-size: 1.3rem;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
   }
 
   .faq-question-enhanced {
@@ -5509,8 +5645,9 @@ footer {
     padding: 0.75rem 0;
   }
 
+  /* Responsive pour la nouvelle section processus en zigzag */
   .process-step-content {
-    width: calc(100% - 4rem);
+    width: calc(100% - 4rem) !important;
     margin-left: 4rem !important;
     padding: 1.5rem;
   }
